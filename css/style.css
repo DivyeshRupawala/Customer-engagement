@@ -85,7 +85,10 @@ body {
 }
 .back_text{
 	background: #0c5497;
-	color: #ffffff;
+	color: #ffffff !important;
+}
+.back_text h3 {
+    color: #fff;
 }
 .back_text h3{
 	margin-top: 97px;
