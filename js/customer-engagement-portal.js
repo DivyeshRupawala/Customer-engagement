@@ -186,7 +186,7 @@
 
       // Auto-format currency fields
       $('input[data-format-as-currency]').currencyInput();
-
+      $('input[data-format-span-as-currency]').currencyInput();
       // Initialize linked slider for purchase price»down payment fields
       $('#downpaymentpercent').linkedPercentSlider();
 
@@ -2220,7 +2220,8 @@ function createRangeSliders(sliderId,spanId,classId){
           var current_val = data.from;
             var dis_min_val =  parseInt(current_val);
             var slide_range = '$' + dis_min_val;
-            $('#'+spanId).html(slide_range);
+            var slide_range_val='$' + dis_min_val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+            $('#'+spanId).html(slide_range_val);
             $('.'+classId+' .irs-max').text('$2M+');
       if(slide_range == "Over $2 million") {p_price = "$2000000"}else{p_price = slide_range};
       est_amt = parseInt(p_price.toString().substring(1,p_price.length)) *  per / 100;
@@ -2232,12 +2233,12 @@ function createRangeSliders(sliderId,spanId,classId){
        var dis_min_val =  parseInt(current_val);
            var slide_range = '$' + dis_min_val;
            if(current_val < 2000000){
-             $('#'+spanId).html(slide_range);
+             //$('#'+spanId).html(slide_range);
            }
             if(current_val == 2000000){
                   var slide_range = 'Over $2 million';
            }
-            $('#'+spanId).html(slide_range);
+            //$('#'+spanId).html(slide_range);
             $('.'+classId+' .irs-max').text('$2M+');
       if(slide_range == "Over $2 million") {p_price = "$2000000"}else{p_price = slide_range};
       per = $("#slide_per_range").text().split("%")[0];
@@ -2250,12 +2251,12 @@ function createRangeSliders(sliderId,spanId,classId){
        var dis_min_val =  parseInt(current_val);
            var slide_range = '$' + dis_min_val;
            if(current_val < 2000000){
-             $('#'+spanId).html(slide_range);
+             //$('#'+spanId).html(slide_range);
            }
             if(current_val == 2000000){
                   var slide_range = 'Over $2 million';
            }
-            $('#'+spanId).html(slide_range);
+           // $('#'+spanId).html(slide_range);
             $('.'+classId+' .irs-max').text('$2M+');
       if(slide_range == "Over $2 million") {p_price = "$2000000"}else{p_price = slide_range};
       per = $("#slide_per_range").text().split("%")[0];
@@ -2268,12 +2269,12 @@ function createRangeSliders(sliderId,spanId,classId){
        var dis_min_val =  parseInt(current_val);
            var slide_range = '$' + dis_min_val;
            if(current_val < 2000000){
-             $('#'+spanId).html(slide_range);
+            // $('#'+spanId).html(slide_range);
            }
             if(current_val == 2000000){
                   var slide_range = 'Over $2 million';
            }
-            $('#'+spanId).html(slide_range);
+           // $('#'+spanId).html(slide_range);
             $('.'+classId+' .irs-max').text('$2M+');
       if(slide_range == "Over $2 million") {p_price = "$2000000"}else{p_price = slide_range};
       per = $("#slide_per_range").text().split("%")[0];
@@ -2408,11 +2409,12 @@ var est_amt = 0, p_price, per = 20;
           var current_val = data.from;
             var dis_min_val =  parseInt(current_val);
             var slide_range = '$' + dis_min_val;
-            $('#slide_range').html(slide_range);
+            var slide_range_val='$' + dis_min_val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+            $('#slide_range').html(slide_range_val);
             $('.range_slider .irs-max').text('$2M+');
       if(slide_range == "Over $2 million") {p_price = "$2000000"}else{p_price = slide_range};
       est_amt = parseInt(p_price.toString().substring(1,p_price.length)) *  per / 100;
-            var slide_range = per + '% ($'+ est_amt +')' ;
+            var slide_range = per + '% ($'+ est_amt.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") +')' ;
             $('#slide_per_range').html(slide_range);
         },
         onChange: function (data) {
@@ -2420,17 +2422,17 @@ var est_amt = 0, p_price, per = 20;
        var dis_min_val =  parseInt(current_val);
            var slide_range = '$' + dis_min_val;
            if(current_val < 2000000){
-             $('#slide_range').html(slide_range);
+          //   $('#slide_range').html(slide_range);
            }
             if(current_val == 2000000){
                   var slide_range = 'Over $2 million';
            }
-            $('#slide_range').html(slide_range);
+          //  $('#slide_range').html(slide_range);
             $('.range_slider .irs-max').text('$2M+');
       if(slide_range == "Over $2 million") {p_price = "$2000000"}else{p_price = slide_range};
       per = $("#slide_per_range").text().split("%")[0];
       est_amt = parseInt(p_price.toString().substring(1,p_price.length)) *  per / 100;
-            var slide_range = per + '% ($'+ est_amt +')' ;
+            var slide_range = per + '% ($'+ est_amt.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") +')' ;
             $('#slide_per_range').html(slide_range);
         },
     onUpdate: function (data) {
@@ -2438,17 +2440,17 @@ var est_amt = 0, p_price, per = 20;
        var dis_min_val =  parseInt(current_val);
            var slide_range = '$' + dis_min_val;
            if(current_val < 2000000){
-             $('#slide_range').html(slide_range);
+           //  $('#slide_range').html(slide_range);
            }
             if(current_val == 2000000){
                   var slide_range = 'Over $2 million';
            }
-            $('#slide_range').html(slide_range);
+           // $('#slide_range').html(slide_range);
             $('.range_slider .irs-max').text('$2M+');
       if(slide_range == "Over $2 million") {p_price = "$2000000"}else{p_price = slide_range};
       per = $("#slide_per_range").text().split("%")[0];
       est_amt = parseInt(p_price.toString().substring(1,p_price.length)) *  per / 100;
-            var slide_range = per + '% ($'+ est_amt +')' ;
+            var slide_range = per + '% ($'+ est_amt.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") +')' ;
             $('#slide_per_range').html(slide_range);
     },
     onFinish: function (data) {
@@ -2456,17 +2458,17 @@ var est_amt = 0, p_price, per = 20;
        var dis_min_val =  parseInt(current_val);
            var slide_range = '$' + dis_min_val;
            if(current_val < 2000000){
-             $('#slide_range').html(slide_range);
+            // $('#slide_range').html(slide_range);
            }
             if(current_val == 2000000){
                   var slide_range = 'Over $2 million';
            }
-            $('#slide_range').html(slide_range);
+           // $('#slide_range').html(slide_range);
             $('.range_slider .irs-max').text('$2M+');
       if(slide_range == "Over $2 million") {p_price = "$2000000"}else{p_price = slide_range};
       per = $("#slide_per_range").text().split("%")[0];
       est_amt = parseInt(p_price.toString().substring(1,p_price.length)) *  per / 100;
-            var slide_range = per + '% ($'+ est_amt +')' ;
+            var slide_range = per + '% ($'+ est_amt.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") +')' ;
             $('#slide_per_range').html(slide_range);
     }
     });
@@ -2489,7 +2491,7 @@ var est_amt = 0, p_price, per = 20;
             var dis_min_val =  parseInt(current_val);
       per = current_val
       est_amt = parseInt(p_price.toString().substring(1,p_price.length)) *  per / 100;
-            var slide_range = dis_min_val + '% ($'+ est_amt +')' ;
+            var slide_range = dis_min_val + '% ($'+ est_amt.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") +')' ;
             $('#slide_per_range').html(slide_range);
         },
         onChange: function (data) {
@@ -2499,7 +2501,7 @@ var est_amt = 0, p_price, per = 20;
       dis_min_val = parseInt(current_val);
       per = current_val
       est_amt = parseInt(p_price.toString().substring(1,p_price.length)) *  per / 100;
-            var slide_range = dis_min_val + '% ($'+ est_amt +')' ;
+            var slide_range = dis_min_val + '% ($'+ est_amt.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") +')' ;
       $('#slide_per_range').html(slide_range); 
         },
         onFinish: function (data) {
@@ -2509,7 +2511,7 @@ var est_amt = 0, p_price, per = 20;
            dis_min_val = parseInt(current_val);
       per = current_val
       est_amt = parseInt(p_price.toString().substring(1,p_price.length)) *  per / 100;
-       var slide_range = dis_min_val + '% ($'+ est_amt +')' ;
+       var slide_range = dis_min_val + '% ($'+ est_amt.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") +')' ;
            $('#slide_per_range').html(slide_range);
         },
         onUpdate: function (data) {
@@ -2519,7 +2521,7 @@ var est_amt = 0, p_price, per = 20;
             dis_min_val = parseInt(current_val);
       per = current_val
       est_amt = parseInt(p_price.toString().substring(1,p_price.length)) *  per / 100;
-            var slide_range = dis_min_val + '% ($'+ est_amt +')' ;
+            var slide_range = dis_min_val + '% ($'+ est_amt.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") +')' ;
             $('#slide_per_range').html(slide_range);
         }
   });
