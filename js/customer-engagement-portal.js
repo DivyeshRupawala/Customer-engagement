@@ -2390,8 +2390,11 @@ $('.forth_next_tab').click (function(){
       $('#slide_range_credit').html(slide_range); 
         }
   });
-  $('.range_slider2 .irs-min').text("Excellent"); 
-  $('.range_slider2 .irs-max').text("Fair"); 
+  setTimeout(function() {
+      $('.range_slider2 .irs-min').text("Excellent"); 
+      $('.range_slider2 .irs-max').text("Fair"); 
+    }, 150);
+  
   }
 var est_amt = 0, p_price, per = 20;
   $('.fifth_next_tab').click (function () {
@@ -2529,6 +2532,8 @@ var est_amt = 0, p_price, per = 20;
 });
    $( window ).on( "load", function() {
         $('.range_slider').find('.irs-max').text('$2M+');
+        $('.range_slider2 .irs-min').text("Excellent"); 
+        $('.range_slider2 .irs-max').text("Fair"); 
         $('.range_slider2').find('.irs-max').text('$2M+');
         $('.range_slider3').find('.irs-max').text('$2M+');
         $('.range_slider4').find('.irs-max').text('$2M+');
