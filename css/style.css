@@ -1296,8 +1296,8 @@ linear-gradient(90deg, #aec8e1 83.33333333%, transparent 83.33333333%),
 linear-gradient(90deg, #d1dfee 100%, transparent 100%);
 
 }	
-.range_slider2 .irs-bar, .range_slider2 .irs-bar-edge{display:none;}
-.range_slider2 .irs-slider{top:23px;}
+.range_slider_credit .irs-bar, .range_slider_credit .irs-bar-edge{display:none;}
+.range_slider_credit .irs-slider{top:23px;}
 span#slide_range_credit {
     font-size: 28px;
 	color: #1761a8;
