@@ -2033,6 +2033,10 @@
       });
 
   $(".Residence_tab").click (function(){
+          setTimeout(function() {
+            $('.range_slider_credit .irs-min').text("Excellent"); 
+            $('.range_slider_credit .irs-max').text("Fair");             
+          }, 300);
           mobile_data.propertyuse=$(this).data('residence-type');
           $(".Residence_tab").removeClass("selectedTab");
           $("#cradit_score").addClass("active");
@@ -2041,10 +2045,12 @@
           $('.step-3').removeAttr("style","display:none");
           $(".forth_next_tab").removeClass("selectedTab");
           $(this).addClass("selectedTab");
+          
     });
 
 
    $(".fifth_next_tab").click (function(){
+      
       switch($("#credit_score_slider").val()){
             case "1":              
                 mobile_data.creditscore="740";
@@ -2067,18 +2073,30 @@
           }
         switch(mobile_data.chosen_loan_type){
           case "new-purchase":  
+            setTimeout(function() {
+              $('.range_slider').find('.irs-max').text('$2M+');             
+            }, 250);
             $("#pro_loc_content").addClass("active");
             $("#cradit_score").removeClass("active");
             $(".fifth_next_tab").attr("style","display:block");
             $('.step-4').removeAttr("style","display:none");
             break;
           case "refinance":
+            setTimeout(function() {
+              $('.range_slider2').find('.irs-max').text('$2M+');
+              $('.range_slider3').find('.irs-max').text('$2M+'); 
+            }, 250);
             $("#pro_loc_content_refinance").addClass("active");
             $("#cradit_score").removeClass("active");
             $(".fifth_next_tab").attr("style","display:block");
             $('.step-4').removeAttr("style","display:none");
             break;
           case "cashout":
+            setTimeout(function() {
+              $('.range_slider4').find('.irs-max').text('$2M+');
+              $('.range_slider5').find('.irs-max').text('$2M+'); 
+              $('.range_slider6').find('.irs-max').text('$2M+'); 
+            }, 250);
             $("#pro_loc_content_cashout").addClass("active");
             $("#cradit_score").removeClass("active");
             $(".fifth_next_tab").attr("style","display:block");
@@ -2302,15 +2320,15 @@ $('.forth_next_tab').click (function(){
             var current_val = data.from;
       var slide_range = "740+ — Excellent";
             $('#slide_range_credit').html(slide_range); 
-      $('.range_slider2 .irs-min').text("Excellent"); 
-      $('.range_slider2 .irs-max').text("Fair"); 
+      $('.range_slider_credit .irs-min').text("Excellent"); 
+      $('.range_slider_credit .irs-max').text("Fair"); 
         },
         onChange: function (data) {
       var current_val = data.from;
       var slide_range = "";
       $('#slide_range_credit').html(slide_range); 
-      $('.range_slider2 .irs-min').text("Excellent"); 
-      $('.range_slider2 .irs-max').text("Fair"); 
+      $('.range_slider_credit .irs-min').text("Excellent"); 
+      $('.range_slider_credit .irs-max').text("Fair"); 
       if(current_val == 1){
                 slide_range = "740+ - Excellent";
             }
@@ -2329,16 +2347,16 @@ $('.forth_next_tab').click (function(){
       else if(current_val == 6){
                 slide_range = "640-659 - Fair";
             }else{}
-            $('.range_slider2 .irs-min').text("Excellent"); 
-      $('.range_slider2 .irs-max').text("Fair");          
+            $('.range_slider_credit .irs-min').text("Excellent"); 
+      $('.range_slider_credit .irs-max').text("Fair");          
       $('#slide_range_credit').html(slide_range); 
         },
         onFinish: function (data) {
            var current_val = data.from;
       var slide_range = "";
       $('#slide_range_credit').html(slide_range); 
-      $('.range_slider2 .irs-min').text("Excellent"); 
-      $('.range_slider2 .irs-max').text("Fair"); 
+      $('.range_slider_credit .irs-min').text("Excellent"); 
+      $('.range_slider_credit .irs-max').text("Fair"); 
       if(current_val == 1){
                 slide_range = "740+ — Excellent";
             }
@@ -2357,16 +2375,16 @@ $('.forth_next_tab').click (function(){
       else if(current_val == 6){
                 slide_range = "640-659 — Fair";
             }else{}
-            $('.range_slider2 .irs-min').text("Excellent"); 
-      $('.range_slider2 .irs-max').text("Fair");          
+            $('.range_slider_credit .irs-min').text("Excellent"); 
+      $('.range_slider_credit .irs-max').text("Fair");          
       $('#slide_range_credit').html(slide_range); 
         },
         onUpdate: function (data) {
             var current_val = data.from;
       var slide_range = "";
       $('#slide_range_credit').html(slide_range); 
-      $('.range_slider2 .irs-min').text("Excellent"); 
-      $('.range_slider2 .irs-max').text("Fair"); 
+      $('.range_slider_credit .irs-min').text("Excellent"); 
+      $('.range_slider_credit .irs-max').text("Fair"); 
       if(current_val == 1){
                 slide_range = "740+ — Excellent";
             }
@@ -2385,15 +2403,15 @@ $('.forth_next_tab').click (function(){
       else if(current_val == 6){
                 slide_range = "640-659 — Fair";
             }else{}
-            $('.range_slider2 .irs-min').text("Excellent"); 
-      $('.range_slider2 .irs-max').text("Fair");          
+            $('.range_slider_credit .irs-min').text("Excellent"); 
+      $('.range_slider_credit .irs-max').text("Fair");          
       $('#slide_range_credit').html(slide_range); 
         }
   });
   setTimeout(function() {
-      $('.range_slider2 .irs-min').text("Excellent"); 
-      $('.range_slider2 .irs-max').text("Fair"); 
-    }, 150);
+      $('.range_slider_credit .irs-min').text("Excellent"); 
+      $('.range_slider_credit .irs-max').text("Fair"); 
+    }, 200);
   
   }
 var est_amt = 0, p_price, per = 20;
@@ -2475,7 +2493,8 @@ var est_amt = 0, p_price, per = 20;
             $('#slide_per_range').html(slide_range);
     }
     });
-  $('.range_slider .irs-max').text('$2M+');  
+
+
     createRangeSliders('range_02','slide_range2','range_slider2');
     createRangeSliders('range_03','slide_range3','range_slider3'); 
     createRangeSliders('range_04','slide_range4','range_slider4');  
@@ -2528,12 +2547,17 @@ var est_amt = 0, p_price, per = 20;
             $('#slide_per_range').html(slide_range);
         }
   });
+    setTimeout(function() {
+            $('.range_slider_credit .irs-min').text("Excellent"); 
+            $('.range_slider_credit .irs-max').text("Fair"); 
+            $('.range_slider .irs-max').text('$2M+');           
+          }, 300);
   
 });
    $( window ).on( "load", function() {
         $('.range_slider').find('.irs-max').text('$2M+');
-        $('.range_slider2 .irs-min').text("Excellent"); 
-        $('.range_slider2 .irs-max').text("Fair"); 
+        $('.range_slider_credit .irs-min').text("Excellent"); 
+        $('.range_slider_credit .irs-max').text("Fair"); 
         $('.range_slider2').find('.irs-max').text('$2M+');
         $('.range_slider3').find('.irs-max').text('$2M+');
         $('.range_slider4').find('.irs-max').text('$2M+');
