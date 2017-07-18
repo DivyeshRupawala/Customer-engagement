@@ -457,6 +457,7 @@
     });
 
     $('#zipcodeMobile').on('blur', function(e){
+      if($('#zipcodeMobile').val()!="") {
         $.ajax({
             url:        API_URL_PREFIX+'states/zipCode',
             type:       'GET',
@@ -472,6 +473,9 @@
                   }                   
             }
          });
+      }else{
+        $('.zipcode_error').css('display','none');
+      }
     });
    
    function closeTooltips() {
@@ -1929,7 +1933,7 @@
             success: function(data){ 
                 var jsonstates=data.resultObject;
                 $('#mobile_states').find('option').remove().end();
-                $('#mobile_states').append($('<option>').text('Please Select State').attr('value',''));
+                $('#mobile_states').append($('<option>').text('Please Select State').attr('value','').attr('selected', 'true').attr('disabled', 'disabled'));
                 $.each(jsonstates, function(i, value) {
                     $('#mobile_states').append($('<option>').text(value.stateName).attr('value', value.id));
                 });
@@ -1945,7 +1949,7 @@
             success: function(data){ 
                 var jsonstates=data.resultObject;                
                 $('#mobile_counties').find('option').remove().end();
-                $('#mobile_counties').append($('<option>').text('Please Select County').attr('value',''));
+                $('#mobile_counties').append($('<option>').text('Please Select County').attr('value','').attr('selected', 'true').attr('disabled', 'disabled'));
                 $.each(jsonstates, function(i, value) {
                    if(value.countyName!="")
                     $('#mobile_counties').append($('<option>').text(value.countyName).attr('value', value.countyName));
