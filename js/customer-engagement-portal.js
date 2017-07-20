@@ -1995,10 +1995,13 @@
             datatype:   'json',
             success: function(data){ 
                 var jsonstates=data.resultObject;
+                var allowedStates = ["AZ","CA","CO","FL","NJ","PA","OR","WA"];
                 $('#mobile_states').find('option').remove().end();
                 $('#mobile_states').append($('<option>').text('Please Select State').attr('value','').attr('selected', 'true').attr('disabled', 'disabled'));
                 $.each(jsonstates, function(i, value) {
+                  if(!($.inArray(value.stateCode,allowedStates) == -1)){
                     $('#mobile_states').append($('<option>').text(value.stateName).attr('value', value.id));
+                    }
                 });
               }
          });
