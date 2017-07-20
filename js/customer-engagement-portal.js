@@ -671,7 +671,17 @@
         if(userRegistrationValidator) {
           userRegistrationValidator.resetForm();
         }
-        
+        //adding code for diabling divs
+        if(!$.isEmptyObject(mobile_data)){         
+          $("#property_content").removeClass("active");
+          $(this).closest('.subhead').removeClass('active');
+          $(this).closest('.subhead').css('display','none');
+          $(".mainTab").removeAttr("style","display:none");
+          $('.main_option1').css('display', 'none');
+          $(".subhead step-5").removeClass("active"); 
+          $('.mobile_rates-listing').css('display', 'none');
+          ScrollTo('home_content');       
+        }     
     }
 
     /**
@@ -852,34 +862,80 @@
           'cashout'
         ]
         ;
+        context.rows.push({'label': 'Loan Type', 'value': dict.loantype_labels[chosen_type]});
+       // Iterate through fields and populate context object for summary template
+      if($.isEmptyObject(mobile_data)){
+              $.each(fields_to_summarize, function(i, field) {
+              var
+                label = dict.field_summary_labels[field],
+                el = document.getElementById(field),
+                value
+                ;
 
-      context.rows.push({'label': 'Loan Type', 'value': dict.loantype_labels[chosen_type]});
+              switch (el.tagName) {
+                case 'INPUT' :
+                  value = (el.hasOwnProperty('calculatedValue')) ? el.calculatedValue : el.value;
+                  break;
+                case 'SELECT' :
+                  value = el.options[el.selectedIndex].text;
+                  break;
+                default:
+                  value = 'Cannot parse value for this input type';
+              }
+
+              if ($.inArray(el.name, inputsToFormatAsCurrency) >= 0) {
+                value = accounting.formatMoney(value, {precision: 0});
+              }
+
+              context.rows.push({'label': label, 'value': value});
+            });
+        }else{
+            if(mobile_data.state!=""){
+              context.rows.push({'label': 'State', 'value': mobile_data.state });
+              context.rows.push({'label': 'County', 'value': mobile_data.county });
+            }
+            $.each(fields_to_summarize, function(i, field) {
+              if(mobile_data.state!="" && field!="zipcode"){
+                 var
+                label = dict.field_summary_labels[field],
+                el = document.getElementById(field),
+                value
+                ;
+                if(field=="residencetype" || field=="propertyuse" || field=="creditscore" || field=="downpaymentpercent" || field=="fha"){
+                     var fieldname=field+"_text";
+                     value=mobile_data[fieldname];
+                }else{
+                    value=mobile_data[field];
+                }
+                if ($.inArray(field, inputsToFormatAsCurrency) >= 0) {
+                  value = accounting.formatMoney(value, {precision: 0});
+                }  
+                context.rows.push({'label': label, 'value': value});
+
+              }else if(mobile_data.state==""){
+                var
+                label = dict.field_summary_labels[field],
+                el = document.getElementById(field),
+                value
+                ;
+                if(field=="residencetype" || field=="propertyuse" || field=="creditscore" || field=="downpaymentpercent" || field=="fha"){
+                    var fieldname=field+"_text";
+                    value=mobile_data[fieldname];
+                }else{
+                    value=mobile_data[field];
+                }
+                if ($.inArray(field, inputsToFormatAsCurrency) >= 0) {
+                  value = accounting.formatMoney(value, {precision: 0});
+                }  
+                context.rows.push({'label': label, 'value': value});
+
+              }
+               
+            });
+        }
 
       // Iterate through fields and populate context object for summary template
-      $.each(fields_to_summarize, function(i, field) {
-        var
-          label = dict.field_summary_labels[field],
-          el = document.getElementById(field),
-          value
-          ;
-
-        switch (el.tagName) {
-          case 'INPUT' :
-            value = (el.hasOwnProperty('calculatedValue')) ? el.calculatedValue : el.value;
-            break;
-          case 'SELECT' :
-            value = el.options[el.selectedIndex].text;
-            break;
-          default:
-            value = 'Cannot parse value for this input type';
-        }
-
-        if ($.inArray(el.name, inputsToFormatAsCurrency) >= 0) {
-          value = accounting.formatMoney(value, {precision: 0});
-        }
-
-        context.rows.push({'label': label, 'value': value});
-      });
+      
 
       dom.$loan_form__details_summary_injectionpoint.empty().append(template(context));
     }
@@ -965,9 +1021,13 @@
           // Prepare values to add to return object
            v = {
               residencetype:      mobile_data.residencetype,
+              residencetype_text: mobile_data.residencetype_text,
               propertyuse:        mobile_data.propertyuse,
+              propertyuse_text:   mobile_data.propertyuse_text,
               creditscore:        mobile_data.creditscore,
+              creditscore_text:   mobile_data.creditscore_text,
               fha:                mobile_data.fha,
+              fha_text:           mobile_data.fha_text,
               zipcode:            mobile_data.zipcode,
               purchaseprice:      mobile_data.purchaseprice,
               downpaymentpercent: mobile_data.downpayment,
@@ -975,6 +1035,9 @@
               curmortgagebalance: accounting.unformat(mobile_data.curmortgagebalance),
               cashout:            accounting.unformat(mobile_data.cashout),
               curmortgagepayment: null, // see note above
+              state:              mobile_data.state,
+              county:             mobile_data.county,
+              downpaymentpercent_text:mobile_data.downpaymentpercent_text,
             };
 
         }
@@ -2017,16 +2080,37 @@
           $("#Purchase").removeClass("active");
           $(".sec_main_tab").attr("style","display:block");
           $('.step-1').removeAttr("style","display:none");
-          if($("#zipcode1").val()==""){
-            mobile_data.zipcode=$("#zipcodeMobile").val();
+          if($("#zipcodeMobile").val()!=""){
+              mobile_data.zipcode=$("#zipcodeMobile").val();
+              mobile_data.state="";
+              mobile_data.county="";
           }else{
              mobile_data.zipcode=$("#zipcode1").val();
-          }        
+             mobile_data.state=$("#mobile_states option:selected").text();
+             mobile_data.county=$("#mobile_counties option:selected").text();
+          }                 
       });
 
    $(".Condo_tab").click (function(){
           $(".third_next_tab").removeClass("selectedTab");
           mobile_data.residencetype=$(this).data('property-type');
+          switch($(this).data('property-type')){
+            case 0:              
+                mobile_data.residencetype_text="Single Family";
+              break;
+            case 1:              
+                mobile_data.residencetype_text="Condo";
+              break;
+            case 2:              
+                mobile_data.residencetype_text="2 Units";
+              break;   
+            case 3:              
+                mobile_data.residencetype_text="3 Units";
+              break;
+            case 4:              
+                mobile_data.residencetype_text="4 Units";
+              break;
+          }
           $(".Condo_tab").removeClass("selectedTab");
           $("#select_property").addClass("active");
           $("#property_content").removeClass("active");
@@ -2034,6 +2118,7 @@
           $('.step-2').removeAttr("style","display:none");
           $(".third_next_tab").removeClass("selectedTab");
           $(this).addClass("selectedTab");
+          console.log(mobile_data);
       });
 
   $(".Residence_tab").click (function(){
@@ -2042,6 +2127,17 @@
             $('.range_slider_credit .irs-max').text("Fair");             
           }, 300);
           mobile_data.propertyuse=$(this).data('residence-type');
+          switch($(this).data('residence-type')){
+            case 0:              
+                mobile_data.propertyuse_text="Primary Residence";
+              break;
+            case 1:              
+                mobile_data.propertyuse_text="Vacation/Second Home";
+              break;
+            case 2:              
+                mobile_data.propertyuse_text="Investment Property";
+              break;           
+          }
           $(".Residence_tab").removeClass("selectedTab");
           $("#cradit_score").addClass("active");
           $("#select_property").removeClass("active");
@@ -2049,7 +2145,7 @@
           $('.step-3').removeAttr("style","display:none");
           $(".forth_next_tab").removeClass("selectedTab");
           $(this).addClass("selectedTab");
-          
+          console.log(mobile_data);
     });
 
 
@@ -2058,21 +2154,27 @@
       switch($("#credit_score_slider").val()){
             case "1":              
                 mobile_data.creditscore="740";
+                mobile_data.creditscore_text="740+ — Excellent";
               break;
             case "2":
                mobile_data.creditscore="720";
+               mobile_data.creditscore_text="720-739 — Great";
                break;
             case "3":
                mobile_data.creditscore="700";
+               mobile_data.creditscore_text="700-719 — Very Good";
                break;
             case "4":
                mobile_data.creditscore="680";
+               mobile_data.creditscore_text="680-699 — Good";
                break;
             case "5":
                mobile_data.creditscore="660";
+               mobile_data.creditscore_text="660-679 — Average";
                break;
             case "6":
                mobile_data.creditscore="640";
+               mobile_data.creditscore_text="640-659 — Fair";
                break;              
           }
         switch(mobile_data.chosen_loan_type){
@@ -2117,6 +2219,8 @@
           case "new-purchase":    
               mobile_data.purchaseprice=$("#range_01").val();
               mobile_data.downpayment=$("#per_range").val();
+              mobile_data.downpaymentpercent_text=$(".per_range_slider span#slide_per_range").text();
+              mobile_data.fha_text="";
               $(".pro_loc_content").attr("style","display:none"); 
               $(".third_main_tab").attr("style","display:none"); 
               $(".back4_option").attr("style","display:none"); 
@@ -2127,6 +2231,8 @@
               mobile_data.estval=$("#range_02").val();
               mobile_data.curmortgagebalance=$("#range_03").val();;
               mobile_data.fha=$("#fha_m").val();
+              mobile_data.fha_text=$("#fha_m option:selected").text();
+              mobile_data.downpaymentpercent_text="";
               $(".pro_loc_content_refinance").attr("style","display:none"); 
               $(".third_main_tab").attr("style","display:none"); 
               $(".back4_option").attr("style","display:none"); 
@@ -2137,15 +2243,20 @@
               mobile_data.estval=$("#range_04").val();
               mobile_data.curmortgagebalance=$("#range_05").val();
               mobile_data.fha="";
+              mobile_data.fha_text="";
+              mobile_data.downpaymentpercent_text="";
               mobile_data.cashout=$("#range_06").val();
               $(".pro_loc_content_cashout").attr("style","display:none"); 
               $(".third_main_tab").attr("style","display:none"); 
               $(".back4_option").attr("style","display:none"); 
            break;     
          }
+         $('.main_option1').css('display', 'block');
+         $(".mobile_rates-listing").css('display', 'block');
          console.log(mobile_data);
         submitLoanDetailsForm(); 
      });
+
       // one-step back code
     $(".main_option1").click( function(){
         mobile_data={};
