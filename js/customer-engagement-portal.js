@@ -2083,6 +2083,9 @@
           $("#Purchase").removeClass("active");
           $(".sec_main_tab").attr("style","display:block");
           $('.step-1').removeAttr("style","display:none");
+          $('.main_option1').css('display', 'block');
+          $(".step-5").attr("style","display:none");
+          $(".step-5").removeClass("active");
           if($("#zipcodeMobile").val()!=""){
               mobile_data.zipcode=$("#zipcodeMobile").val();
               mobile_data.state="";
@@ -2271,6 +2274,7 @@
         $(".Residence_tab").removeClass("selectedTab");    
         $('.c-page-content__section').css('display', 'none');
         $('.mobile_rates-listing').css('display', 'none');
+        $('.mobile_rates-listing_error').css('display', 'none');        
         $('.u-margin-bottom-large').css('display', 'none');
         $(".mainTab").removeClass("selected");
         $(".mainTab").removeAttr("style","display:none");
