@@ -54,7 +54,7 @@ table {
 }
 @font-face {
     font-family: robotothin;
-    src: local('robotoregular'), url("../fonts/roboto/Roboto-Thin.eot");;
+    src: local('robotothin'), url("../fonts/roboto/Roboto-Thin.eot");;
     src: url('../fonts/roboto/Roboto-Thin.eot') format("embedded-opentype"), 
     url("../fonts/roboto/Roboto-Thin.eot?#iefix") format("embedded-opentype"), 
     url('../fonts/roboto/Roboto-Thin.woff') format("woff"), 
@@ -431,8 +431,11 @@ font-size: 0.6em;
 	    margin-top: 30px;
     margin-bottom: 30px;
 }
-#pro_loc_content,#Purchase, #property_content, #property_content,#select_property, #cradit_score,#pro_loc_content_refinance,#pro_loc_content_cashout{
+#pro_loc_content_refinance_fha, #pro_loc_content,#Purchase, #property_content, #property_content,#select_property, #cradit_score,#pro_loc_content_refinance,#pro_loc_content_cashout, .bac_optionLoanDetails{
 	display: none;
+}
+.bac_optionLoanDetails {
+    padding: 20px 0px 0;
 }
 #select_property .subhead h3{
 padding-top: 40px;
@@ -460,7 +463,49 @@ padding:40px;
 .mobile-view{
 	display:none !important;
 }
-	
+.fha-circle {
+    border: 1px solid #aaa;
+    width: 60px;
+    height: 60px;
+    border-radius: 60px;
+    padding: 60px;
+	margin-bottom:20px;
+    display: block;
+}
+
+.fha-options ul li {
+    display: inline-block;
+    margin: 10px 20px;
+    font-family: robotothin;
+    font-size: 20px;
+}
+
+.fha-options ul {
+    margin: 0 0 50px;
+}
+
+.fha-circle.fha_Yes {
+    background: url(../images/fha_yes.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}	
+.fha-circle.fha_No {
+    background: url(../images/fha_no.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.fha-circle.fha_Yes.fha_active {
+    background: url(../images/fha_yes_active.png);
+    background-repeat: no-repeat;
+    background-position: center;
+	background-color: #4e8408;
+}	
+.fha-circle.fha_No.fha_active {
+    background: url(../images/fha_no_active.png);
+    background-repeat: no-repeat;
+    background-position: center;
+	background-color: #ff0000;
+}
 /*end*/
 @media(max-width:960px){
 	.desktop-view{display:none !important;}
@@ -1263,41 +1308,6 @@ span#slide_range_credit {
 	}
 }
 
-.range_slider_credit span.irs-line {
-	height: 10px;
-	border-radius: 5px;
-	 background: 
-linear-gradient(90deg, #1761a8 16.66666666666667%, transparent 16.66666666666667%),
-linear-gradient(90deg, #4581b9 33.33333333333333%, transparent 33.33333333333333%),
-linear-gradient(90deg, #6898c6 50%, transparent 50%),
-linear-gradient(90deg, #8bb0d3 66.66666667%, transparent 66.66666667%),
-linear-gradient(90deg, #aec8e1 83.33333333%, transparent 83.33333333%),
-linear-gradient(90deg, #d1dfee 100%, transparent 100%);
- background: 
--o-linear-gradient(90deg, #1761a8 16.66666666666667%, transparent 16.66666666666667%),
--o-linear-gradient(90deg, #4581b9 33.33333333333333%, transparent 33.33333333333333%),
--o-linear-gradient(90deg, #6898c6 50%, transparent 50%),
--o-linear-gradient(90deg, #8bb0d3 66.66666667%, transparent 66.66666667%),
--o-linear-gradient(90deg, #aec8e1 83.33333333%, transparent 83.33333333%),
--o-linear-gradient(90deg, #d1dfee 100%, transparent 100%);
- background: 
--moz-linear-gradient(90deg, #1761a8 16.66666666666667%, transparent 16.66666666666667%),
--moz-linear-gradient(90deg, #4581b9 33.33333333333333%, transparent 33.33333333333333%),
--moz-linear-gradient(90deg, #6898c6 50%, transparent 50%),
--moz-linear-gradient(90deg, #8bb0d3 66.66666667%, transparent 66.66666667%),
--moz-linear-gradient(90deg, #aec8e1 83.33333333%, transparent 83.33333333%),
--moz-linear-gradient(90deg, #d1dfee 100%, transparent 100%);
- background: 
-linear-gradient(90deg, #1761a8 16.66666666666667%, transparent 16.66666666666667%),
-linear-gradient(90deg, #4581b9 33.33333333333333%, transparent 33.33333333333333%),
-linear-gradient(90deg, #6898c6 50%, transparent 50%),
-linear-gradient(90deg, #8bb0d3 66.66666667%, transparent 66.66666667%),
-linear-gradient(90deg, #aec8e1 83.33333333%, transparent 83.33333333%),
-linear-gradient(90deg, #d1dfee 100%, transparent 100%);
-
-}	
-.range_slider_credit .irs-bar, .range_slider_credit .irs-bar-edge{display:none;}
-.range_slider_credit .irs-slider{top:23px;}
 span#slide_range_credit {
     font-size: 28px;
 	color: #1761a8;
@@ -1350,4 +1360,28 @@ span.or_span {font-family: robotothin;font-size: 45px;color: #848484;}
     color: #ff0000;
  margin-top:10px;
  display:none;
+}
+.range_slider_credit .irs-max{display: none !important;}
+.range_slider_credit .credit_max_val {
+    position: absolute;
+    bottom: -13px;
+    right: 14px;
+    color: #1761a8;
+}
+@media (max-width: 47.9275em)
+{
+.c-radio__toggle-trio .c-radio.is-selected:nth-child(3) ~ .c-radio__toggle-slider {
+    top: 4.1rem;
+}
+.c-radio__toggle-trio .c-radio.is-selected:nth-child(2) ~ .c-radio__toggle-slider {
+    top: 2rem;
+}
+}
+@media (max-width:558px){
+	.fha-circle{
+		padding: 50px;
+	}
+	.fha-options ul li{
+		margin:10px 5px;
+	}
 }
