@@ -2128,10 +2128,6 @@
       });
 
   $(".Residence_tab").click (function(){
-          setTimeout(function() {
-            $('.range_slider_credit .irs-min').text("Excellent"); 
-            $('.range_slider_credit .irs-max').text("Fair");             
-          }, 300);
           mobile_data.propertyuse=$(this).data('residence-type');
           switch($(this).data('residence-type')){
             case 0:              
@@ -2156,33 +2152,9 @@
 
 
    $(".fifth_next_tab").click (function(){
-      
-      switch($("#credit_score_slider").val()){
-            case "1":              
-                mobile_data.creditscore="740";
-                mobile_data.creditscore_text="740+ — Excellent";
-              break;
-            case "2":
-               mobile_data.creditscore="720";
-               mobile_data.creditscore_text="720-739 — Great";
-               break;
-            case "3":
-               mobile_data.creditscore="700";
-               mobile_data.creditscore_text="700-719 — Very Good";
-               break;
-            case "4":
-               mobile_data.creditscore="680";
-               mobile_data.creditscore_text="680-699 — Good";
-               break;
-            case "5":
-               mobile_data.creditscore="660";
-               mobile_data.creditscore_text="660-679 — Average";
-               break;
-            case "6":
-               mobile_data.creditscore="640";
-               mobile_data.creditscore_text="640-659 — Fair";
-               break;              
-          }
+
+      mobile_data.creditscore=$("#slide_range_credit").text();
+      mobile_data.creditscore_text=$("#slide_range_credit").text();
         switch(mobile_data.chosen_loan_type){
           case "new-purchase":  
             setTimeout(function() {
@@ -2218,7 +2190,12 @@
          
        
       });
-    
+    $(".sixth_next_tab").click (function(){
+		$("#pro_loc_content_refinance_fha").addClass("active");
+        $("#pro_loc_content_refinance").removeClass("active");
+        $(".sixth_next_tab").attr("style","display:block");
+        $('#pro_loc_content_refinance').removeAttr("style","display:none");
+	});
    // next step code end 
      $(".loan-options").click (function(){  
         switch(mobile_data.chosen_loan_type){
@@ -2227,9 +2204,8 @@
               mobile_data.downpayment=$("#per_range").val();
               mobile_data.downpaymentpercent_text=$(".per_range_slider span#slide_per_range").text();
               mobile_data.fha_text="";
-              $(".pro_loc_content").attr("style","display:none"); 
-              $(".third_main_tab").attr("style","display:none"); 
-              $(".back4_option").attr("style","display:none"); 
+              $("#pro_loc_content").removeClass("active");
+			  $(".bac_optionLoanDetails").attr("style","display:block"); 
               break;
            case "refinance":
               mobile_data.purchaseprice=0;
@@ -2237,12 +2213,11 @@
               mobile_data.estval=$("#range_02").val();
               mobile_data.curmortgagebalance=$("#range_03").val();;
               mobile_data.fha=$("#fha_m").val();
-              mobile_data.fha_text=$("#fha_m option:selected").text();
+              mobile_data.fha_text=$("#fha_m").val();
               mobile_data.downpaymentpercent_text="";
-              $(".pro_loc_content_refinance").attr("style","display:none"); 
-              $(".third_main_tab").attr("style","display:none"); 
-              $(".back4_option").attr("style","display:none"); 
-           break;  
+			  $("#pro_loc_content_refinance_fha").removeClass("active");
+			  $(".bac_optionLoanDetails").attr("style","display:block"); 
+              break;  
            case "cashout":
               mobile_data.purchaseprice=0;
               mobile_data.downpayment=0;
@@ -2252,10 +2227,9 @@
               mobile_data.fha_text="";
               mobile_data.downpaymentpercent_text="";
               mobile_data.cashout=$("#range_06").val();
-              $(".pro_loc_content_cashout").attr("style","display:none"); 
-              $(".third_main_tab").attr("style","display:none"); 
-              $(".back4_option").attr("style","display:none"); 
-           break;     
+			  $("#pro_loc_content_cashout").removeClass("active");
+			  $(".bac_optionLoanDetails").attr("style","display:block"); 
+			  break;     
          }
          $('.main_option1').css('display', 'block');
          $(".mobile_rates-listing").css('display', 'block');
@@ -2290,10 +2264,14 @@
         $("#pro_loc_content_cashout").removeClass("active");
         $("#property_content").removeClass("active");
         $("#select_property").removeClass("active");
+		$('#pro_loc_content_refinance_fha').removeClass("active");
         $(".Condo_tab").removeClass("selectedTab");
         $('.step-4').removeAttr("style","display:none");
         $('.step-3').removeAttr("style","display:none");
         $('.step-2').removeAttr("style","display:none");
+		$(".bac_optionLoanDetails").attr("style","display:none"); 
+		$('#pro_loc_content_refinance').removeAttr("style","display:none");
+		$('#pro_loc_content_refinance_fha').removeAttr("style","display:none");
         $('#zipcode1').val("");
         $("#range_01").data("ionRangeSlider").reset();
         $("#range_02").data("ionRangeSlider").reset();
@@ -2305,7 +2283,16 @@
         $("#credit_score_slider").data("ionRangeSlider").reset();          
         crediScoreSlider();    
     });
- 
+	$(".fha_Yes").click( function(){
+		$(".fha_Yes").addClass("fha_active");
+		$(".fha_No").removeClass("fha_active");
+		$("#fha_m").val("Yes");
+	});
+	$(".fha_No").click( function(){
+		$(".fha_Yes").removeClass("fha_active");
+		$(".fha_No").addClass("fha_active");
+		$("#fha_m").val("No");
+	});
    $(".back_option").click( function(){
         $(".mainTab").removeAttr("style","display:none");
         $("#Purchase").removeClass("active");
@@ -2344,6 +2331,13 @@
       $('.subhead.step-4 .fifth_next_tab').css('display','block');
       $('.subhead.step-4').css('display','block');
       });
+	
+	$(".back5_option").click( function(){
+      $(this).closest('.subhead').removeClass('active');
+      $(this).closest('.subhead').css('display','none');
+      $('.subhead.step-5 .sixth_next_tab').css('display','block');
+      $('.subhead.step-5#pro_loc_content_refinance').css('display','block');
+      });	
 //form Range slider
 function createRangeSliders(sliderId,spanId,classId){
   $("#"+sliderId).ionRangeSlider({
@@ -2431,110 +2425,36 @@ $('.forth_next_tab').click (function(){
   crediScoreSlider();
 });
 
+  var range_val = 0 ;
   var crediScoreSlider = function () {
-  $("#credit_score_slider").ionRangeSlider({
+	$("#credit_score_slider").ionRangeSlider({
         type: "single",
-        min: 1,
-        max: 6,
-        keyboard: true,
+		range: "max",
+        min: 840,
+        max: 1120,
+		keyboard: true,
         step: 1,
-        onStart: function (data) {
-            var current_val = data.from;
-      var slide_range = "740+ — Excellent";
-            $('#slide_range_credit').html(slide_range); 
-      $('.range_slider_credit .irs-min').text("Excellent"); 
-      $('.range_slider_credit .irs-max').text("Fair"); 
+		onStart: function (data) {
+			var cur_val = parseInt(data.from);
+			range_val = 840 - (cur_val - 840) ;
+            $('#slide_range_credit').html(range_val); 
         },
         onChange: function (data) {
-      var current_val = data.from;
-      var slide_range = "";
-      $('#slide_range_credit').html(slide_range); 
-      $('.range_slider_credit .irs-min').text("Excellent"); 
-      $('.range_slider_credit .irs-max').text("Fair"); 
-      if(current_val == 1){
-                slide_range = "740+ - Excellent";
-            }
-      else if(current_val == 2){
-                slide_range = "720-739 - Great";
-            }
-      else if(current_val == 3){
-                slide_range = "700-719 - Very Good";
-            }
-      else if(current_val == 4){
-                slide_range = "680-699 - Good";
-            }
-      else if(current_val == 5){
-                slide_range = "660-679 - Average";
-            }
-      else if(current_val == 6){
-                slide_range = "640-659 - Fair";
-            }else{}
-            $('.range_slider_credit .irs-min').text("Excellent"); 
-      $('.range_slider_credit .irs-max').text("Fair");          
-      $('#slide_range_credit').html(slide_range); 
+			var cur_val = parseInt(data.from);
+			range_val = 840 - (cur_val - 840) ;
+            $('#slide_range_credit').html(range_val); 
         },
         onFinish: function (data) {
-           var current_val = data.from;
-      var slide_range = "";
-      $('#slide_range_credit').html(slide_range); 
-      $('.range_slider_credit .irs-min').text("Excellent"); 
-      $('.range_slider_credit .irs-max').text("Fair"); 
-      if(current_val == 1){
-                slide_range = "740+ — Excellent";
-            }
-      else if(current_val == 2){
-                slide_range = "720-739 — Great";
-            }
-      else if(current_val == 3){
-                slide_range = "700-719 — Very Good";
-            }
-      else if(current_val == 4){
-                slide_range = "680-699 — Good";
-            }
-      else if(current_val == 5){
-                slide_range = "660-679 — Average";
-            }
-      else if(current_val == 6){
-                slide_range = "640-659 — Fair";
-            }else{}
-            $('.range_slider_credit .irs-min').text("Excellent"); 
-      $('.range_slider_credit .irs-max').text("Fair");          
-      $('#slide_range_credit').html(slide_range); 
+			var cur_val = parseInt(data.from);
+			range_val = 840 - (cur_val - 840) ;
+            $('#slide_range_credit').html(range_val); 
         },
         onUpdate: function (data) {
-            var current_val = data.from;
-      var slide_range = "";
-      $('#slide_range_credit').html(slide_range); 
-      $('.range_slider_credit .irs-min').text("Excellent"); 
-      $('.range_slider_credit .irs-max').text("Fair"); 
-      if(current_val == 1){
-                slide_range = "740+ — Excellent";
-            }
-      else if(current_val == 2){
-                slide_range = "720-739 — Great";
-            }
-      else if(current_val == 3){
-                slide_range = "700-719 — Very Good";
-            }
-      else if(current_val == 4){
-                slide_range = "680-699 — Good";
-            }
-      else if(current_val == 5){
-                slide_range = "660-679 — Average";
-            }
-      else if(current_val == 6){
-                slide_range = "640-659 — Fair";
-            }else{}
-            $('.range_slider_credit .irs-min').text("Excellent"); 
-      $('.range_slider_credit .irs-max').text("Fair");          
-      $('#slide_range_credit').html(slide_range); 
+			var cur_val = parseInt(data.from);
+			range_val = 840 - (cur_val - 840) ;
+            $('#slide_range_credit').html(range_val); 
         }
-  });
-  setTimeout(function() {
-      $('.range_slider_credit .irs-min').text("Excellent"); 
-      $('.range_slider_credit .irs-max').text("Fair"); 
-    }, 200);
-  
+ });
   }
 var est_amt = 0, p_price, per = 20;
   $('.fifth_next_tab').click (function () {
@@ -2670,17 +2590,14 @@ var est_amt = 0, p_price, per = 20;
         }
   });
     setTimeout(function() {
-            $('.range_slider_credit .irs-min').text("Excellent"); 
-            $('.range_slider_credit .irs-max').text("Fair"); 
+            
             $('.range_slider .irs-max').text('$2M+');           
           }, 300);
   
 });
    $( window ).on( "load", function() {
         $('.range_slider').find('.irs-max').text('$2M+');
-        $('.range_slider_credit .irs-min').text("Excellent"); 
-        $('.range_slider_credit .irs-max').text("Fair"); 
-        $('.range_slider2').find('.irs-max').text('$2M+');
+		$('.range_slider2').find('.irs-max').text('$2M+');
         $('.range_slider3').find('.irs-max').text('$2M+');
         $('.range_slider4').find('.irs-max').text('$2M+');
         $('.range_slider5').find('.irs-max').text('$2M+');
@@ -2693,9 +2610,13 @@ var est_amt = 0, p_price, per = 20;
         setTimeout(function(){ $('.range_slider4 .irs-max').text('$2M+'); }, 200);
         setTimeout(function(){ $('.range_slider5 .irs-max').text('$2M+'); }, 200);
         setTimeout(function(){ $('.range_slider6 .irs-max').text('$2M+'); }, 200);
-        setTimeout(function(){ crediScoreSlider(); }, 200);
     });        
- 
+	$('#creditscoreDesktop').on('input change', function(){
+		$('#chanceSlider').text(840 - ($('#creditscoreDesktop').val() - 840));
+		var slideWidth = (($('#creditscoreDesktop').val() - 840) * 100) / (1120 - 840);
+		$(".credit_score_runnable").width(slideWidth + "%");
+	});
+
     
   
     // Start the show!
