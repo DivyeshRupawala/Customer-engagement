@@ -871,21 +871,25 @@
                 el = document.getElementById(field),
                 value
                 ;
-
-              switch (el.tagName) {
-                case 'INPUT' :
-                  value = (el.hasOwnProperty('calculatedValue')) ? el.calculatedValue : el.value;
-                  break;
-                case 'SELECT' :
-                  value = el.options[el.selectedIndex].text;
-                  break;
-                default:
-                  value = 'Cannot parse value for this input type';
-              }
-
-              if ($.inArray(el.name, inputsToFormatAsCurrency) >= 0) {
+              if(label=="Credit Score"){
+                  value=$("#chanceSlider").text();
+              }else{
+                switch (el.tagName) {
+                  case 'INPUT' :
+                    value = (el.hasOwnProperty('calculatedValue')) ? el.calculatedValue : el.value;
+                    break;
+                  case 'SELECT' :
+                    value = el.options[el.selectedIndex].text;
+                    break;
+                  default:
+                    value = 'Cannot parse value for this input type';
+                }
+                if ($.inArray(el.name, inputsToFormatAsCurrency) >= 0) {
                 value = accounting.formatMoney(value, {precision: 0});
               }
+            }
+
+              
 
               context.rows.push({'label': label, 'value': value});
             });
