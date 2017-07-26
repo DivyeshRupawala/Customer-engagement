@@ -40,7 +40,7 @@
 div#chanceSlider {
     text-align: center;
     position: relative;
-    top: -10px;
+    top: -7px;
 }
 .credit_score_runnable {
     display: block;
@@ -130,7 +130,29 @@ input[type=range]:focus::-o-slider-thumb {
   border-color:#42BAF1;
   box-shadow: 0 2px 3px rgba(66, 186, 241, 0.6);
 }
+.newLayout {
+    min-height: 100px;
+}
+.c-linked-percent-slider__percent-value, .c-linked-percent-slider__numeric-value {
+    position: relative;
+    top: -7px;
+}
+.c-rates-listing__rate, .c-rates-listing__apr, .c-rates-listing__closing, .c-rates-listing__monthlies{width:auto;}
+section.c-page-content__section.c-rates-app__rates-listing-wrapper.subhead {
+    text-align: left;
+}
+h5.c-rates-detail__header {
+    font-size: 1.125rem;
+}
 
+.c-rates-detail__header em {
+    font-size: 1rem;
+}
+
+table.details_table {
+    font-family: "Lato", sans-serif !important;
+    line-height: 1.6875;
+}
   </style>
   
 
@@ -1063,7 +1085,7 @@ input[type=range]:focus::-o-slider-thumb {
             <h5>We only need a few details to calculate your rates:</h5>
           </div>
 
-          <div class="o-layout__item u-1/1 u-1/2@small u-1/3@medium" data-js="details--zipcode">
+          <div class="o-layout__item u-1/1 u-1/2@small u-1/3@medium newLayout" data-js="details--zipcode">
             <div class="c-form-element u-margin-bottom-small">
               <label class="c-form-element__label" for="zipcode">Zip Code</label>
               <div class="c-form-element__control">
@@ -1072,7 +1094,7 @@ input[type=range]:focus::-o-slider-thumb {
             </div>
           </div>
 
-          <div class="o-layout__item u-1/1 u-1/2@small u-1/3@medium" data-js="details--residencetype">
+          <div class="o-layout__item u-1/1 u-1/2@small u-1/3@medium newLayout" data-js="details--residencetype">
             <div class="c-form-element u-margin-bottom-small">
               <label class="c-form-element__label" for="residencetype">Property Type</label>
               <div class="c-form-element__control">
@@ -1090,7 +1112,7 @@ input[type=range]:focus::-o-slider-thumb {
             </div>
           </div>
 
-          <div class="o-layout__item u-1/1 u-1/2@small u-1/3@medium" data-js="details--propertyuse">
+          <div class="o-layout__item u-1/1 u-1/2@small u-1/3@medium newLayout" data-js="details--propertyuse">
             <div class="c-form-element u-margin-bottom-small">
               <label class="c-form-element__label" for="propertyuse">Property Use</label>
               <div class="c-form-element__control">
@@ -1106,7 +1128,7 @@ input[type=range]:focus::-o-slider-thumb {
             </div>
           </div>
 
-          <div class="o-layout__item u-1/1 u-1/2@small u-1/3@medium" data-js="details--creditscore">
+          <div class="o-layout__item u-1/1 u-1/2@small u-1/3@medium newLayout" data-js="details--creditscore">
             <div class="c-form-element u-margin-bottom-small">
               <label class="c-form-element__label" for="creditscore">Credit Score</label>
               <div class="c-form-element__control">
@@ -1121,7 +1143,7 @@ input[type=range]:focus::-o-slider-thumb {
             </div>
           </div>
 
-          <div class="o-layout__item u-1/1 u-1/2@small u-1/3@medium" data-js="details--purchaseprice">
+          <div class="o-layout__item u-1/1 u-1/2@small u-1/3@medium newLayout" data-js="details--purchaseprice">
             <div class="c-form-element u-margin-bottom-small">
               <label class="c-form-element__label" for="purchaseprice">Purchase Price</label>
               <div class="c-form-element__control c-input-has-fixed-addon">
@@ -1131,18 +1153,18 @@ input[type=range]:focus::-o-slider-thumb {
             </div>
           </div>
 
-          <div class="o-layout__item u-1/1 u-1/2@small u-1/3@medium" data-js="details--downpaymentpercent">
+          <div class="o-layout__item u-1/1 u-1/2@small u-1/3@medium newLayout" data-js="details--downpaymentpercent">
             <div class="c-form-element u-margin-bottom-small">
               <label class="c-form-element__label" for="downpaymentpercent">Down Payment</label>
               <div class="c-form-element__control">
-                <input id="downpaymentpercent" name="downpaymentpercent" class="c-linked-percent-slider" type="range" min="3" max="99" value="20" data-rangeslider data-linkedpercentslider data-linked-element="#purchaseprice">
-                <span class="c-linked-percent-slider__percent-value"></span>
+				<span class="c-linked-percent-slider__percent-value"></span>
                 <span class="c-linked-percent-slider__numeric-value"></span>
+                <input id="downpaymentpercent" name="downpaymentpercent" class="c-linked-percent-slider" type="range" min="3" max="99" value="20" data-rangeslider data-linkedpercentslider data-linked-element="#purchaseprice">
               </div>
             </div>
           </div>
 
-          <div class="o-layout__item u-1/1 u-1/2@small u-1/3@medium" data-js="details--estval">
+          <div class="o-layout__item u-1/1 u-1/2@small u-1/3@medium newLayout" data-js="details--estval">
             <div class="c-form-element u-margin-bottom-small">
               <label class="c-form-element__label" for="estval">Estimated Home Value</label>
               <div class="c-form-element__control c-input-has-fixed-addon">
@@ -1154,7 +1176,7 @@ input[type=range]:focus::-o-slider-thumb {
             </div>
           </div>
 
-          <div class="o-layout__item u-1/1 u-1/2@small u-1/3@medium" data-js="details--curmortgagebalance">
+          <div class="o-layout__item u-1/1 u-1/2@small u-1/3@medium newLayout" data-js="details--curmortgagebalance">
             <div class="c-form-element u-margin-bottom-small">
               <label class="c-form-element__label" for="curmortgagebalance">Current Mortgage Balance</label>
               <div class="c-form-element__control c-input-has-fixed-addon">
@@ -1164,7 +1186,7 @@ input[type=range]:focus::-o-slider-thumb {
             </div>
           </div>
 
-          <div class="o-layout__item u-1/1 u-1/2@small u-1/3@medium" data-js="details--fha">
+          <div class="o-layout__item u-1/1 u-1/2@small u-1/3@medium newLayout" data-js="details--fha">
             <div class="c-form-element u-margin-bottom-small">
               <label class="c-form-element__label" for="fha">Is Your Current Loan FHA?</label>
               <div class="c-form-element__control">
@@ -1179,7 +1201,7 @@ input[type=range]:focus::-o-slider-thumb {
             </div>
           </div>
 
-          <div class="o-layout__item u-1/1 u-1/2@small u-1/3@medium" data-js="details--cashout">
+          <div class="o-layout__item u-1/1 u-1/2@small u-1/3@medium newLayout" data-js="details--cashout">
             <div class="c-form-element u-margin-bottom-small">
               <label class="c-form-element__label u-text-nowrap" for="cashout">How much cash would you like to take out?</label>
               <div class="c-form-element__control c-input-has-fixed-addon">
@@ -1210,7 +1232,7 @@ input[type=range]:focus::-o-slider-thumb {
     <!-- END loan details section-->
 
     <!-- BEGIN rates type form section -->
-    <section class="c-page-content__section c-rates-app__rates-listing-wrapper" data-js="rates-listing__wrapper" style="display:none">
+    <section class="c-page-content__section c-rates-app__rates-listing-wrapper subhead" data-js="rates-listing__wrapper" style="display:none">
       <!-- BEGIN rate type form -->
       <h3 class="u-text-centered">Loan Options</h3>
       <form class="c-form--stacked o-wrapper o-wrapper--narrow u-margin-top-none" data-js="ratetype-form">
