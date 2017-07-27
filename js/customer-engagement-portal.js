@@ -1008,7 +1008,7 @@
           v = {
             residencetype:      $('#residencetype').val(),
             propertyuse:        $('#propertyuse').val(),
-            creditscore:        $('#creditscore').val(),
+            creditscore:        $("#chanceSlider").text(),
             fha:                $('#fha').val(),
             zipcode:            $('#zipcode').val(),
             purchaseprice:      accounting.unformat($('#purchaseprice').val()),
