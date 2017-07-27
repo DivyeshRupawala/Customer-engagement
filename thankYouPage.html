@@ -125,30 +125,13 @@
   <!-- Google Adwords Conversion Tag -->
   <script type="text/javascript">
     /* <![CDATA[ */
-    var google_conversion_id = 863852039;
+    var google_conversion_id = 857716127;
     var google_conversion_language = "en";
     var google_conversion_format = "3";
     var google_conversion_color = "ffffff";
-    var google_conversion_label = "w_1kCIGMlW0Qh6z1mwM";
+    var google_conversion_label = "j1XLCNmymW8Qn-v-mAM";
     var google_remarketing_only = false;
     /* ]]> */
-    var query_msg = Cookies.get('query_page');
-    var registrationEmail = Cookies.get('registration_email');
-
-    // console.log(query_msg);
-
-    if(query_msg) {
-      $('#create-account-page').hide();
-      Cookies.remove('query_msg');
-    }
-    else if (registrationEmail) {
-      $('#create-query-page').hide();
-      $("#emailIdAfterReg").attr("href", "mailto:"+registrationEmail);
-      $("#emailIdAfterReg").text(registrationEmail);
-      Cookies.remove('registration_email');
-    } else {
-      window.location.href = "index.html";
-    }
      
   </script>
 
@@ -156,10 +139,33 @@
 
   <noscript>
     <div style="display:inline;">
-      <img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/863852039/?label=w_1kCIGMlW0Qh6z1mwM&amp;guid=ON&amp;script=0"/>
+      <img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/857716127/?label=j1XLCNmymW8Qn-v-mAM&guid=ON&script=0"/>
     </div>
   </noscript>
   <!-- END Google Adwords Conversion Tag -->
+
+    <script type="text/javascript">
+      
+      var query_msg = Cookies.get('query_page');
+      var registrationEmail = Cookies.get('registration_email');
+
+      // console.log(query_msg);
+
+      if(query_msg) {
+        $('#create-account-page').hide();
+        Cookies.remove('query_msg');
+      }
+      else if (registrationEmail) {
+        $('#create-query-page').hide();
+        $("#emailIdAfterReg").attr("href", "mailto:"+registrationEmail);
+        $("#emailIdAfterReg").text(registrationEmail);
+        Cookies.remove('registration_email');
+      } else {
+        window.location.href = "index.html";
+      }
+
+
+    </script>
 </body>
 
 </html>
