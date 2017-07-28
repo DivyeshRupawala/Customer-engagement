@@ -164,8 +164,9 @@
       lasearch = false,
       loanAdvisorList =[],
       loanAdvisorMap =[],
-      userRegistrationValidator = null
-      ;
+      userRegistrationValidator = null;
+
+      var notaryfeeLQB = 25;
 
     /**
      * function init()
@@ -1790,6 +1791,7 @@
               'lenders_title_ins':       propValueOrDefault(raw_rate, 'lendersTitleInsurance1104', 0),
               'closing_and_escrow_fees': propValueOrDefault(raw_rate, 'closingEscrowFee1102', 0),
               'recording_fees':          propValueOrDefault(raw_rate, 'recordingFees1202', 0), 
+              'notaryfee1110':           notaryfeeLQB,
               'other_fees':              sumOtherThirdPartyFees(raw_rate)
             },
 
