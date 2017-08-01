@@ -2066,35 +2066,25 @@
 
 
    $(".fifth_next_tab").click (function(){
-
-      mobile_data.creditscore=$("#slide_range_credit").text();
-      mobile_data.creditscore_text=$("#slide_range_credit").text();
+		mobile_data.creditscore=$("#slide_range_credit").text();
+		mobile_data.creditscore_text=$("#slide_range_credit").text();
         switch(mobile_data.chosen_loan_type){
           case "new-purchase":  
-            setTimeout(function() {
-              $('.range_slider').find('.irs-max').text('$2M+');             
-            }, 250);
+            setTimeout(function() {$('.range_slider').find('.irs-max').text('$2M+');}, 250);
             $("#pro_loc_content").addClass("active");
             $("#cradit_score").removeClass("active");
             $(".fifth_next_tab").attr("style","display:block");
             $('.step-4').removeAttr("style","display:none");
             break;
           case "refinance":
-            setTimeout(function() {
-              $('.range_slider2').find('.irs-max').text('$2M+');
-              $('.range_slider3').find('.irs-max').text('$2M+'); 
-            }, 250);
+            setTimeout(function() {$('.range_slider2').find('.irs-max').text('$2M+');}, 250);
             $("#pro_loc_content_refinance").addClass("active");
             $("#cradit_score").removeClass("active");
             $(".fifth_next_tab").attr("style","display:block");
             $('.step-4').removeAttr("style","display:none");
             break;
           case "cashout":
-            setTimeout(function() {
-              $('.range_slider4').find('.irs-max').text('$2M+');
-              $('.range_slider5').find('.irs-max').text('$2M+'); 
-              $('.range_slider6').find('.irs-max').text('$2M+'); 
-            }, 250);
+            setTimeout(function() {$('.range_slider4').find('.irs-max').text('$2M+');}, 250);
             $("#pro_loc_content_cashout").addClass("active");
             $("#cradit_score").removeClass("active");
             $(".fifth_next_tab").attr("style","display:block");
@@ -2103,15 +2093,15 @@
         }  
          
        
-      });
+    });
     $(".sixth_next_tab").click (function(){
 		$("#pro_loc_content_refinance_fha").addClass("active");
         $("#pro_loc_content_refinance").removeClass("active");
         $(".sixth_next_tab").attr("style","display:block");
         $('#pro_loc_content_refinance').removeAttr("style","display:none");
 	});
-   // next step code end 
-     $(".loan-options").click (function(){  
+	// next step code end 
+    $(".loan-options").click (function(){  
         switch(mobile_data.chosen_loan_type){
           case "new-purchase":    
               mobile_data.purchaseprice=$("#range_01").val();
@@ -2207,7 +2197,7 @@
 		$(".fha_No").addClass("fha_active");
 		$("#fha_m").val("No");
 	});
-   $(".back_option").click( function(){
+	$(".back_option").click( function(){
         $(".mainTab").removeAttr("style","display:none");
         $("#Purchase").removeClass("active");
         $("#Refinance").removeClass("active");
@@ -2218,132 +2208,130 @@
         $(this).closest('.subhead').css('display','none');
     });
 
-     $(".back1_option").click( function(){
+    $(".back1_option").click( function(){
       $(this).closest('.subhead').removeClass('active');
       $(this).closest('.subhead').css('display','none');
       $('.subhead.step-1 .sec_main_tab').css('display','block');
       $('.subhead.step-1').css('display','block');
-      });
+	});
     
-  $(".back2_option").click( function(){
+	$(".back2_option").click( function(){
       $(this).closest('.subhead').removeClass('active');
       $(this).closest('.subhead').css('display','none');
       $('.subhead.step-2 .third_main_tab').css('display','block');
       $('.subhead.step-2').css('display','block');
-      });
+    });
 
-      $(".back3_option").click( function(){
+    $(".back3_option").click( function(){
       $(this).closest('.subhead').removeClass('active');
       $(this).closest('.subhead').css('display','none');
       $('.subhead.step-3 .forth_main_tab').css('display','block');
       $('.subhead.step-3').css('display','block');
-      });
+    });
 
     $(".back4_option").click( function(){
       $(this).closest('.subhead').removeClass('active');
       $(this).closest('.subhead').css('display','none');
       $('.subhead.step-4 .fifth_next_tab').css('display','block');
       $('.subhead.step-4').css('display','block');
-      });
+    });
 	
 	$(".back5_option").click( function(){
       $(this).closest('.subhead').removeClass('active');
       $(this).closest('.subhead').css('display','none');
       $('.subhead.step-5 .sixth_next_tab').css('display','block');
       $('.subhead.step-5#pro_loc_content_refinance').css('display','block');
-      });	
+    });	
+	  
 //form Range slider
-function createRangeSliders(sliderId,spanId,classId){
-  $("#"+sliderId).ionRangeSlider({
-        type: "single",
-        min: 0,
-        max: 2000000,
-        from: 0,
+	var slMaxVal = '';
+function createRangeSliders(sliderId,spanId,classId,minVal, maxVal, fromVal, stepVal){
+	$("#"+sliderId).ionRangeSlider({
+		type: "single",
+         min: minVal,
+        max: maxVal,
+        from: fromVal,
         keyboard: true,
         prefix:'$ ',
-        step: 25000,
-        max_postfix: 'M+',
-       
+        step: stepVal,
         onStart: function (data) {
-          var current_val = data.from;
-            var dis_min_val =  parseInt(current_val);
-            var slide_range = '$' + dis_min_val;
-            var slide_range_val='$' + dis_min_val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
-            $('#'+spanId).html(slide_range_val);
-            $('.'+classId+' .irs-max').text('$2M+');
-      if(slide_range == "Over $2 million") {p_price = "$2000000"}else{p_price = slide_range};
-      est_amt = parseInt(p_price.toString().substring(1,p_price.length)) *  per / 100;
-            var slide_range = per + '% ($'+ est_amt +')' ;
-           // $('#slide_per_range').html(slide_range);
+			var current_val = data.from;
+           	if(current_val < 10000){
+				$('#'+spanId).text("$1");
+			}else{
+				$('#'+spanId).text("$" + current_val);	
+			}
+			$('.' + classId + ' .irs-min').text('$1');
         },
         onChange: function (data) {
-           var current_val = data.from;
-       var dis_min_val =  parseInt(current_val);
-           var slide_range = '$' + dis_min_val;
-           if(current_val < 2000000){
-             //$('#'+spanId).html(slide_range);
-           }
-            if(current_val == 2000000){
-                  var slide_range = 'Over $2 million';
-           }
-            //$('#'+spanId).html(slide_range);
-            $('.'+classId+' .irs-max').text('$2M+');
-      if(slide_range == "Over $2 million") {p_price = "$2000000"}else{p_price = slide_range};
-      per = $("#slide_per_range").text().split("%")[0];
-      est_amt = parseInt(p_price.toString().substring(1,p_price.length)) *  per / 100;
-            var slide_range = per + '% ($'+ est_amt +')' ;
-           // $('#slide_per_range').html(slide_range);
+			var current_val = data.from;
+			if(current_val < 10000){
+				 $('#'+spanId).text("$1");
+			}
+			if(current_val == 2000000){
+                $('#'+spanId).text('Over $2 million');
+				$('.' + classId + ' .irs-max').text('$2M+');
+			}
+			$('.' + classId + ' .irs-min').text('$1');
         },
-    onUpdate: function (data) {
-       var current_val = data.from;
-       var dis_min_val =  parseInt(current_val);
-           var slide_range = '$' + dis_min_val;
-           if(current_val < 2000000){
-             //$('#'+spanId).html(slide_range);
-           }
-            if(current_val == 2000000){
-                  var slide_range = 'Over $2 million';
-           }
-           // $('#'+spanId).html(slide_range);
-            $('.'+classId+' .irs-max').text('$2M+');
-      if(slide_range == "Over $2 million") {p_price = "$2000000"}else{p_price = slide_range};
-      per = $("#slide_per_range").text().split("%")[0];
-      est_amt = parseInt(p_price.toString().substring(1,p_price.length)) *  per / 100;
-            var slide_range = per + '% ($'+ est_amt +')' ;
-           // $('#slide_per_range').html(slide_range);
-    },
-    onFinish: function (data) {
-       var current_val = data.from;
-       var dis_min_val =  parseInt(current_val);
-           var slide_range = '$' + dis_min_val;
-           if(current_val < 2000000){
-            // $('#'+spanId).html(slide_range);
-           }
-            if(current_val == 2000000){
-                  var slide_range = 'Over $2 million';
-           }
-           // $('#'+spanId).html(slide_range);
-            $('.'+classId+' .irs-max').text('$2M+');
-      if(slide_range == "Over $2 million") {p_price = "$2000000"}else{p_price = slide_range};
-      per = $("#slide_per_range").text().split("%")[0];
-      est_amt = parseInt(p_price.toString().substring(1,p_price.length)) *  per / 100;
-            var slide_range = per + '% ($'+ est_amt +')' ;
-           // $('#slide_per_range').html(slide_range);
-    }
+		onUpdate: function (data) {
+			var current_val = data.from;
+			if(current_val < 10000){
+				$('#'+spanId).text("$1");
+			}
+			$('.' + classId + ' .irs-min').text('$1');
+		},
+		onFinish: function (data) {
+			var current_val = data.from;
+			if(current_val < 10000){
+				$('#'+spanId).text("$1");
+			}
+			if(sliderId == "range_02"){
+				slMaxVal = parseInt(current_val);
+				var slider3 = $("#range_03").data("ionRangeSlider");
+				slider3.update({ from: data.from * 60/100, max: data.from});
+				if(current_val < 10000){$('#slide_range3').text("$1");$('.range_slider3 .irs-max').text('$1');}
+				if(current_val == 2000000){	$('.range_slider3 .irs-max').text('$2M+');}
+				$('.range_slider3 .irs-min').text('$1');
+			}
+			if(sliderId == "range_04"){
+				slMaxVal = parseInt(current_val);
+				var slider5 = $("#range_05").data("ionRangeSlider");
+				slider5.update({ from: data.from * 60/100, max: data.from});
+				if(current_val < 10000){$('#slide_range5').text("$1");$('.range_slider5 .irs-max').text('$1');}
+				if(current_val == 2000000){	$('.range_slider5 .irs-max').text('$2M+');}
+				$('.range_slider5 .irs-min').text('$1');
+				var sl5val = parseInt($('#slide_range5').text().replace("$", "").replace(/,/g, ""));
+				var sl6val = (current_val*85/100) - sl5val;
+				var slider6 = $("#range_06").data("ionRangeSlider");
+				slider6.update({ from: sl6val * 80/100, max: sl6val});
+				$('.range_slider6 .irs-min').text('$1');
+			}
+			if(sliderId == "range_05"){
+				slMaxVal = parseInt(current_val);
+				var sl5val = parseInt($('#slide_range4').text().replace("$", "").replace(/,/g, ""));
+				var sl6val = (sl5val*85/100) - slMaxVal;
+				var slider6 = $("#range_06").data("ionRangeSlider");
+				slider6.update({ from: sl6val * 80/100, max: sl6val});
+				$('.range_slider6 .irs-min').text('$1');
+			}
+			$('.' + classId + ' .irs-min').text('$1');
+			$('.range_slider2 .irs-max').text('$2M+');
+			$('.range_slider4 .irs-max').text('$2M+');
+		}
     });
-  $('.'+classId+' .irs-max').text('$2M+');
 }
 
-// Range slider code
-$('.forth_next_tab').click (function(){
-  crediScoreSlider();
-});
+	// Range slider code
+	$('.forth_next_tab').click (function(){
+	  crediScoreSlider();
+	});
 
-  var range_val = 0 ;
-  var crediScoreSlider = function () {
+	var range_val = 0 ;
+	var crediScoreSlider = function () {
 	$("#credit_score_slider").ionRangeSlider({
         type: "single",
-		  range: "max",
+		range: "max",
         min: 840,
         max: 1120,
         from: 920,
@@ -2369,9 +2357,9 @@ $('.forth_next_tab').click (function(){
 			range_val = 840 - (cur_val - 840) ;
             $('#slide_range_credit').html(range_val); 
         }
- });
+	});
   }
-var est_amt = 0, p_price, per = 20;
+var est_amt = 0, p_price, per = 20, slide_range;
   $('.fifth_next_tab').click (function () {
     $("#range_01").ionRangeSlider({
         type: "single",
@@ -2382,81 +2370,85 @@ var est_amt = 0, p_price, per = 20;
         prefix:'$ ',
         step: 10000,
         max_postfix: 'M+',
-       
         onStart: function (data) {
-          var current_val = data.from;
+			var current_val = data.from;
+			if(current_val < 10000){
+				slide_range = "$1";
+				$(".range_slider #slide_range").text("$1");
+			}
             var dis_min_val =  parseInt(current_val);
-            var slide_range = '$' + dis_min_val;
+            slide_range = '$' + dis_min_val;
             var slide_range_val='$' + dis_min_val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
             $('#slide_range').html(slide_range_val);
             $('.range_slider .irs-max').text('$2M+');
-      if(slide_range == "Over $2 million") {p_price = "$2000000"}else{p_price = slide_range};
-      est_amt = parseInt(p_price.toString().substring(1,p_price.length)) *  per / 100;
-            var slide_range = per + '% ($'+ est_amt.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") +')' ;
+			if(slide_range == "Over $2 million") {p_price = "$2000000"}else{p_price = slide_range};
+			est_amt = parseInt(p_price.toString().substring(1,p_price.length)) *  per / 100;
+            slide_range = per + '% ($'+ est_amt.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") +')' ;
             $('#slide_per_range').html(slide_range);
         },
         onChange: function (data) {
-           var current_val = data.from;
-       var dis_min_val =  parseInt(current_val);
-           var slide_range = '$' + dis_min_val;
-           if(current_val < 2000000){
-          //   $('#slide_range').html(slide_range);
-           }
+			var current_val = data.from;
+			var dis_min_val =  parseInt(current_val);
+			slide_range = '$' + dis_min_val;
+			if(current_val < 10000){
+				slide_range = "$1";
+				$(".range_slider #slide_range").text("$1");
+			}
             if(current_val == 2000000){
-                  var slide_range = 'Over $2 million';
-           }
-          //  $('#slide_range').html(slide_range);
+                slide_range = 'Over $2 million';
+			}
+			//  $('#slide_range').html(slide_range);
             $('.range_slider .irs-max').text('$2M+');
-      if(slide_range == "Over $2 million") {p_price = "$2000000"}else{p_price = slide_range};
-      per = $("#slide_per_range").text().split("%")[0];
-      est_amt = parseInt(p_price.toString().substring(1,p_price.length)) *  per / 100;
-            var slide_range = per + '% ($'+ est_amt.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") +')' ;
+			if(slide_range == "Over $2 million") {p_price = "$2000000"}else{p_price = slide_range};
+			per = $("#slide_per_range").text().split("%")[0];
+			est_amt = parseInt(p_price.toString().substring(1,p_price.length)) *  per / 100;
+            slide_range = per + '% ($'+ est_amt.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") +')' ;
             $('#slide_per_range').html(slide_range);
         },
-    onUpdate: function (data) {
-       var current_val = data.from;
-       var dis_min_val =  parseInt(current_val);
-           var slide_range = '$' + dis_min_val;
-           if(current_val < 2000000){
-           //  $('#slide_range').html(slide_range);
-           }
-            if(current_val == 2000000){
-                  var slide_range = 'Over $2 million';
-           }
-           // $('#slide_range').html(slide_range);
-            $('.range_slider .irs-max').text('$2M+');
-      if(slide_range == "Over $2 million") {p_price = "$2000000"}else{p_price = slide_range};
-      per = $("#slide_per_range").text().split("%")[0];
-      est_amt = parseInt(p_price.toString().substring(1,p_price.length)) *  per / 100;
-            var slide_range = per + '% ($'+ est_amt.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") +')' ;
-            $('#slide_per_range').html(slide_range);
-    },
-    onFinish: function (data) {
-       var current_val = data.from;
-       var dis_min_val =  parseInt(current_val);
-           var slide_range = '$' + dis_min_val;
-           if(current_val < 2000000){
-            // $('#slide_range').html(slide_range);
-           }
-            if(current_val == 2000000){
-                  var slide_range = 'Over $2 million';
-           }
-           // $('#slide_range').html(slide_range);
-            $('.range_slider .irs-max').text('$2M+');
-      if(slide_range == "Over $2 million") {p_price = "$2000000"}else{p_price = slide_range};
-      per = $("#slide_per_range").text().split("%")[0];
-      est_amt = parseInt(p_price.toString().substring(1,p_price.length)) *  per / 100;
-            var slide_range = per + '% ($'+ est_amt.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") +')' ;
-            $('#slide_per_range').html(slide_range);
-    }
+		onUpdate: function (data) {
+			var current_val = data.from;
+			var dis_min_val =  parseInt(current_val);
+			slide_range = '$' + dis_min_val;
+			if(current_val < 10000){
+				slide_range = "$1";
+				$(".range_slider #slide_range").text("$1");
+			}
+			if(current_val == 2000000){
+				slide_range = 'Over $2 million';
+			}
+			$('.range_slider .irs-max').text('$2M+');
+			if(slide_range == "Over $2 million") {p_price = "$2000000"}else{p_price = slide_range};
+			per = $("#slide_per_range").text().split("%")[0];
+			est_amt = parseInt(p_price.toString().substring(1,p_price.length)) *  per / 100;
+			slide_range = per + '% ($'+ est_amt.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") +')' ;
+			$('#slide_per_range').html(slide_range);
+		},
+		onFinish: function (data) {
+			var current_val = data.from;
+			var dis_min_val =  parseInt(current_val);
+			slide_range = '$' + dis_min_val;
+			if(current_val < 10000){
+				slide_range = "$1";
+				$(".range_slider #slide_range").text("$1");
+			}
+			if(current_val == 2000000){
+				slide_range = 'Over $2 million';
+			}
+			$('.range_slider .irs-min').text('$1');
+			$('.range_slider .irs-max').text('$2M+');
+			if(slide_range == "Over $2 million") {p_price = "$2000000"}else{p_price = slide_range};
+			per = $("#slide_per_range").text().split("%")[0];
+			est_amt = parseInt(p_price.toString().substring(1,p_price.length)) *  per / 100;
+			slide_range = per + '% ($'+ est_amt.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") +')' ;
+			$('#slide_per_range').html(slide_range);
+		}
     });
 
-
-    createRangeSliders('range_02','slide_range2','range_slider2');
-    createRangeSliders('range_03','slide_range3','range_slider3'); 
-    createRangeSliders('range_04','slide_range4','range_slider4');  
-    createRangeSliders('range_05','slide_range5','range_slider5');  
-    createRangeSliders('range_06','slide_range6','range_slider6');
+    createRangeSliders('range_02','slide_range2','range_slider2',0,2000000,500000,10000);
+    createRangeSliders('range_03','slide_range3','range_slider3',0,500000,300000,5000); 
+    createRangeSliders('range_04','slide_range4','range_slider4',0,2000000,500000,10000);  
+    createRangeSliders('range_05','slide_range5','range_slider5',0,500000,300000,5000);  
+    createRangeSliders('range_06','slide_range6','range_slider6',0,125000,100000,5000);
     $("#per_range").ionRangeSlider({
         type: "single",
         min: 3,
@@ -2466,66 +2458,80 @@ var est_amt = 0, p_price, per = 20;
         step: 1,
         postfix: '%',
         onStart: function (data) {
-            var current_val = data.from;
+			var current_val = data.from;
             var dis_min_val =  parseInt(current_val);
-      per = current_val;
-      p_price="$500000";
-      est_amt = parseInt(p_price.toString().substring(1,p_price.length)) *  per / 100;
+			per = current_val;
+			p_price="$500000";
+			est_amt = parseInt(p_price.toString().substring(1,p_price.length)) *  per / 100;
             var slide_range = dis_min_val + '% ($'+ est_amt.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") +')' ;
             $('#slide_per_range').html(slide_range);
         },
         onChange: function (data) {
-      var current_val = data.from;
+			var current_val = data.from;
             var dis_min_val = 0;
             var step = 1;
-      dis_min_val = parseInt(current_val);
-      per = current_val
-      est_amt = parseInt(p_price.toString().substring(1,p_price.length)) *  per / 100;
+			dis_min_val = parseInt(current_val);
+			per = current_val
+			est_amt = parseInt(p_price.toString().substring(1,p_price.length)) *  per / 100;
             var slide_range = dis_min_val + '% ($'+ est_amt.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") +')' ;
-      $('#slide_per_range').html(slide_range); 
+			$('#slide_per_range').html(slide_range); 
         },
         onFinish: function (data) {
-           var current_val = data.from;
-           var dis_min_val = 0;
-           var step = 1;
-           dis_min_val = parseInt(current_val);
-      per = current_val
-      est_amt = parseInt(p_price.toString().substring(1,p_price.length)) *  per / 100;
-       var slide_range = dis_min_val + '% ($'+ est_amt.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") +')' ;
-           $('#slide_per_range').html(slide_range);
+			var current_val = data.from;
+			var dis_min_val = 0;
+			var step = 1;
+			dis_min_val = parseInt(current_val);
+			per = current_val
+			est_amt = parseInt(p_price.toString().substring(1,p_price.length)) *  per / 100;
+			var slide_range = dis_min_val + '% ($'+ est_amt.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") +')' ;
+			$('#slide_per_range').html(slide_range);
         },
         onUpdate: function (data) {
             var current_val = data.from;
             var dis_min_val = 0;
             var step = 1;
             dis_min_val = parseInt(current_val);
-      per = current_val
-      est_amt = parseInt(p_price.toString().substring(1,p_price.length)) *  per / 100;
+			per = current_val
+			est_amt = parseInt(p_price.toString().substring(1,p_price.length)) *  per / 100;
             var slide_range = dis_min_val + '% ($'+ est_amt.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") +')' ;
             $('#slide_per_range').html(slide_range);
         }
-  });
+	});
     setTimeout(function() {
-            
-            $('.range_slider .irs-max').text('$2M+');           
-          }, 300);
-  
+		$('.range_slider .irs-max').text('$2M+');
+		$('.range_slider2 .irs-max').text('$2M+');
+		$('.range_slider4 .irs-max').text('$2M+');
+		$('.range_slider').find('.irs-min').text('$1');
+		$('.range_slider2').find('.irs-min').text('$1');
+		$('.range_slider3').find('.irs-min').text('$1');
+		$('.range_slider4').find('.irs-min').text('$1');
+		$('.range_slider5').find('.irs-min').text('$1');
+		$('.range_slider6').find('.irs-min').text('$1');
+	}, 300);
 });
    $( window ).on( "load", function() {
+		$('.range_slider').find('.irs-min').text('$1');
+		$('.range_slider2').find('.irs-min').text('$1');
+		$('.range_slider3').find('.irs-min').text('$1');
+		$('.range_slider4').find('.irs-min').text('$1');
+		$('.range_slider5').find('.irs-min').text('$1');
+		$('.range_slider6').find('.irs-min').text('$1');
         $('.range_slider').find('.irs-max').text('$2M+');
 		$('.range_slider2').find('.irs-max').text('$2M+');
-        $('.range_slider3').find('.irs-max').text('$2M+');
         $('.range_slider4').find('.irs-max').text('$2M+');
-        $('.range_slider5').find('.irs-max').text('$2M+');
-        $('.range_slider6').find('.irs-max').text('$2M+');
     });
      $(window).resize(function () {
-        setTimeout(function(){ $('.range_slider .irs-max').text('$2M+'); }, 200);
-        setTimeout(function(){ $('.range_slider2 .irs-max').text('$2M+'); }, 200);
-        setTimeout(function(){ $('.range_slider3 .irs-max').text('$2M+'); }, 200);
-        setTimeout(function(){ $('.range_slider4 .irs-max').text('$2M+'); }, 200);
-        setTimeout(function(){ $('.range_slider5 .irs-max').text('$2M+'); }, 200);
-        setTimeout(function(){ $('.range_slider6 .irs-max').text('$2M+'); }, 200);
+        setTimeout(function(){
+			$('.range_slider .irs-max').text('$2M+'); 
+			$('.range_slider').find('.irs-min').text('$1');
+			$('.range_slider2 .irs-max').text('$2M+');
+			$('.range_slider2').find('.irs-min').text('$1');
+			$('.range_slider3').find('.irs-min').text('$1');
+			$('.range_slider4 .irs-max').text('$2M+');
+			$('.range_slider4').find('.irs-min').text('$1');
+			$('.range_slider5').find('.irs-min').text('$1'); 
+			$('.range_slider6').find('.irs-min').text('$1'); 
+		}, 200);
     });        
 	$('#creditscoreDesktop').on('input change', function(){
 		$('#chanceSlider').text(840 - ($('#creditscoreDesktop').val() - 840));
@@ -2533,8 +2539,6 @@ var est_amt = 0, p_price, per = 20;
 		$(".credit_score_runnable").width(slideWidth + "%");
 	});
 
-    
-  
     // Start the show!
     init();
 
