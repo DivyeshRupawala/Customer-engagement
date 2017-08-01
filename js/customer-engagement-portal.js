@@ -1533,8 +1533,16 @@
       }, 'This field is required');
 
       $.validator.addMethod('currencyNumber', function(value, element) {
+        if(element.name == "curmortgagebalance" && state.chosen_loan_type == "cashout" && value == undefined || value == "") { 
+          return false;
+        } 
+        
         value = accounting.unformat(value);
-        return !isNaN(value) && value * 1 > 0;
+        if (element.name == "curmortgagebalance" && state.chosen_loan_type == "cashout") {
+          return true;
+        } else {
+          return !isNaN(value) && value * 1 > 0;  
+        }        
       }, 'This field is required');
 
       $.validator.addMethod('zipCodeValidation', function(value, element) {
