@@ -634,14 +634,14 @@ table.details_table {
     <form id="mobile_form" class="c-rates-app__loan-form c-form--stacked" >
       <div id="home_content">
       <div class="subhead mainTab hei_main">
-        <h2>What will your loan be for?</h2>
+        <h2>Mortgage Type</h2>
       </div>
       <div class="col-xs-12 padd_zero mainTab">
         <div class="col-xs-4 xs_resize_hu home_align ">
           <div class="icon_1 tabPurchase horizon-next" onclick="ScrollTo('Purchase')">
             <div class="pur purchase"></div>
           </div>
-          <div class="txt_unit">Home Purchase</div>
+          <div class="txt_unit">Purchase</div>
         </div>
         <div class="col-xs-4 xs_resize_hu">
          <div class="icon_1 tabRefinance horizon-next">
@@ -653,7 +653,7 @@ table.details_table {
          <div class="icon_1 tabT_Case horizon-next">
             <div class="pur T_Case"></div>
           </div>
-          <div class="txt_unit">Take Out Cash</div>
+          <div class="txt_unit">Cash Out</div>
         </div>
       </div>
       </div>
@@ -672,30 +672,6 @@ table.details_table {
         </div>
         <div class="col-xs-12 sec_main_tab">
           <h3>Tell us about <br> your property location</h3>
-          <div class="col-xs-12 iphone_xs drop_padd_bottom">
-            <div class="col-xs-2 padd_zero img_landscape_6_A">
-              <img src="images/icn_select_state.png">
-            </div> 
-            <div class="col-xs-10 drop_padd ">
-              <select class="col-xs-12 img_landscape_6_B" id="mobile_states">
-                <option value="" >Please Select State</option>                
-             </select>
-            </div>
-          </div>
-          <div class="col-xs-12 iphone_xs drop_padd_bottom">
-            <div class="col-xs-2 padd_zero img_landscape_6_A">
-              <img src="images/icn_select_country.png">
-            </div>
-             <div class="col-xs-10 drop_padd ">
-               <select class="col-xs-12 img_landscape_6_B" id="mobile_counties">
-                <option >Please Select County</option>                
-              </select>
-               <input type="hidden"   maxlength="5"  id="zipcode1" name="zipcode1" value="" class="form-control"  placeholder="Zip Code">
-            </div>
-          </div>
-      <div class="col-xs-12 iphone_xs drop_padd_bottom">
-        <span class="or_span">OR</span>
-      </div>
           <div class="col-xs-12 iphone_xs drop_padd_bottom">
             <div class="col-xs-2 padd_zero img_landscape_6_A">
               <img src="images/icn_zip_code.png">
@@ -726,7 +702,7 @@ table.details_table {
             </div>
           </div>
          <div class="col-xs-12 subhead type_condo_tab">
-          <h3>Please select property type</h3>
+          <h3>Select Property Type</h3>
           <div class="col-xs-12 section_unit">
             <div class="col-xs-6 xs_resize_hu0new xs_resize_hu0 third_next_tab" onclick="ScrollTo('select_property')">
               <div class="icon_1 Condo_tab" data-property-type="0">
@@ -777,7 +753,7 @@ table.details_table {
           </div>
         </div>
         <div class="col-xs-12 subhead padd_zero sect_four">
-          <h3>Please choose property use</h3>
+          <h3>Property Use</h3>
           <div class="col-xs-12 padd_zero property_location_4l">
             <div class="col-xs-4 xs_resize_hu forth_next_tab" onclick="ScrollTo('cradit_score')">
               <div class="icon_1 Residence_tab" data-residence-type="0">
@@ -850,7 +826,7 @@ table.details_table {
           </div>
           <div class="col-xs-12 subhead third_main_tab">
              <div class="col-xs-12 hei_third">
-               <h3>Please select <br> estimated purchase price</h3>
+               <h3>Estimated Purchase Price</h3>
                 <div class="range_slider" style="position: relative; padding: 10px;">
                   <div class="range_slider_container"> 
                   <span id="slide_range" class="slide_format_currency"> </span>
@@ -860,7 +836,7 @@ table.details_table {
             </div>
             <hr size="pixels" class="line_wide" />
             <div class="col-xs-12 but_margin hei_third_B">
-              <h3>Please select down payment</h3>
+              <h3>Estimated Down payment</h3>
                  <div class="per_range_slider" style="position: relative; padding: 10px;">
                   <div> 
                   <span id="slide_per_range"> </span>
@@ -1142,7 +1118,7 @@ table.details_table {
 				  <div class="">		
 					<div id="chanceSlider">840</div>	
 					<span class="credit_score_runnable"></span>
-					<input id="creditscoreDesktop" class="c-linked-percent-slider" type="range" min="840" max="1120" value="840">
+					<input id="creditscoreDesktop" class="c-linked-percent-slider" type="range" min="840" max="1120" value="760">
 					<span class="min_credit_val">840</span>
 					<span class="max_credit_val">560</span>
 				  </div>

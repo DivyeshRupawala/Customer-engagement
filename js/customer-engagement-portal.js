@@ -895,29 +895,8 @@
               context.rows.push({'label': label, 'value': value});
             });
         }else{
-            if(mobile_data.state!=""){
-              context.rows.push({'label': 'State', 'value': mobile_data.state });
-              context.rows.push({'label': 'County', 'value': mobile_data.county });
-            }
             $.each(fields_to_summarize, function(i, field) {
-              if(mobile_data.state!="" && field!="zipcode"){
-                 var
-                label = dict.field_summary_labels[field],
-                el = document.getElementById(field),
-                value
-                ;
-                if(field=="residencetype" || field=="propertyuse" || field=="creditscore" || field=="downpaymentpercent" || field=="fha"){
-                     var fieldname=field+"_text";
-                     value=mobile_data[fieldname];
-                }else{
-                    value=mobile_data[field];
-                }
-                if ($.inArray(field, inputsToFormatAsCurrency) >= 0) {
-                  value = accounting.formatMoney(value, {precision: 0});
-                }  
-                context.rows.push({'label': label, 'value': value});
-
-              }else if(mobile_data.state==""){
+              
                 var
                 label = dict.field_summary_labels[field],
                 el = document.getElementById(field),
@@ -934,7 +913,6 @@
                 }  
                 context.rows.push({'label': label, 'value': value});
 
-              }
                
             });
         }
@@ -1040,8 +1018,6 @@
               curmortgagebalance: accounting.unformat(mobile_data.curmortgagebalance),
               cashout:            accounting.unformat(mobile_data.cashout),
               curmortgagepayment: null, // see note above
-              state:              mobile_data.state,
-              county:             mobile_data.county,
               downpaymentpercent_text:mobile_data.downpaymentpercent_text,
             };
 
@@ -1989,68 +1965,10 @@
         $(".mainTab").attr("style","display:none");
         $('.sec_main_tab').css('display','block');
         state.chosen_loan_type="new-purchase";  
-        mobile_data.chosen_loan_type="new-purchase";   
-        getstates();   
+        mobile_data.chosen_loan_type="new-purchase";        
     });
 
-    //Get states list
-    function getstates(){
-        $.ajax({
-            url:        API_URL_PREFIX+'states/stateList',
-            type:       'GET',
-            datatype:   'json',
-            success: function(data){ 
-                var jsonstates=data.resultObject;
-                var allowedStates = ["AZ","CA","CO","FL","NJ","PA","OR","WA"];
-                $('#mobile_states').find('option').remove().end();
-                $('#mobile_states').append($('<option>').text('Please Select State').attr('value','').attr('selected', 'true').attr('disabled', 'disabled'));
-                $.each(jsonstates, function(i, value) {
-                  if(!($.inArray(value.stateCode,allowedStates) == -1)){
-                    $('#mobile_states').append($('<option>').text(value.stateName).attr('value', value.id));
-                    }
-                });
-              }
-         });
-    }
-    //Get countycode for particular state
-    $("#mobile_states").change(function(){
-      $.ajax({
-            url:        API_URL_PREFIX+'states/countyListByStateCode?stateId='+$(this).val(),
-            type:       'GET',
-            datatype:   'json',
-            success: function(data){ 
-                var jsonstates=data.resultObject;                
-                $('#mobile_counties').find('option').remove().end();
-                $('#mobile_counties').append($('<option>').text('Please Select County').attr('value','').attr('selected', 'true').attr('disabled', 'disabled'));
-                $.each(jsonstates, function(i, value) {
-                   if(value.countyName!="")
-                    $('#mobile_counties').append($('<option>').text(value.countyName).attr('value', value.countyName));
-                });
-              }
-         });
-
-    });
     
-    //get Zipcode for county/state
-
-    $("#mobile_counties").change(function(){
-           $.ajax({
-            url:        API_URL_PREFIX+'states/zipCodesForStateCounty?stateId='+$("#mobile_states option:selected").val()+'&countyName='+$("#mobile_counties option:selected").val(),
-            type:       'GET',
-            datatype:   'json',
-            success: function(data){ 
-                  console.log(data);  
-                  $('#zipcode1').val(data.resultObject[0].zipcode);
-                  $('.zipcode_mobile').prop("disabled", false);
-              },
-              error:function(error){
-                  $('.zipcode_mobile').prop("disabled", true);
-              }
-         });
-
-    });
-
-
     $(".tabRefinance").click (function(){
         $(".purchase").removeClass("selected"); // active 
         $(".Refinance").addClass("refin_selected");// remove active
@@ -2062,8 +1980,7 @@
         $(".mainTab").attr("style","display:none");
         $('.sec_main_tab').css('display','block');
         state.chosen_loan_type="refinance";  
-        mobile_data.chosen_loan_type="refinance";      
-        getstates();       
+        mobile_data.chosen_loan_type="refinance";              
     });
 
     $(".tabT_Case").click (function(){
@@ -2078,7 +1995,6 @@
         $('.sec_main_tab').css('display','block');
         state.chosen_loan_type="cashout";  
         mobile_data.chosen_loan_type="cashout";      
-        getstates();
 
     });
 
@@ -2092,15 +2008,7 @@
           $('.main_option1').css('display', 'block');
           $(".step-5").attr("style","display:none");
           $(".step-5").removeClass("active");
-          if($("#zipcodeMobile").val()!=""){
-              mobile_data.zipcode=$("#zipcodeMobile").val();
-              mobile_data.state="";
-              mobile_data.county="";
-          }else{
-             mobile_data.zipcode=$("#zipcode1").val();
-             mobile_data.state=$("#mobile_states option:selected").text();
-             mobile_data.county=$("#mobile_counties option:selected").text();
-          }                 
+          mobile_data.zipcode=$("#zipcodeMobile").val();                         
       });
 
    $(".Condo_tab").click (function(){
@@ -2435,9 +2343,10 @@ $('.forth_next_tab').click (function(){
   var crediScoreSlider = function () {
 	$("#credit_score_slider").ionRangeSlider({
         type: "single",
-		range: "max",
+		  range: "max",
         min: 840,
         max: 1120,
+        from: 920,
 		keyboard: true,
         step: 1,
 		onStart: function (data) {
@@ -2468,10 +2377,10 @@ var est_amt = 0, p_price, per = 20;
         type: "single",
         min: 0,
         max: 2000000,
-        from: 0,
+        from: 500000,
         keyboard: true,
         prefix:'$ ',
-        step: 25000,
+        step: 10000,
         max_postfix: 'M+',
        
         onStart: function (data) {
@@ -2559,7 +2468,8 @@ var est_amt = 0, p_price, per = 20;
         onStart: function (data) {
             var current_val = data.from;
             var dis_min_val =  parseInt(current_val);
-      per = current_val
+      per = current_val;
+      p_price="$500000";
       est_amt = parseInt(p_price.toString().substring(1,p_price.length)) *  per / 100;
             var slide_range = dis_min_val + '% ($'+ est_amt.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") +')' ;
             $('#slide_per_range').html(slide_range);
