@@ -2309,20 +2309,20 @@ function createRangeSliders(sliderId,spanId,classId,minVal, maxVal, fromVal, ste
 				if(current_val < 10000){$('#slide_range5').text("$1");$('.range_slider5 .irs-max').text('$1');}
 				if(current_val == 2000000){	$('.range_slider5 .irs-max').text('$2M+');}
 				$('.range_slider5 .irs-min').text('$1');
-				var sl5val = parseInt($('#slide_range5').text().replace("$", "").replace(/,/g, ""));
-				var sl6val = (current_val*85/100) - sl5val;
+				//var sl5val = parseInt($('#slide_range5').text().replace("$", "").replace(/,/g, ""));
+				var sl6val = (current_val*85/100) ;//- sl5val;
 				var slider6 = $("#range_06").data("ionRangeSlider");
 				slider6.update({ from: sl6val * 80/100, max: sl6val});
 				$('.range_slider6 .irs-min').text('$1');
 			}
-			if(sliderId == "range_05"){
-				slMaxVal = parseInt(current_val);
-				var sl5val = parseInt($('#slide_range4').text().replace("$", "").replace(/,/g, ""));
-				var sl6val = (sl5val*85/100) - slMaxVal;
-				var slider6 = $("#range_06").data("ionRangeSlider");
-				slider6.update({ from: sl6val * 80/100, max: sl6val});
-				$('.range_slider6 .irs-min').text('$1');
-			}
+			// if(sliderId == "range_05"){
+				// slMaxVal = parseInt(current_val);
+				// var sl5val = parseInt($('#slide_range4').text().replace("$", "").replace(/,/g, ""));
+				// var sl6val = (sl5val*85/100) - slMaxVal;
+				// var slider6 = $("#range_06").data("ionRangeSlider");
+				// slider6.update({ from: sl6val * 80/100, max: sl6val});
+				// $('.range_slider6 .irs-min').text('$1');
+			// }
 			$('.' + classId + ' .irs-min').text('$1');
 			$('.range_slider2 .irs-max').text('$2M+');
 			$('.range_slider4 .irs-max').text('$2M+');
