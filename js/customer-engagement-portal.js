@@ -1765,6 +1765,7 @@
 
             'lender_costs': { // Total Est Lender Costs
               'lender_fee':              propValueOrDefault(raw_rate, 'lenderFee813', 0),
+              'application_fee':         propValueOrDefault(raw_rate, 'applicationFee', 0),
               'loanee_cost':             propValueOrDefault(raw_rate, 'creditOrCharge802', 0),
             },
 
