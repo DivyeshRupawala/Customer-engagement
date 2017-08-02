@@ -317,10 +317,17 @@
               <tr class="c-rates-detail__items-heading">
                 <td colspan="2">Estimated Lender Costs:</td>
               </tr>
+              {{#ifCond rate.lender_costs.lender_fee "0"}}
               <tr class="c-rates-detail__item">
+                <td class="c-rates-detail__item-label">Application Fee</td>
+                <td class="c-rates-detail__item-value">{{currencyNumberNoCents rate.lender_costs.application_fee}}</td>
+              </tr>
+              {{else}}
+               <tr class="c-rates-detail__item">
                 <td class="c-rates-detail__item-label">Lender Fee</td>
                 <td class="c-rates-detail__item-value">{{currencyNumberNoCents rate.lender_costs.lender_fee}}</td>
-              </tr>
+              </tr>              
+              {{/ifCond}}
               <tr class="c-rates-detail__item">
                 <td class="c-rates-detail__item-label">Your cost or credit, based on this rate</td>
                 <td class="c-rates-detail__item-value">{{currencyNumberNoCents rate.lender_costs.loanee_cost}}</td>
