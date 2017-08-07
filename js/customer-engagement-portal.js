@@ -457,8 +457,8 @@
       }
     });
 
-    $('#zipcodeMobile').on('blur', function(e){
-      if($('#zipcodeMobile').val()!="") {
+    var validateMobilezipcode=function(){
+      if($('#zipcodeMobile').val()!="" && $('#zipcodeMobile').val().length==5) {
         $.ajax({
             url:        API_URL_PREFIX+'states/zipCode',
             type:       'GET',
@@ -467,7 +467,7 @@
             success: function(data){ 
                   if(data.resultObject=="Valid ZipCode"){
                       $('.zipcode_error').css('display','none');
-                      $('.zipcode_mobile').prop("disabled", false);
+                      $('.zipcode_mobile').prop("disabled", false);                     
                   }else{
                       $('.zipcode_error').css('display','block');                    
                       $('.zipcode_mobile').prop("disabled", true);
@@ -475,10 +475,13 @@
             }
          });
       }else{
+        $('.zipcode_mobile').prop("disabled", true);
         $('.zipcode_error').css('display','none');
       }
-    });
-   
+    }
+
+    $('#zipcodeMobile').blur(validateMobilezipcode).keyup(validateMobilezipcode);
+       
    function closeTooltips() {
       $('.c-tooltip').remove();
    }
@@ -681,6 +684,7 @@
           $('.main_option1').css('display', 'none');
           $(".subhead step-5").removeClass("active"); 
           $('.mobile_rates-listing').css('display', 'none');
+          $('.mobile_rates-listing_error').css('display', 'none'); 
           ScrollTo('home_content');       
         }     
     }
@@ -2008,7 +2012,6 @@
     });
 
   // next step code start
-  
    $(".sec_next_tab").click (function(){
           $("#property_content").addClass("active");
           $("#Purchase").removeClass("active");
@@ -2147,7 +2150,7 @@
          $('.main_option1').css('display', 'block');
          $(".mobile_rates-listing").css('display', 'block');
          console.log(mobile_data);
-        submitLoanDetailsForm(); 
+         submitLoanDetailsForm(); 
      });
 
       // one-step back code
@@ -2177,42 +2180,48 @@
         $("#pro_loc_content_cashout").removeClass("active");
         $("#property_content").removeClass("active");
         $("#select_property").removeClass("active");
-		$('#pro_loc_content_refinance_fha').removeClass("active");
+		    $('#pro_loc_content_refinance_fha').removeClass("active");
         $(".Condo_tab").removeClass("selectedTab");
         $('.step-4').removeAttr("style","display:none");
         $('.step-3').removeAttr("style","display:none");
         $('.step-2').removeAttr("style","display:none");
-		$(".bac_optionLoanDetails").attr("style","display:none"); 
-		$('#pro_loc_content_refinance').removeAttr("style","display:none");
-		$('#pro_loc_content_refinance_fha').removeAttr("style","display:none");
+    		$(".bac_optionLoanDetails").attr("style","display:none"); 
+    		$('#pro_loc_content_refinance').removeAttr("style","display:none");
+    		$('#pro_loc_content_refinance_fha').removeAttr("style","display:none");
         $('#zipcode1').val("");
-        $("#range_01").data("ionRangeSlider").reset();
-        $("#range_02").data("ionRangeSlider").reset();
-        $("#range_03").data("ionRangeSlider").reset();
-        $("#range_04").data("ionRangeSlider").reset();
-        $("#range_05").data("ionRangeSlider").reset();
-        $("#range_06").data("ionRangeSlider").reset();
-        $("#per_range").data("ionRangeSlider").reset();
-        $("#credit_score_slider").data("ionRangeSlider").reset();          
+        if($("#range_01").data("ionRangeSlider"))
+          $("#range_01").data("ionRangeSlider").reset();   
+        if($("#range_02").data("ionRangeSlider"))     
+          $("#range_02").data("ionRangeSlider").reset();
+        if($("#range_03").data("ionRangeSlider"))
+          $("#range_03").data("ionRangeSlider").reset();
+        if($("#range_04").data("ionRangeSlider"))
+          $("#range_04").data("ionRangeSlider").reset();
+        if($("#range_05").data("ionRangeSlider"))
+          $("#range_05").data("ionRangeSlider").reset();
+        if($("#range_06").data("ionRangeSlider"))
+          $("#range_06").data("ionRangeSlider").reset();
+        if($("#per_range").data("ionRangeSlider"))
+          $("#per_range").data("ionRangeSlider").reset();
+        if($("#credit_score_slider").data("ionRangeSlider"))
+          $("#credit_score_slider").data("ionRangeSlider").reset();          
         crediScoreSlider();    
     });
+
 	$(".fha_Yes").click( function(){
 		$(".fha_Yes").addClass("fha_active");
 		$(".fha_No").removeClass("fha_active");
 		$("#fha_m").val("Yes");
 	});
+
 	$(".fha_No").click( function(){
 		$(".fha_Yes").removeClass("fha_active");
 		$(".fha_No").addClass("fha_active");
 		$("#fha_m").val("No");
 	});
+
 	$(".back_option").click( function(){
-        $(".mainTab").removeAttr("style","display:none");
-        $("#Purchase").removeClass("active");
-        $("#Refinance").removeClass("active");
-        $("#Take_Case").removeClass("active");       
-        $(".Refinance").removeClass("refin_selected");
-        $(".T_Case").removeClass("T_Case_selected");
+        $(".mainTab").removeAttr("style","display:none");        
         $(this).closest('.subhead').removeClass('active');
         $(this).closest('.subhead').css('display','none');
     });
