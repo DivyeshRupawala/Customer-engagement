@@ -2193,20 +2193,34 @@
           $("#range_01").data("ionRangeSlider").reset();   
         if($("#range_02").data("ionRangeSlider"))     
           $("#range_02").data("ionRangeSlider").reset();
-        if($("#range_03").data("ionRangeSlider"))
-          $("#range_03").data("ionRangeSlider").reset();
-        if($("#range_04").data("ionRangeSlider"))
-          $("#range_04").data("ionRangeSlider").reset();
-        if($("#range_05").data("ionRangeSlider"))
-          $("#range_05").data("ionRangeSlider").reset();
-        if($("#range_06").data("ionRangeSlider"))
-          $("#range_06").data("ionRangeSlider").reset();
+        if($("#range_03").data("ionRangeSlider")){
+          $("#range_03").data("ionRangeSlider").destroy();
+          createRangeSliders('range_03','slide_range3','range_slider3',0,500000,300000,5000); 
+           $('#slide_range3').text("$300,000");           
+        }
+        if($("#range_04").data("ionRangeSlider")){
+          $("#range_04").data("ionRangeSlider").destroy();
+          createRangeSliders('range_04','slide_range4','range_slider4',0,2000000,500000,10000); 
+          $('#slide_range4').text("$500,000"); 
+        }
+        if($("#range_05").data("ionRangeSlider")){
+          $("#range_05").data("ionRangeSlider").destroy();
+          createRangeSliders('range_05','slide_range5','range_slider5',0,500000,300000,5000); 
+          $('#slide_range5').text("$300,000"); 
+          $('.range_slider5 .irs-max').text("$500,000");
+        }
+        if($("#range_06").data("ionRangeSlider")){
+          $("#range_06").data("ionRangeSlider").destroy();
+          createRangeSliders('range_06','slide_range6','range_slider6',0,425000,340000,5000);
+           $('#slide_range6').text("$340,000"); 
+           $('.range_slider6 .irs-max').text("$425,000"); 
+        }
         if($("#per_range").data("ionRangeSlider"))
           $("#per_range").data("ionRangeSlider").reset();
         if($("#credit_score_slider").data("ionRangeSlider"))
-          $("#credit_score_slider").data("ionRangeSlider").reset();          
-        crediScoreSlider();    
-    });
+          $("#credit_score_slider").data("ionRangeSlider").reset();     
+        crediScoreSlider();  
+  });
 
 	$(".fha_Yes").click( function(){
 		$(".fha_Yes").addClass("fha_active");
@@ -2273,43 +2287,69 @@ function createRangeSliders(sliderId,spanId,classId,minVal, maxVal, fromVal, ste
         prefix:'$ ',
         step: stepVal,
         onStart: function (data) {
-			var current_val = data.from;
+            var current_val = data.from;
            	if(current_val < 10000){
-				$('#'+spanId).text("$1");
-			}else{
-				$('#'+spanId).text("$" + current_val);	
-			}
-			$('.' + classId + ' .irs-min').text('$1');
+      			$('#'+spanId).text("$1");
+      			}else{
+      				$('#'+spanId).text("$" + current_val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));	
+      			}
+      			$('.' + classId + ' .irs-min').text('$1');
+            var max_value=data.max;
+            if(max_value == 2000000){
+              $('.' + classId + ' .irs-max').text('$2M+');
+            }else{
+              $('.' + classId + ' .irs-max').text("$" + max_value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+            }           
         },
         onChange: function (data) {
-			var current_val = data.from;
-			if(current_val < 10000){
-				 $('#'+spanId).text("$1");
-			}
-			if(current_val == 2000000){
-                $('#'+spanId).text('Over $2 million');
-				$('.' + classId + ' .irs-max').text('$2M+');
-			}
-			$('.' + classId + ' .irs-min').text('$1');
+      			var current_val = data.from;
+      			if(current_val < 10000){
+      				 $('#'+spanId).text("$1");
+      			}
+      			if(current_val == 2000000){
+                      $('#'+spanId).text('Over $2 million');
+      				$('.' + classId + ' .irs-max').text('$2M+');
+      			}
+      			$('.' + classId + ' .irs-min').text('$1');
+             var max_value=data.max;
+            if(max_value == 2000000){
+              $('.' + classId + ' .irs-max').text('$2M+');
+            }else{
+              $('.' + classId + ' .irs-max').text("$" + max_value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+            }
         },
 		onUpdate: function (data) {
-			var current_val = data.from;
-			if(current_val < 10000){
-				$('#'+spanId).text("$1");
-			}
-			$('.' + classId + ' .irs-min').text('$1');
+      			var current_val = data.from;
+      			if(current_val < 10000){
+      				$('#'+spanId).text("$1");
+      			}
+      			$('.' + classId + ' .irs-min').text('$1');
+             var max_value=data.max;
+            if(max_value == 2000000){
+              $('.' + classId + ' .irs-max').text('$2M+');
+            }else{
+              $('.' + classId + ' .irs-max').text("$" + max_value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+            }
 		},
 		onFinish: function (data) {
 			var current_val = data.from;
 			if(current_val < 10000){
 				$('#'+spanId).text("$1");
 			}
+      var max_value=data.max;
+            if(max_value == 2000000){
+              $('.' + classId + ' .irs-max').text('$2M+');
+            }else{
+              $('.' + classId + ' .irs-max').text("$" + max_value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+            }
 			if(sliderId == "range_02"){
 				slMaxVal = parseInt(current_val);
 				var slider3 = $("#range_03").data("ionRangeSlider");
 				slider3.update({ from: data.from * 60/100, max: data.from});
 				if(current_val < 10000){$('#slide_range3').text("$1");$('.range_slider3 .irs-max').text('$1');}
-				if(current_val == 2000000){	$('.range_slider3 .irs-max').text('$2M+');}
+				if(current_val == 2000000){	$('.range_slider3 .irs-max').text('$2M+');}else{
+          $('.range_slider3 .irs-max').text('$' + current_val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+        }        
 				$('.range_slider3 .irs-min').text('$1');
 			}
 			if(sliderId == "range_04"){
@@ -2317,13 +2357,17 @@ function createRangeSliders(sliderId,spanId,classId,minVal, maxVal, fromVal, ste
 				var slider5 = $("#range_05").data("ionRangeSlider");
 				slider5.update({ from: data.from * 60/100, max: data.from});
 				if(current_val < 10000){$('#slide_range5').text("$1");$('.range_slider5 .irs-max').text('$1');}
-				if(current_val == 2000000){	$('.range_slider5 .irs-max').text('$2M+');}
+				if(current_val == 2000000){	$('.range_slider5 .irs-max').text('$2M+');}else{
+          $('.range_slider5 .irs-max').text('$' + current_val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+        } 
 				$('.range_slider5 .irs-min').text('$1');
 				//var sl5val = parseInt($('#slide_range5').text().replace("$", "").replace(/,/g, ""));
 				var sl6val = (current_val*85/100) ;//- sl5val;
-				var slider6 = $("#range_06").data("ionRangeSlider");
+        var slider6 = $("#range_06").data("ionRangeSlider");
 				slider6.update({ from: sl6val * 80/100, max: sl6val});
 				$('.range_slider6 .irs-min').text('$1');
+        $('.range_slider6 .irs-max').text('$' + sl6val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+       // $('.range_slider6 .irs-max').text('$' + sl6val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
 			}
 			// if(sliderId == "range_05"){
 				// slMaxVal = parseInt(current_val);
@@ -2346,7 +2390,7 @@ function createRangeSliders(sliderId,spanId,classId,minVal, maxVal, fromVal, ste
 	});
 
 	var range_val = 0 ;
-	var crediScoreSlider = function () {
+	var crediScoreSlider = function () {    
 	$("#credit_score_slider").ionRangeSlider({
         type: "single",
 		range: "max",
@@ -2464,9 +2508,12 @@ var est_amt = 0, p_price, per = 20, slide_range;
 
     createRangeSliders('range_02','slide_range2','range_slider2',0,2000000,500000,10000);
     createRangeSliders('range_03','slide_range3','range_slider3',0,500000,300000,5000); 
+    $('.range_slider3 .irs-max').text("$500,000");  
     createRangeSliders('range_04','slide_range4','range_slider4',0,2000000,500000,10000);  
-    createRangeSliders('range_05','slide_range5','range_slider5',0,500000,300000,5000);  
-    createRangeSliders('range_06','slide_range6','range_slider6',0,125000,100000,5000);
+    createRangeSliders('range_05','slide_range5','range_slider5',0,500000,300000,5000); 
+    $('.range_slider5 .irs-max').text("$500,000");  
+    createRangeSliders('range_06','slide_range6','range_slider6',0,425000,340000,5000);
+    $('.range_slider6 .irs-max').text("$425,000"); 
     $("#per_range").ionRangeSlider({
         type: "single",
         min: 3,
@@ -2518,7 +2565,10 @@ var est_amt = 0, p_price, per = 20, slide_range;
     setTimeout(function() {
 		$('.range_slider .irs-max').text('$2M+');
 		$('.range_slider2 .irs-max').text('$2M+');
+    $('.range_slider3 .irs-max').text('$500,000');
 		$('.range_slider4 .irs-max').text('$2M+');
+    $('.range_slider5 .irs-max').text('$500,000');
+    $('.range_slider6 .irs-max').text('$425,000');
 		$('.range_slider').find('.irs-min').text('$1');
 		$('.range_slider2').find('.irs-min').text('$1');
 		$('.range_slider3').find('.irs-min').text('$1');
