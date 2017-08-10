@@ -2127,9 +2127,13 @@
               mobile_data.purchaseprice=0;
               mobile_data.downpayment=0;
               mobile_data.estval=$("#range_02").val();
-              mobile_data.curmortgagebalance=$("#range_03").val();;
+              mobile_data.curmortgagebalance=$("#range_03").val();
               mobile_data.fha=$("#fha_m").val();
-              mobile_data.fha_text=$("#fha_m").val();
+              if($("#fha_m").val()=="FHA-Streamline"){
+                mobile_data.fha_text="Yes";
+              }else{
+                mobile_data.fha_text="No";
+              }              
               mobile_data.downpaymentpercent_text="";
 			  $("#pro_loc_content_refinance_fha").removeClass("active");
 			  $(".bac_optionLoanDetails").attr("style","display:block"); 
@@ -2225,13 +2229,13 @@
 	$(".fha_Yes").click( function(){
 		$(".fha_Yes").addClass("fha_active");
 		$(".fha_No").removeClass("fha_active");
-		$("#fha_m").val("Yes");
+		$("#fha_m").val("FHA-Streamline");
 	});
 
 	$(".fha_No").click( function(){
 		$(".fha_Yes").removeClass("fha_active");
 		$(".fha_No").addClass("fha_active");
-		$("#fha_m").val("No");
+		$("#fha_m").val("0");
 	});
 
 	$(".back_option").click( function(){
