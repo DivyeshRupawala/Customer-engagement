@@ -189,7 +189,7 @@
       $('input[data-format-as-currency]').currencyInput();
       $('input[data-format-span-as-currency]').currencyInput();
       // Initialize linked slider for purchase price»down payment fields
-      $('#downpaymentpercent').linkedPercentSlider();
+      //$('#downpaymentpercent').linkedPercentSlider();
 
       // Hide UI elements not in-use at outset
       dom.$loan_form__collect_details_stage.hide();
@@ -500,7 +500,7 @@
      * Update UI state and manage DOM transitions when the rate type
      * selection has been changed.
      */
-    function switchRateTypes() {
+   function switchRateTypes() {
       var selected_ratetype = $('input[name=ratetype]:checked', dom.$ratetype_radioset).val();
       switch (selected_ratetype){
         case 'bestrate':
@@ -515,6 +515,7 @@
           $('.c-rates-listing__result:hidden').fadeIn(200);
           break;
       }
+   $(".previewDetails").empty();
     }
 
     /*validation for user registration form */
@@ -591,7 +592,7 @@
      * a rate are requested.
      * @param  {element} el The element that trigggered this call
      */
-    function showRateDetails(el) {
+   function showRateDetails(el) {
       
       var
         rateData = state.data_cache.rates.cleaned,
@@ -600,13 +601,13 @@
         program = rateData.programs[program_id],
         rate = rateData.programs[program_id].rates[rate_id]
         ;
-
-      dom.$ratetype_form__wrapper
-        .add(dom.$rates_listing__wrapper)
-        .not(':hidden').fadeOut(300, function() {
-          renderRateDetails(program, rate, program_id, rate_id);
-          dom.$rates_listing__wrapper.not(':visible').fadeIn(300);
-        });
+   renderRateDetails(program, rate, program_id, rate_id);
+      // dom.$ratetype_form__wrapper
+        // .add(dom.$rates_listing__wrapper)
+        // .not(':hidden').fadeOut(300, function() {
+          // renderRateDetails(program, rate, program_id, rate_id);
+          // dom.$rates_listing__wrapper.not(':visible').fadeIn(300);
+        // });
 
         sendTrackingEvent('viewed_rate');
 
@@ -748,8 +749,9 @@
         }
         ;
 
-        console.log(context)
-      dom.$rates_listing__wrapper.empty().append(template(context));
+        console.log(context);
+		$(".previewDetails").empty();
+      $("#previewDetails" + program_id + "-" + rate_id).append(template(context));
     }
 
     /**
@@ -2608,9 +2610,29 @@ var est_amt = 0, p_price, per = 20, slide_range;
 	$('#creditscoreDesktop').on('input change', function(){
 		$('#chanceSlider').text(840 - ($('#creditscoreDesktop').val() - 840));
 		var slideWidth = (($('#creditscoreDesktop').val() - 840) * 100) / (1120 - 840);
-		$(".credit_score_runnable").width(slideWidth + "%");
+		$(".credit_score_runnable").width(Math.ceil(slideWidth) + "%");
 	});
-
+	$('#priceSlider').on('input change', function(){
+			var y = document.getElementById('priceSlider');
+			var purchasepriceNew = parseInt($("#purchaseprice").val().replace(/,/g, ""));
+			var dp = Math.round(purchasepriceNew * y.value / 100);
+			$(".c-linked-percent-slider__percent-value").text(y.value + "%");
+			if(dp >= 0)
+			$(".c-linked-percent-slider__numeric-value").text("($"+ dp.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") +")");
+			 var overlayslider = y.value;
+			 if(y.value > 75)overlayslider = overlayslider - 3;
+			$(".overlayslider").css("width", overlayslider + "%");
+			$("#downpaymentpercent").val($(".c-linked-percent-slider__percent-value").text() + " " + $(".c-linked-percent-slider__numeric-value").text());
+	});
+	$( "#purchaseprice" ).keyup(function( event ) {
+		var y = document.getElementById("priceSlider");
+		var purchasepriceNew = parseInt($("#purchaseprice").val().replace(/,/g, ""));
+		var dp = Math.round(purchasepriceNew * y.value / 100);
+		$(".c-linked-percent-slider__percent-value").text(y.value + "%");
+		if(dp >= 0)
+		$(".c-linked-percent-slider__numeric-value").text("($"+ dp.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") +")");
+		$("#downpaymentpercent").val($(".c-linked-percent-slider__percent-value").text() + " " + $(".c-linked-percent-slider__numeric-value").text());
+	});
     // Start the show!
     init();
 

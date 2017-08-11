@@ -364,7 +364,7 @@ font-size: 0.6em;
 	text-align: center;
 }
 .sec_unit_mar{
-	margin-top: 20px;
+	margin-top: 50px;
 }
 
 .Primary_re{
@@ -374,7 +374,7 @@ font-size: 0.6em;
     background-size: 40px;
 }
 .Primary_re:hover{
-	background-image: url('../images/prim_recidency_w.png') ;
+	background-image: url('../images/prim_recidency_orange.png') ;
     background-repeat: no-repeat;
     background-position: center;
     background-color:#f27521;
@@ -382,14 +382,14 @@ font-size: 0.6em;
 	
 }
 .Vacation_h{
-	background-image: url('../images/vacation1.png') ;
+	background-image: url('../images/vacation.png') ;
     background-repeat: no-repeat;
     background-position: center;
     background-size: 50px;
     background-size: 77px;
 }
 .Vacation_h:hover{
-	background-image: url('../images/vacation_w.png') ;
+	background-image: url('../images/vacation_orange.png') ;
     background-repeat: no-repeat;
     background-position: center;
     background-color:#24408f;
@@ -403,7 +403,7 @@ font-size: 0.6em;
     background-size: 55px;
 }
 .Investment_p:hover{
-	background-image: url('../images/Investment_w.png') ;
+	background-image: url('../images/Investment_orange.png') ;
     background-repeat: no-repeat;
     background-position: center;
     background-color:#01aabe;
@@ -619,9 +619,8 @@ padding:40px;
         background-size: 65px;
      }
     .purchase:active, .selected{   
-    	background-image:url('../images/icn_home_purchased_white.png'); 
+    	background-image:url('../images/icn_home_purchase_orange.png'); 
     	background-repeat: no-repeat; 
-    	background-color:#f27521;
 		border-radius: 50%;
 		background-size: 65px;
 	}
@@ -632,9 +631,8 @@ padding:40px;
           background-size: 65px;
        }
     .Refinance:active,.refin_selected {   
-    	background-image:url('../images/Refinance_white1.png');
+    	background-image:url('../images/icn_refinance_orange.png');
     	background-repeat: no-repeat;  
-    	background-color:#f27521;
 		border-radius: 50%;  
 		background-size: 65px;
 		}
@@ -646,9 +644,8 @@ padding:40px;
 	 	 background-size: 65px; 
 	 	   }
     .T_Case:active,.T_Case_selected {  
-        background-image:url('../images/take_out_us_white1.png');
+        background-image:url('../images/icn_take_out_cash_orange.png');
     	background-repeat: no-repeat;  
-    	background-color:#f27521;
 		border-radius: 50%; 
 		background-size: 65px;  
       }
@@ -1307,7 +1304,7 @@ span#slide_range_credit {
     padding: 45px;
 	}
 }
-
+.rate_type_button{padding:10px;}
 span#slide_range_credit {
     font-size: 28px;
 	color: #1761a8;
@@ -1316,43 +1313,35 @@ span#slide_range_credit {
     display: block;
 }
 .selectedTab .icn_unit1{
-	background-image: url(../images/icn_unit1_w.png);
-    background-color: #f27521;
+	background-image: url(../images/icn_unit1_orange.png);
 	border-radius:50%;
 }
 .selectedTab .icn_condo{
-	background-image: url(../images/icn_condo_w.png);
-    background-color: #f27521;
+	background-image: url(../images/icn_condo_orange.png);
 	border-radius:50%;
 }
 .selectedTab .icn_unit2{
-	background-image: url(../images/icn_unit2_w.png);
-    background-color: #f27521;
+	background-image: url(../images/icn_unit2_orange.png);
 	border-radius:50%;
 }
 .selectedTab .icn_unit3{
-	background-image: url(../images/icn_unit3_w.png);
-    background-color: #f27521;
+	background-image: url(../images/icn_unit3_orange.png);
 	border-radius:50%;
 }
 .selectedTab .icn_unit4{
-	background-image: url(../images/icn_unit4_w.png);
-    background-color: #f27521;
+	background-image: url(../images/icn_unit4_orange.png);
 	border-radius:50%;
 }
 .selectedTab .Primary_re{
-	background-image: url(../images/prim_recidency_w.png);
-    background-color: #f27521;
+	background-image: url(../images/prim_recidency_orange.png);
 	border-radius:50%;
 }
 .selectedTab .Vacation_h{
-	background-image: url(../images/vacation_w.png);
-    background-color: #f27521;
+	background-image: url(../images/vacation_orange.png);
 	border-radius:50%;
 }
 .selectedTab .Investment_p{
-	background-image: url(../images/Investment_w.png);
-    background-color: #f27521;
+	background-image: url(../images/Investment_orange.png);
 	border-radius:50%;
 }
 span.or_span {font-family: robotothin;font-size: 45px;color: #848484;}
