@@ -43,102 +43,259 @@
 div#chanceSlider {
     text-align: center;
     position: relative;
-    top: -7px;
+    top: -15px;
+}
+input#creditscoreDesktop {
+    margin: 0;
+	height:27px;
+	margin-top:-15px;
 }
 .credit_score_runnable {
-    display: block;
-    height: 7px;
-    background: #42BAF1;
-    border-radius: 7px;
-    z-index: 9999;
+   	background: #1861a9 none repeat scroll 0 0;
+    height: 3px;
     position: relative;
-	width:30%;
+    top: 0px;
+    width: 28.5714%;
+    z-index: 9;
+    max-width:95%;
+	display:block;
 }
-#creditscoreDesktop {
-  -webkit-appearance: none;
-  height: 7px;
-  border-radius: 50px;
-  background: #F2F2F2;
+input[type=range], input[type=range] + .thumb {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+input#creditSlider {
+    margin: 0;
+    height: 27px;
+}
+
+.c-linked-percent-slider__percent-value, .c-linked-percent-slider__numeric-value {
+    color: #272727;
+    font-weight: 600;
+    font-size: 0.75rem;
+    position: relative;
+    top: -13px;
+}
+input[type=range], input[type=range] + .thumb {
+  cursor: pointer;
+}
+
+input[type=range] {
+  position: relative;
+  background-color: transparent;
+  border: none;
   outline: none;
+  width: 100%;
+  margin: 15px 0px;
   padding: 0;
-  margin: -7px 0 0;
 }
-/* Special styling for WebKit/Blink */
+
+input[type=range] + .thumb {
+  position: absolute;
+  border: none;
+  height: 0;
+  width: 0;
+  border-radius: 50%;
+  background-color: #26a69a;
+  top: 10px;
+  margin-left: -6px;
+  -webkit-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+input[type=range] + .thumb .value {
+  display: block;
+  width: 30px;
+  text-align: center;
+  color: #26a69a;
+  font-size: 0;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+input[type=range] + .thumb.active {
+  border-radius: 50% 50% 50% 0;
+}
+
+input[type=range] + .thumb.active .value {
+  color: #fff;
+  margin-left: -1px;
+  margin-top: 8px;
+  font-size: 10px;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  height: 3px;
+  background: #c2c0c2;
+  border: none;
+}
 
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  border: 1px solid #c7c7c7;
-  height: 1.25rem;
-  width: 1.25rem;
+  border: none;
+  height: 14px;
+  width: 14px;
   border-radius: 50%;
-  background: #ffffff;
-  cursor: pointer;
-  margin-top:-2px;
-  box-shadow: 0 2px 3px rgba(10, 14, 39, 0.1);
-  position:relative;
-  z-index:99999;
-}
-input[type=range]:focus::-webkit-slider-thumb {
-  border-color:#42BAF1;
-  box-shadow: 0 2px 3px rgba(66, 186, 241, 0.6);
+  background-color: #26a69a;
+  -webkit-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+  margin: -5px 0 0 0;
+  transition: .3s;
 }
 
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #ccc;
+}
+
+input[type=range] {
+  /* fix for FF unable to apply focus style bug  */
+  border: 1px solid white;
+  /*required for proper track sizing in FF*/
+}
+
+input[type=range]::-moz-range-track {
+  height: 3px;
+  background: #ddd;
+  border: none;
+}
+
+input[type=range]::-moz-range-thumb {
+  border: none;
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  background: #26a69a;
+  margin-top: -5px;
+}
+
+/*hide the outline behind the border*/
+input[type=range]:-moz-focusring {
+  outline: 1px solid white;
+  outline-offset: -1px;
+}
+
+input[type=range]:focus::-moz-range-track {
+  background: #ccc;
+}
+
+input[type=range]::-ms-track {
+  height: 3px;
+  /*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */
+  background: transparent;
+  /*leave room for the larger thumb to overflow with a transparent border */
+  border-color: transparent;
+  border-width: 6px 0;
+  /*remove default tick marks*/
+  color: transparent;
+}
+
+input[type=range]::-ms-fill-lower {
+  background: #777;
+}
+
+input[type=range]::-ms-fill-upper {
+  background: #ddd;
+}
+
+input[type=range]::-ms-thumb {
+  border: none;
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  background: #26a69a;
+}
+
+input[type=range]:focus::-ms-fill-lower {
+  background: #888;
+}
+
+input[type=range]:focus::-ms-fill-upper {
+  background: #ccc;
+}
+
+/* Special styling for WebKit/Blink */
+input[type=range] {
+    -webkit-appearance: none;
+}
+/* Special styling for WebKit/Blink */
+input[type=range]::-webkit-slider-thumb {
+   border: 7px solid #c0d7ee;
+  height: 25px;
+  width: 25px;
+  border-radius: 25px;
+  cursor: pointer;
+  background: #1861a9;
+  margin-top:-11px
+}
+input[type=range]:active::-webkit-slider-thumb, input[type=range]:focus::-webkit-slider-thumb {
+  border: 10px solid #c0d7ee;
+  height: 35px;
+  width: 35px;
+  margin-top:-17px
+}
 /* All the same stuff for Firefox */
-input[type=range]::-moz-slider-thumb {
-  -moz-appearance: none;
-  border: 1px solid #c7c7c7;
-  height: 1.25rem;
-  width: 1.25rem;
-  margin-top:-2px;
-  border-radius: 50%;
-  background: #ffffff;
+input[type=range]::-moz-range-thumb {
+  border: 7px solid #c0d7ee;
+  height: 10px;
+  width: 10px;
+  border-radius: 20px;
   cursor: pointer;
-  box-shadow: 0 2px 3px rgba(10, 14, 39, 0.1);
+  background: #1861a9;
 }
-input[type=range]:focus::-moz-slider-thumb {
-  border-color:#42BAF1;
-  box-shadow: 0 2px 3px rgba(66, 186, 241, 0.6);
+input[type=range]:active::-moz-slider-thumb, input[type=range]:focus::-moz-slider-thumb  {
+  border: 10px solid #c0d7ee;
+  height: 35px;
+  width: 35px;
+  margin-top:-17px
 }
-
-
 /* All the same stuff for IE */
-input[type=range]::-ms-slider-thumb {
-  -ms-appearance: none;
-  border: 1px solid #c7c7c7;
-  height: 1.25rem;
-  width: 1.25rem;
-  margin-top:-2px;
-  border-radius: 50%;
-  background: #ffffff;
+input[type=range]::-ms-thumb {
+  border: 7px solid #c0d7ee;
+  height: 10px;
+  width: 10px;
+  border-radius: 20px;
   cursor: pointer;
-  box-shadow: 0 2px 3px rgba(10, 14, 39, 0.1);
+  background: #1861a9;
 }
-input[type=range]:focus::-ms-slider-thumb {
-  border-color:#42BAF1;
-  box-shadow: 0 2px 3px rgba(66, 186, 241, 0.6);
+input[type=range]:active::-ms-slider-thumb, input[type=range]:focus::-ms-slider-thumb {
+  border: 10px solid #c0d7ee;
+  height: 35px;
+  width: 35px;
+  margin-top:-17px
 }
-
-input[type=range]::-o-slider-thumb {
-  -o-appearance: none;
-  border: 1px solid #c7c7c7;
-  height: 1.25rem;
-  width: 1.25rem;
-  border-radius: 50%;
-  margin-top:-2px;
-  background: #ffffff;
-  cursor: pointer;
-  box-shadow: 0 2px 3px rgba(10, 14, 39, 0.1);
+#priceSlider{
+    height: 27px;
+    position: relative;
+    top: -4px;
 }
-input[type=range]:focus::-o-slider-thumb {
-  border-color:#42BAF1;
-  box-shadow: 0 2px 3px rgba(66, 186, 241, 0.6);
+.overlayslider {
+    background: #1861a9 none repeat scroll 0 0;
+    height: 3px;
+    position: relative;
+    top: 26px;
+    width: 20%;
+    z-index: 9;
+    max-width:97%;
 }
 .newLayout {
     min-height: 100px;
 }
 .c-linked-percent-slider__percent-value, .c-linked-percent-slider__numeric-value {
     position: relative;
-    top: -7px;
+    top: -15px;
 }
 .c-rates-listing__rate, .c-rates-listing__apr, .c-rates-listing__closing, .c-rates-listing__monthlies{width:auto;}
 section.c-page-content__section.c-rates-app__rates-listing-wrapper.subhead {
@@ -155,6 +312,96 @@ h5.c-rates-detail__header {
 table.details_table {
     font-family: "Lato", sans-serif !important;
     line-height: 1.6875;
+}
+.c-form-element__control.c-radio__toggle-trio {
+    background: none;
+    height: auto;
+    border-radius: 0;
+    text-align: center;
+}
+
+.rate_type_icon {
+    display: block;
+    height: 108px;
+    margin: 30px auto;
+    width: 134px;
+}
+.rate_type_button {
+    border: 1px solid #8a8a8a;
+    padding: 7px 10px;
+    border-radius: 30px;
+    display: block;
+    min-width: 200px;
+    text-align: left;
+    color: #8a8a8a;
+    width: 90%;
+    margin: auto;
+    max-width: 200px;
+	cursor:pointer;
+}
+
+.rate_type_icon {
+    background: rgba(0, 0, 0, 0) url("images/sprites.png") no-repeat scroll -10px 8px;
+}
+.is-selected .rate_type_button, .rate_type:hover .rate_type_button {
+    color:#fff !important;
+    background: #f27521 none repeat scroll 0 0;
+	border: 1px solid #f27521;
+}
+.is-selected .c-form-element__label, .rate_type:hover .c-form-element__label{color:#fff !important;}
+.is-selected .rate_type_icon.icn_home_purchase, .rate_type:hover .rate_type_icon.icn_home_purchase {
+    background-position: -10px -101px;
+}
+.rate_type_icon.icn_refinance {
+                background-position: -165px 3px;
+}
+ .is-selected .rate_type_icon.icn_refinance, .rate_type:hover .rate_type_icon.icn_refinance {
+    background-position: -165px -116px;
+}
+.rate_type_icon.icn_toc {
+                background-position: -315px 18px;
+}
+.is-selected .rate_type_icon.icn_toc, .rate_type:hover .rate_type_icon.icn_toc {
+    background-position: -315px -101px;
+}
+.c-radio.rate_type .c-radio--faux {
+    width: 19px;
+    height: 19px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    border: 0 none;
+    border-radius: 50%;
+    background: url(images/icn_checked_grey.png);
+    -webkit-transition: border 0.1s linear, background-color 0.1s linear;
+    transition: border 0.1s linear, background-color 0.1s linear;
+}
+.c-radio.rate_type:hover .c-radio--faux, .c-radio.rate_type.is-selected .c-radio--faux{
+  background: url(images/icn_checked_white.png);
+}
+.c-rates-detail{margin:0;}
+/* button.c-btn.c-btn--small.c-btn--subtle.c-rates-listing--verbose.expanded-expanded {
+    border:  0 none;
+    font-size: 20px;
+    font-weight: normal;
+	color:#187cb7;
+}
+button.c-btn.c-btn--small.c-btn--subtle.c-rates-listing--verbose.expanded-expanded:hover, button.c-btn.c-btn--small.c-btn--subtle.c-rates-listing--verbose.expanded-expanded:active,button.c-btn.c-btn--small.c-btn--subtle.c-rates-listing--verbose.expanded-expanded:focus,button.c-btn.c-btn--small.c-btn--subtle.c-rates-listing--verbose.expanded-expanded:visited {
+    background: none;
+    border: 0 none !important;
+    box-shadow: none;
+} */
+
+@media (max-width: 47.9275em)
+{
+.c-form-element__control .c-radio.rate_type{
+	width:auto;
+	margin-bottom:10px;
+	display:inline-block !important;
+}
+}
+.c-btn:active{
+top:0;
 }
   </style>
   
@@ -424,10 +671,14 @@ table.details_table {
                 <button class="c-btn c-btn--small c-btn--primary c-rates-listing--terse" data-js="show-rate-details">Select</button>
                 <button class="c-btn c-btn--small c-btn--subtle  c-rates-listing--normal" data-js="show-rate-details">Details</button>
                 <button class="c-btn c-btn--small c-btn--as-link c-rates-listing--normal" data-js-program-id="{{@../index}}" data-js-rate-id="{{@index}}">Select</button>
-                <button class="c-btn c-btn--small c-btn--subtle  c-rates-listing--verbose" data-js="show-rate-details">Detailed Costs</button>
+                <button class="c-btn c-btn--small c-btn--subtle  c-rates-listing--verbose expanded-expanded" data-js="show-rate-details">Details</button>
                 <button class="c-btn c-btn--small c-btn--as-link c-rates-listing--verbose" data-js-program-id="{{@../index}}" data-js-rate-id="{{@index}}" data-js="select-rate">Select</button>
               </td>
             </tr>
+			<tr class="previewDetailsSection">
+				<td class="c-rates-listing__program-shim"></td>
+				<td colspan="5"><div id="previewDetails{{@../index}}-{{@index}}" class="previewDetails"></div></td> 
+			</tr>
             {{/each}}
           </table>
           {{/each}}
@@ -467,39 +718,39 @@ table.details_table {
               {{#ifCond rate.lender_costs.lender_fee "0"}}
               <tr class="c-rates-detail__item">
                 <td class="c-rates-detail__item-label">Application Fee</td>
-                <td class="c-rates-detail__item-value">{{currencyNumberNoCents rate.lender_costs.application_fee}}</td>
+                <td class="c-rates-detail__item-value">${{currencyNumberNoCents rate.lender_costs.application_fee}}</td>
               </tr>
               {{else}}
                <tr class="c-rates-detail__item">
                 <td class="c-rates-detail__item-label">Lender Fee</td>
-                <td class="c-rates-detail__item-value">{{currencyNumberNoCents rate.lender_costs.lender_fee}}</td>
+                <td class="c-rates-detail__item-value">${{currencyNumberNoCents rate.lender_costs.lender_fee}}</td>
               </tr>              
               {{/ifCond}}
               <tr class="c-rates-detail__item">
                 <td class="c-rates-detail__item-label">Your cost or credit, based on this rate</td>
-                <td class="c-rates-detail__item-value">{{currencyNumberNoCents rate.lender_costs.loanee_cost}}</td>
+                <td class="c-rates-detail__item-value">${{currencyNumberNoCents rate.lender_costs.loanee_cost}}</td>
               </tr>
               <tr class="c-rates-detail__items-heading">
                 <td colspan="2">Estimated Third Party Costs:</td>
               </tr>
               <tr class="c-rates-detail__item">
                 <td class="c-rates-detail__item-label">Appraisal Fee</td>
-                <td class="c-rates-detail__item-value">{{currencyNumberNoCents rate.third_party_costs.appraisal_fee}}</td>
+                <td class="c-rates-detail__item-value">${{currencyNumberNoCents rate.third_party_costs.appraisal_fee}}</td>
               </tr>
               {{#if loanType}}
               <tr class="c-rates-detail__item">
                 <td class="c-rates-detail__item-label">Owner‘s Title Ins.</td>
-                <td class="c-rates-detail__item-value">{{currencyNumberNoCents rate.third_party_costs.owners_title_ins}}</td>
+                <td class="c-rates-detail__item-value">${{currencyNumberNoCents rate.third_party_costs.owners_title_ins}}</td>
               </tr>
               
               <tr class="c-rates-detail__item">
                 <td class="c-rates-detail__item-label">City/County Tax Stamp</td>
-                <td class="c-rates-detail__item-value">{{currencyNumberNoCents rate.third_party_costs.city_county_tax}}</td>
+                <td class="c-rates-detail__item-value">${{currencyNumberNoCents rate.third_party_costs.city_county_tax}}</td>
               </tr>
               {{/if}}
               <tr class="c-rates-detail__item">
                 <td class="c-rates-detail__item-label">Lender‘s Title Ins.</td>
-                <td class="c-rates-detail__item-value">{{currencyNumberNoCents rate.third_party_costs.lenders_title_ins}}</td>
+                <td class="c-rates-detail__item-value">${{currencyNumberNoCents rate.third_party_costs.lenders_title_ins}}</td>
               </tr>
               <tr class="c-rates-detail__item">
                 <td class="c-rates-detail__item-label">Closing/Escrow Fees</td>
@@ -508,16 +759,16 @@ table.details_table {
               {{#if rate.third_party_costs.recording_fees}}
               <tr class="c-rates-detail__item">
                 <td class="c-rates-detail__item-label">Recording Fees</td>
-                <td class="c-rates-detail__item-value">{{currencyNumberNoCents rate.third_party_costs.recording_fees}}</td>
+                <td class="c-rates-detail__item-value">${{currencyNumberNoCents rate.third_party_costs.recording_fees}}</td>
               </tr>
               {{/if}}
               <tr class="c-rates-detail__item">
                 <td class="c-rates-detail__item-label">Notary Fees</td>
-                <td class="c-rates-detail__item-value">{{currencyNumberNoCents rate.third_party_costs.notaryfee1110}}</td>
+                <td class="c-rates-detail__item-value">${{currencyNumberNoCents rate.third_party_costs.notaryfee1110}}</td>
               </tr>
               <tr class="c-rates-detail__item">
                 <td class="c-rates-detail__item-label">Other Fees</td>
-                <td class="c-rates-detail__item-value">{{currencyNumberNoCents rate.third_party_costs.other_fees}}</td>
+                <td class="c-rates-detail__item-value">${{currencyNumberNoCents rate.third_party_costs.other_fees}}</td>
               </tr>
               <tr class="c-rates-detail__totals">
                 <td class="c-rates-detail__totals-label">Total Estimated Closing Costs</td>
@@ -1017,31 +1268,30 @@ table.details_table {
 
             <h5 class="u-margin-bottom-small">What will your loan be for?</h5>
             <div class="c-form-element__control c-radio__toggle-trio" data-js="loantype-radioset">
-              <span class="c-radio">
-                <input type="radio" id="loantype--new-purchase" name="loantype" value="new-purchase" autocomplete="off"/>
-                <label class="c-radio__label" for="loantype--new-purchase">
-                  <span class="c-radio--faux"></span>
-                  <span class="c-form-element__label">Home Purchase</span>
-                </label>
-                <span class="o-icon o-icon--centered o-icon--condomnium u-margin-top c-rates-app__loan-type-icon"></span>
-              </span>
-              <span class="c-radio">
-                <input type="radio" id="loantype--refinance" name="loantype" value="refinance" autocomplete="off"/>
-                <label class="c-radio__label" for="loantype--refinance">
-                  <span class="c-radio--faux"></span>
-                  <span class="c-form-element__label">Refinance</span>
-                </label>
-                <span class="o-icon o-icon--centered o-icon--house-money u-margin-top c-rates-app__loan-type-icon"></span>
-              </span>
-              <span class="c-radio">
-                <input type="radio" id="loantype--cashout" name="loantype" value="cashout" autocomplete="off"/>
-                <label class="c-radio__label" for="loantype--cashout">
-                  <span class="c-radio--faux"></span>
-                  <span class="c-form-element__label">Take Out Cash</span>
-                </label>
-                <span class="o-icon o-icon--centered o-icon--piggy-bank u-margin-top c-rates-app__loan-type-icon"></span>
-              </span>
-              <span class="c-radio__toggle-slider"></span>
+				<span class="c-radio rate_type">
+					<span class="rate_type_icon icn_home_purchase"></span>
+					<input type="radio" id="loantype--new-purchase" name="loantype" value="new-purchase" autocomplete="off"/>
+					<label class="rate_type_button" for="loantype--new-purchase">
+						<span class="c-radio--faux"></span>
+						<span class="c-form-element__label">Home Purchase</span>
+					</label>
+				</span>
+				<span class="c-radio rate_type">
+					<span class="rate_type_icon icn_refinance"></span>
+					<input type="radio" id="loantype--refinance" name="loantype" value="refinance" autocomplete="off"/>
+					<label class="rate_type_button" for="loantype--refinance">
+						<span class="c-radio--faux"></span>
+						<span class="c-form-element__label">Refinance</span>
+					</label>
+				</span>
+				<span class="c-radio rate_type">
+					<span class="rate_type_icon icn_toc"></span>
+					<input type="radio" id="loantype--cashout" name="loantype" value="cashout" autocomplete="off"/>
+					<label class="rate_type_button" for="loantype--cashout">
+						<span class="c-radio--faux"></span>
+						<span class="c-form-element__label">Take Out Cash</span>
+					</label>
+				</span>
             </div>
 
           </div>
@@ -1116,7 +1366,7 @@ table.details_table {
               <label class="c-form-element__label" for="purchaseprice">Purchase Price</label>
               <div class="c-form-element__control c-input-has-fixed-addon">
                 <span class="c-form-element__addon c-form-element__addon--hanging-prefix">$</span>
-                <input id="purchaseprice" name="purchaseprice" class="c-input" type="text" data-format-as-currency />
+                <input id="purchaseprice" name="purchaseprice" class="c-input" type="text" data-format-as-currency  autocomplete="off"/>
               </div>
             </div>
           </div>
@@ -1124,11 +1374,19 @@ table.details_table {
           <div class="o-layout__item u-1/1 u-1/2@small u-1/3@medium newLayout" data-js="details--downpaymentpercent">
             <div class="c-form-element u-margin-bottom-small">
               <label class="c-form-element__label" for="downpaymentpercent">Down Payment</label>
-              <div class="c-form-element__control">
+              <!-- <div class="c-form-element__control">
 				<span class="c-linked-percent-slider__percent-value"></span>
                 <span class="c-linked-percent-slider__numeric-value"></span>
-                <input id="downpaymentpercent" name="downpaymentpercent" class="c-linked-percent-slider" type="range" min="3" max="99" value="20" data-rangeslider data-linkedpercentslider data-linked-element="#purchaseprice">
-              </div>
+                <input type="hidden" name="downpaymentpercent" type="range" min="3" max="99" value="20" data-rangeslider data-linkedpercentslider data-linked-element="#purchaseprice">
+              </div> -->
+			    
+			<div class="priceSliderSein">
+                <div class="overlayslider"></div>
+                <input id="priceSlider" type="range" min="3" max="99" value="20" />
+            </div>
+			<input type="hidden" id="downpaymentpercent" />
+			<span class="c-linked-percent-slider__percent-value">20%</span>
+            <span class="c-linked-percent-slider__numeric-value"></span>
             </div>
           </div>
 
@@ -1209,29 +1467,28 @@ table.details_table {
           <div class="o-layout__item u-1/1">
             <!-- <h5 class="u-margin-bottom-small">Show:</h5> -->
 
-            <div class="c-form-element__control c-radio__toggle-trio " style="margin-bottom: 30px !important;" data-js="ratetype-radioset">
-              <span class="c-radio">
+            <div class="c-form-element__control c-radio__toggle-trio u-margin-bottom-large" style="margin-bottom: 30px !important;" data-js="ratetype-radioset">
+              <span class="c-radio rate_type">
                 <input type="radio" id="ratetype--bestrate" name="ratetype" value="bestrate"/>
-                <label class="c-radio__label" for="ratetype--bestrate">
+                <label class="rate_type_button" for="ratetype--bestrate">
                   <span class="c-radio--faux"></span>
                   <span class="c-form-element__label">Lowest Payment</span>
                 </label>
               </span>
-              <span class="c-radio">
+              <span class="c-radio rate_type">
                 <input type="radio" id="ratetype--bestclosingcosts" name="ratetype" value="bestclosingcosts"/>
-                <label class="c-radio__label" for="ratetype--bestclosingcosts">
+                <label class="rate_type_button" for="ratetype--bestclosingcosts">
                   <span class="c-radio--faux"></span>
                   <span class="c-form-element__label">Lowest Closing Costs</span>
                 </label>
               </span>
-              <span class="c-radio">
+              <span class="c-radio rate_type">
                 <input type="radio" checked id="ratetype--all" name="ratetype" value="all"/>
-                <label class="c-radio__label" for="ratetype--all">
+                <label class="rate_type_button" for="ratetype--all">
                   <span class="c-radio--faux"></span>
                   <span class="c-form-element__label">All Rates</span>
                 </label>
               </span>
-              <span class="c-radio__toggle-slider"></span>
             </div>
 
           </div>
