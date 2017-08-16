@@ -321,10 +321,13 @@ table.details_table {
 }
 
 .rate_type_icon {
+    background: rgba(0, 0, 0, 0) url(images/sprites.png) no-repeat scroll -1px -75px;
+}
+.rate_type_icon {
     display: block;
-    height: 108px;
-    margin: 30px auto;
-    width: 134px;
+    height: 77px;
+    margin: 20px auto;
+    width: 96px;
 }
 .rate_type_button {
     border: 1px solid #8a8a8a;
@@ -339,10 +342,6 @@ table.details_table {
     max-width: 200px;
 	cursor:pointer;
 }
-
-.rate_type_icon {
-    background: rgba(0, 0, 0, 0) url("images/sprites.png") no-repeat scroll -10px 8px;
-}
 .is-selected .rate_type_button, .rate_type:hover .rate_type_button {
     color:#fff !important;
     background: #f27521 none repeat scroll 0 0;
@@ -350,19 +349,19 @@ table.details_table {
 }
 .is-selected .c-form-element__label, .rate_type:hover .c-form-element__label{color:#fff !important;}
 .is-selected .rate_type_icon.icn_home_purchase, .rate_type:hover .rate_type_icon.icn_home_purchase {
-    background-position: -10px -101px;
+    background-position: -1px 10px;
 }
 .rate_type_icon.icn_refinance {
-                background-position: -165px 3px;
+                background-position: -100px -75px;
 }
  .is-selected .rate_type_icon.icn_refinance, .rate_type:hover .rate_type_icon.icn_refinance {
-    background-position: -165px -116px;
+    background-position: -100px 10px;
 }
 .rate_type_icon.icn_toc {
-                background-position: -315px 18px;
+                background-position: -195px -75px;
 }
 .is-selected .rate_type_icon.icn_toc, .rate_type:hover .rate_type_icon.icn_toc {
-    background-position: -315px -101px;
+    background-position: -195px 10px;
 }
 .c-radio.rate_type .c-radio--faux {
     width: 19px;
@@ -604,7 +603,7 @@ top:0;
                     <span class="u-hidden-visually">“APR” Description</span><span class="o-icon o-icon--tooltip-help"></span>
                   </button>
                 </th>
-                <th class="c-rates-listing__heading c-rates-listing__heading--closing"><span class="c-rates-listing--verbose">Closing Costs</span><span class="c-rates-listing--normal">Closing</span><span class="c-rates-listing--terse">Closing</span>
+                <th class="c-rates-listing__heading c-rates-listing__heading--closing"><span class="c-rates-listing--verbose">Closing</span><span class="c-rates-listing--normal">Closing</span><span class="c-rates-listing--terse">Closing</span>
                   <br/>
                   <button class="c-btn c-btn--icon c-btn--nopad c-rates-listing__heading--tooltip c-rates-listing--verbose" data-js="trigger-tooltip" data-tooltip-name="closing">
                     <span class="u-hidden-visually">“Closing” Description</span><span class="o-icon o-icon--tooltip-help"></span>
@@ -613,7 +612,7 @@ top:0;
                     <span class="u-hidden-visually">“Closing” Description</span><span class="o-icon o-icon--tooltip-help"></span>
                   </button>
                 </th>
-                <th class="c-rates-listing__heading c-rates-listing__heading--monthlies" colspan="2"><span class="c-rates-listing--verbose">Monthly Payment</span><span class="c-rates-listing--normal">Monthly Payment</span><span class="c-rates-listing--terse">Mo. Payment</span>
+                <th class="c-rates-listing__heading c-rates-listing__heading--monthlies" colspan="2"><span class="c-rates-listing--verbose">Monthly Payment</span><span class="c-rates-listing--normal">Monthly Payment</span><span class="c-rates-listing--terse">Monthly Payment</span>
                   <br/>
                   <button class="c-btn c-btn--icon c-btn--nopad c-rates-listing__heading--tooltip c-rates-listing--verbose" data-js="trigger-tooltip" data-tooltip-name="monthlies">
                     <span class="u-hidden-visually">“Monlthy Mortgage Payment” Description</span><span class="o-icon o-icon--tooltip-help"></span>
