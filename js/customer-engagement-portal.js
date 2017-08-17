@@ -1929,7 +1929,7 @@
             var rateList = [];
             var ratesValue = [];
 
-            for (var k = j ; j < programs[i].rates.length - 1; k++) {
+            for (var k = j ; j <= programs[i].rates.length - 1; k++) {
               if (rateList.length < 4 && programs[i].rates[k]) {
 
                 // if rate value is not duplicated
@@ -1944,8 +1944,11 @@
               }
             }
             
-            rateList[rateList.length - 1].tags.push('lowestRate');
-            programs[i].rates = rateList;
+            if (rateList.length > 0) {
+              rateList[rateList.length - 1].tags.push('lowestRate');
+              programs[i].rates = rateList;  
+            }
+            
             break;
           }
         }
