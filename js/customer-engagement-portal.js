@@ -2612,7 +2612,10 @@ var est_amt = 0, p_price, per = 20, slide_range;
     });        
 	$('#creditscoreDesktop').on('input change', function(){
 		$('#chanceSlider').text(840 - ($('#creditscoreDesktop').val() - 840));
-		var slideWidth = (($('#creditscoreDesktop').val() - 840) * 100) / (1120 - 840);
+		 if($('#chanceSlider').text() > "760")
+		var slideWidth = Math.ceil((($('#creditscoreDesktop').val() - 840) * 100) / (1120 - 840) + 4);
+		else
+			var slideWidth = Math.ceil((($('#creditscoreDesktop').val() - 840) * 100) / (1120 - 840));
 		$(".credit_score_runnable").width(Math.ceil(slideWidth) + "%");
 	});
 	$('#priceSlider').on('input change', function(){
@@ -2624,6 +2627,7 @@ var est_amt = 0, p_price, per = 20, slide_range;
 			$(".c-linked-percent-slider__numeric-value").text("($"+ dp.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") +")");
 			 var overlayslider = y.value;
 			 if(y.value > 75)overlayslider = overlayslider - 3;
+			 if(y.value < 4)overlayslider = parseInt(overlayslider) + 1;
 			$(".overlayslider").css("width", overlayslider + "%");
 			$("#downpaymentpercent").val($(".c-linked-percent-slider__percent-value").text() + " " + $(".c-linked-percent-slider__numeric-value").text());
 	});

@@ -35,7 +35,7 @@
     position: absolute;
   margin-top:10px;
 }
-
+::-ms-tooltip { display: none; }
 .max_credit_val {
     right: 0;
 }
@@ -48,13 +48,13 @@ div#chanceSlider {
 input#creditscoreDesktop {
     margin: 0;
 	height:27px;
-	margin-top:-15px;
+	margin-top:-17px;
 }
 .credit_score_runnable {
    	background: #1861a9 none repeat scroll 0 0;
     height: 3px;
     position: relative;
-    top: 0px;
+    top: -2px;
     width: 28.5714%;
     z-index: 9;
     max-width:95%;
@@ -73,11 +73,9 @@ input#creditSlider {
 }
 
 .c-linked-percent-slider__percent-value, .c-linked-percent-slider__numeric-value {
-    color: #272727;
-    font-weight: 600;
-    font-size: 0.75rem;
-    position: relative;
-    top: -13px;
+    color: #666666 !important;
+    font-weight: normal !important;
+    font-size: 16px !important;
 }
 input[type=range], input[type=range] + .thumb {
   cursor: pointer;
@@ -241,10 +239,7 @@ input[type=range]::-webkit-slider-thumb {
   margin-top:-11px
 }
 input[type=range]:active::-webkit-slider-thumb, input[type=range]:focus::-webkit-slider-thumb {
-  border: 10px solid #c0d7ee;
-  height: 35px;
-  width: 35px;
-  margin-top:-17px
+  border: 6px solid #c0d7ee;
 }
 /* All the same stuff for Firefox */
 input[type=range]::-moz-range-thumb {
@@ -256,10 +251,7 @@ input[type=range]::-moz-range-thumb {
   background: #1861a9;
 }
 input[type=range]:active::-moz-slider-thumb, input[type=range]:focus::-moz-slider-thumb  {
-  border: 10px solid #c0d7ee;
-  height: 35px;
-  width: 35px;
-  margin-top:-17px
+  border: 6px solid #c0d7ee;
 }
 /* All the same stuff for IE */
 input[type=range]::-ms-thumb {
@@ -271,10 +263,7 @@ input[type=range]::-ms-thumb {
   background: #1861a9;
 }
 input[type=range]:active::-ms-slider-thumb, input[type=range]:focus::-ms-slider-thumb {
-  border: 10px solid #c0d7ee;
-  height: 35px;
-  width: 35px;
-  margin-top:-17px
+  border: 6px solid #c0d7ee;
 }
 #priceSlider{
     height: 27px;
@@ -293,9 +282,12 @@ input[type=range]:active::-ms-slider-thumb, input[type=range]:focus::-ms-slider-
 .newLayout {
     min-height: 100px;
 }
-.c-linked-percent-slider__percent-value, .c-linked-percent-slider__numeric-value {
-    position: relative;
-    top: -15px;
+.c-linked-percent-slider-section {
+    text-align: center;
+    margin-top: -10px;
+}
+.priceSliderSein {
+    margin-top: -17px;
 }
 .c-rates-listing__rate, .c-rates-listing__apr, .c-rates-listing__closing, .c-rates-listing__monthlies{width:auto;}
 section.c-page-content__section.c-rates-app__rates-listing-wrapper.subhead {
@@ -331,7 +323,7 @@ table.details_table {
 }
 .rate_type_button {
     border: 1px solid #8a8a8a;
-    padding: 7px 10px;
+    padding: 10px 10px;
     border-radius: 30px;
     display: block;
     min-width: 200px;
@@ -340,7 +332,8 @@ table.details_table {
     width: 90%;
     margin: auto;
     max-width: 200px;
-	cursor:pointer;
+    cursor: pointer;
+    line-height: 17px;
 }
 .is-selected .rate_type_button, .rate_type:hover .rate_type_button {
     color:#fff !important;
@@ -401,6 +394,16 @@ button.c-btn.c-btn--small.c-btn--subtle.c-rates-listing--verbose.expanded-expand
 }
 .c-btn:active{
 top:0;
+}
+.c-rates-listing__heading, .c-rates-listing__rate, .c-rates-listing__apr, .c-rates-listing__closing, .c-rates-listing__monthlies{text-align: center !important;}
+th.c-rates-listing__heading.c-rates-listing__heading--monthlies {
+    width: 17%;
+}
+td.c-rates-listing__monthlies {
+    width: 17%;
+}
+.c-rates-listing__heading {
+    vertical-align: bottom;
 }
   </style>
   
@@ -612,7 +615,7 @@ top:0;
                     <span class="u-hidden-visually">“Closing” Description</span><span class="o-icon o-icon--tooltip-help"></span>
                   </button>
                 </th>
-                <th class="c-rates-listing__heading c-rates-listing__heading--monthlies" colspan="2"><span class="c-rates-listing--verbose">Monthly Payment</span><span class="c-rates-listing--normal">Monthly Payment</span><span class="c-rates-listing--terse">Monthly Payment</span>
+                <th class="c-rates-listing__heading c-rates-listing__heading--monthlies" ><span class="c-rates-listing--verbose">Monthly Payment</span><span class="c-rates-listing--normal">Monthly Payment</span><span class="c-rates-listing--terse">Monthly Payment</span>
                   <br/>
                   <button class="c-btn c-btn--icon c-btn--nopad c-rates-listing__heading--tooltip c-rates-listing--verbose" data-js="trigger-tooltip" data-tooltip-name="monthlies">
                     <span class="u-hidden-visually">“Monlthy Mortgage Payment” Description</span><span class="o-icon o-icon--tooltip-help"></span>
@@ -621,6 +624,7 @@ top:0;
                     <span class="u-hidden-visually">“Monlthy Mortgage Payment” Description</span><span class="o-icon o-icon--tooltip-help"></span>
                   </button>
                 </th>
+				<th class="tempTm">&nbsp;</th>
                 <th class="c-rates-listing--terse">
                   <button class="c-btn c-btn--icon c-btn--nopad c-rates-listing__heading--tooltip c-rates-listing--terse c-btn-terse">
                     <span class="u-hidden-visually">“Monlthy Mortgage Payment” Description</span><span class="o-icon o-icon--tooltip-help"></span>
@@ -1378,14 +1382,15 @@ top:0;
                 <span class="c-linked-percent-slider__numeric-value"></span>
                 <input type="hidden" name="downpaymentpercent" type="range" min="3" max="99" value="20" data-rangeslider data-linkedpercentslider data-linked-element="#purchaseprice">
               </div> -->
-			    
+			<input type="hidden" id="downpaymentpercent" />
+			<div class="c-linked-percent-slider-section">
+				<span class="c-linked-percent-slider__percent-value">20%</span>
+				<span class="c-linked-percent-slider__numeric-value"></span>		
+			</div>
 			<div class="priceSliderSein">
                 <div class="overlayslider"></div>
                 <input id="priceSlider" type="range" min="3" max="99" value="20" />
             </div>
-			<input type="hidden" id="downpaymentpercent" />
-			<span class="c-linked-percent-slider__percent-value">20%</span>
-            <span class="c-linked-percent-slider__numeric-value"></span>
             </div>
           </div>
 
