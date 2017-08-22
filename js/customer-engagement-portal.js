@@ -2129,8 +2129,8 @@
     $(".loan-options").click (function(){  
         switch(mobile_data.chosen_loan_type){
           case "new-purchase":    
-              mobile_data.purchaseprice=$("#range_01").val();
-              mobile_data.downpayment=$("#per_range").val();
+              mobile_data.purchaseprice=accounting.unformat($("#range_01").val());
+              mobile_data.downpayment=accounting.unformat($("#per_range").val());
               mobile_data.downpaymentpercent_text=$(".per_range_slider span#slide_per_range").text();
               mobile_data.fha_text="";
               $("#pro_loc_content").removeClass("active");
@@ -2139,8 +2139,8 @@
            case "refinance":
               mobile_data.purchaseprice=0;
               mobile_data.downpayment=0;
-              mobile_data.estval=$("#range_02").val();
-              mobile_data.curmortgagebalance=$("#range_03").val();
+              mobile_data.estval=accounting.unformat($("#range_02").val());
+              mobile_data.curmortgagebalance=accounting.unformat($("#range_03").val());
               mobile_data.fha=$("#fha_m").val();
               if($("#fha_m").val()=="FHA-Streamline"){
                 mobile_data.fha_text="Yes";
@@ -2154,12 +2154,12 @@
            case "cashout":
               mobile_data.purchaseprice=0;
               mobile_data.downpayment=0;
-              mobile_data.estval=$("#range_04").val();
-              mobile_data.curmortgagebalance=$("#range_05").val();
+              mobile_data.estval=accounting.unformat($("#range_04").val());
+              mobile_data.curmortgagebalance=accounting.unformat($("#range_05").val());
               mobile_data.fha="";
               mobile_data.fha_text="";
               mobile_data.downpaymentpercent_text="";
-              mobile_data.cashout=$("#range_06").val();
+              mobile_data.cashout=accounting.unformat($("#range_06").val());
 			  $("#pro_loc_content_cashout").removeClass("active");
 			  $(".bac_optionLoanDetails").attr("style","display:block"); 
 			  break;     
@@ -2341,6 +2341,39 @@ function createRangeSliders(sliderId,spanId,classId,minVal, maxVal, fromVal, ste
             }else{
               $('.' + classId + ' .irs-max').text("$" + max_value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
             }
+            if(sliderId == "range_02"){
+              slMaxVal = parseInt(current_val);
+              var slider3 = $("#range_03").data("ionRangeSlider");
+              slider3.update({ from: data.from * 60/100, max: data.from});
+              if(current_val < 10000){$('#slide_range3').text("$1");$('.range_slider3 .irs-max').text('$1');}
+              if(current_val == 2000000){ $('.range_slider3 .irs-max').text('$2M+');}else{
+                $('.range_slider3 .irs-max').text('$' + current_val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+              }        
+              $('.range_slider3 .irs-min').text('$1');
+            }
+            if(sliderId == "range_04"){
+              slMaxVal = parseInt(current_val);
+              var slider6val=parseInt($('#range_06').val());
+              var slider5Endvalue=parseInt(slMaxVal-slider6val);
+              var slider5 = $("#range_05").data("ionRangeSlider");
+              slider5.update({ from: (slider5Endvalue*60/100), max: slider5Endvalue});
+              $('.range_slider5 .irs-max').text('$' + slider5Endvalue.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+            }
+            if(sliderId == "range_06"){
+              slMaxVal = parseInt(current_val);
+              var slider4val=parseInt($('#range_04').val());
+              var slider5Endvalue=parseInt(slider4val-slMaxVal);
+              var slider5 = $("#range_05").data("ionRangeSlider");
+              slider5.update({ from: (slider5Endvalue*60/100), max: slider5Endvalue});
+              $('.range_slider5 .irs-max').text('$' + slider5Endvalue.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+            }
+            if(sliderId != "range_04" &&  sliderId != "range_05"){
+                 $('.' + classId + ' .irs-min').text('$1');
+            }
+            $('.range_slider2 .irs-max').text('$2M+');
+            $('.range_slider4 .irs-max').text('$2M');
+            $('.range_slider4 .irs-min').text('$47,059');
+            $('.range_slider5 .irs-min').text('$0');
         },
 		onUpdate: function (data) {
       			var current_val = data.from;
@@ -2360,6 +2393,39 @@ function createRangeSliders(sliderId,spanId,classId,minVal, maxVal, fromVal, ste
             }else{
               $('.' + classId + ' .irs-max').text("$" + max_value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
             }
+            if(sliderId == "range_02"){
+              slMaxVal = parseInt(current_val);
+              var slider3 = $("#range_03").data("ionRangeSlider");
+              slider3.update({ from: data.from * 60/100, max: data.from});
+              if(current_val < 10000){$('#slide_range3').text("$1");$('.range_slider3 .irs-max').text('$1');}
+              if(current_val == 2000000){ $('.range_slider3 .irs-max').text('$2M+');}else{
+                $('.range_slider3 .irs-max').text('$' + current_val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+              }        
+              $('.range_slider3 .irs-min').text('$1');
+            }
+            if(sliderId == "range_04"){
+              slMaxVal = parseInt(current_val);
+              var slider6val=parseInt($('#range_06').val());
+              var slider5Endvalue=parseInt(slMaxVal-slider6val);
+              var slider5 = $("#range_05").data("ionRangeSlider");
+              slider5.update({ from: (slider5Endvalue*60/100), max: slider5Endvalue});
+              $('.range_slider5 .irs-max').text('$' + slider5Endvalue.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+            }
+            if(sliderId == "range_06"){
+              slMaxVal = parseInt(current_val);
+              var slider4val=parseInt($('#range_04').val());
+              var slider5Endvalue=parseInt(slider4val-slMaxVal);
+              var slider5 = $("#range_05").data("ionRangeSlider");
+              slider5.update({ from: (slider5Endvalue*60/100), max: slider5Endvalue});
+              $('.range_slider5 .irs-max').text('$' + slider5Endvalue.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+            }
+            if(sliderId != "range_04" &&  sliderId != "range_05"){
+                 $('.' + classId + ' .irs-min').text('$1');
+            }
+            $('.range_slider2 .irs-max').text('$2M+');
+            $('.range_slider4 .irs-max').text('$2M');
+            $('.range_slider4 .irs-min').text('$47,059');
+            $('.range_slider5 .irs-min').text('$0');
 		},
 		onFinish: function (data) {
 			var current_val = data.from;
