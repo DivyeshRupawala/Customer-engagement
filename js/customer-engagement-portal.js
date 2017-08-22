@@ -601,15 +601,8 @@
         program = rateData.programs[program_id],
         rate = rateData.programs[program_id].rates[rate_id]
         ;
-   renderRateDetails(program, rate, program_id, rate_id);
-      // dom.$ratetype_form__wrapper
-        // .add(dom.$rates_listing__wrapper)
-        // .not(':hidden').fadeOut(300, function() {
-          // renderRateDetails(program, rate, program_id, rate_id);
-          // dom.$rates_listing__wrapper.not(':visible').fadeIn(300);
-        // });
-
-        sendTrackingEvent('viewed_rate');
+       renderRateDetails(program, rate, program_id, rate_id);
+       sendTrackingEvent('viewed_rate');
 
     }
 
@@ -719,7 +712,6 @@
      */
     function renderRateLoadingIndicator() {
       var template = config.templates.rate_loading_animation;
-
       dom.$rates_listing__wrapper.empty().show().append(template({}));
       toggleFieldsInLoanDetailsForm(state.chosen_loan_type);
 
@@ -1106,6 +1098,7 @@
       var
         cache = state.data_cache.rates,
         fresh_request = buildRatesDataRequestObj();
+      
       // Avoid calling the API if we already queried it recently with identical paramaters
       if (attempt > 4) {
         // Abort if we've tried getting data too many times.
@@ -1969,6 +1962,18 @@
       $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="pull-right glyphicon glyphicon-menu-down"></span>');
       $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
     });
+     function createSliders(){
+      if($.isEmptyObject(mobile_data)){
+         createRangeSliders('range_02','slide_range2','range_slider2',0,2000000,500000,10000);
+          createRangeSliders('range_03','slide_range3','range_slider3',0,500000,300000,5000); 
+          $('.range_slider3 .irs-max').text("$500,000");  
+          createRangeSliders('range_06','slide_range6','range_slider6',1,399500,40000,5000);
+          createRangeSliders('range_04','slide_range4','range_slider4',47059,2000000,470000,10000);  
+          createRangeSliders('range_05','slide_range5','range_slider5',0,430000,258000,5000); 
+          
+      }
+    }
+
 
     // tab content hide and show
     var mobile_data={};
@@ -1982,6 +1987,7 @@
         $("#Take_Case").removeClass("active");
         $(".mainTab").attr("style","display:none");
         $('.sec_main_tab').css('display','block');
+        createSliders();
         state.chosen_loan_type="new-purchase";  
         mobile_data.chosen_loan_type="new-purchase";        
     });
@@ -1997,6 +2003,7 @@
         $("#Take_Case").removeClass("active");
         $(".mainTab").attr("style","display:none");
         $('.sec_main_tab').css('display','block');
+        createSliders();
         state.chosen_loan_type="refinance";  
         mobile_data.chosen_loan_type="refinance";              
     });
@@ -2011,6 +2018,7 @@
         $("#Take_Case").addClass("active");
         $(".mainTab").attr("style","display:none");
         $('.sec_main_tab').css('display','block');
+        createSliders();
         state.chosen_loan_type="cashout";  
         mobile_data.chosen_loan_type="cashout";      
 
@@ -2087,21 +2095,21 @@
 		mobile_data.creditscore_text=$("#slide_range_credit").text();
         switch(mobile_data.chosen_loan_type){
           case "new-purchase":  
-            setTimeout(function() {$('.range_slider').find('.irs-max').text('$2M+');}, 250);
+           // setTimeout(function() {$('.range_slider').find('.irs-max').text('$2M+');}, 250);
             $("#pro_loc_content").addClass("active");
             $("#cradit_score").removeClass("active");
             $(".fifth_next_tab").attr("style","display:block");
             $('.step-4').removeAttr("style","display:none");
             break;
           case "refinance":
-            setTimeout(function() {$('.range_slider2').find('.irs-max').text('$2M+');}, 250);
+           // setTimeout(function() {$('.range_slider2').find('.irs-max').text('$2M+');}, 250);
             $("#pro_loc_content_refinance").addClass("active");
             $("#cradit_score").removeClass("active");
             $(".fifth_next_tab").attr("style","display:block");
             $('.step-4').removeAttr("style","display:none");
             break;
           case "cashout":
-            setTimeout(function() {$('.range_slider4').find('.irs-max').text('$2M+');}, 250);
+            //setTimeout(function() {$('.range_slider4').find('.irs-max').text('$2M+');}, 250);
             $("#pro_loc_content_cashout").addClass("active");
             $("#cradit_score").removeClass("active");
             $(".fifth_next_tab").attr("style","display:block");
@@ -2207,28 +2215,35 @@
           createRangeSliders('range_03','slide_range3','range_slider3',0,500000,300000,5000); 
            $('#slide_range3').text("$300,000");           
         }
+        if($("#range_06").data("ionRangeSlider")){
+          $("#range_06").data("ionRangeSlider").destroy();
+          createRangeSliders('range_06','slide_range6','range_slider6',1,399500,40000,5000);
+           $('#slide_range6').text("$40,000"); 
+           var slider6 = $("#range_06").data("ionRangeSlider");
+           slider6.update({ from: "40000"});
+           
+        }
         if($("#range_04").data("ionRangeSlider")){
           $("#range_04").data("ionRangeSlider").destroy();
-          createRangeSliders('range_04','slide_range4','range_slider4',0,2000000,500000,10000); 
-          $('#slide_range4').text("$500,000"); 
+           createRangeSliders('range_04','slide_range4','range_slider4',47059,2000000,470000,10000); 
+           $('#slide_range4').text("$470,000"); 
+           var slider4 = $("#range_04").data("ionRangeSlider");
+           slider4.update({ from: "470000"});
         }
         if($("#range_05").data("ionRangeSlider")){
           $("#range_05").data("ionRangeSlider").destroy();
-          createRangeSliders('range_05','slide_range5','range_slider5',0,500000,300000,5000); 
-          $('#slide_range5').text("$300,000"); 
-          $('.range_slider5 .irs-max').text("$500,000");
+           createRangeSliders('range_05','slide_range5','range_slider5',0,430000,258000,5000); 
+          $('#slide_range5').text("$258,000"); 
+          $('.range_slider5 .irs-max').text("$430,000");
+          var slider5 = $("#range_05").data("ionRangeSlider");
+           slider5.update({ from: "258000"});
         }
-        if($("#range_06").data("ionRangeSlider")){
-          $("#range_06").data("ionRangeSlider").destroy();
-          createRangeSliders('range_06','slide_range6','range_slider6',0,425000,340000,5000);
-           $('#slide_range6').text("$340,000"); 
-           $('.range_slider6 .irs-max').text("$425,000"); 
-        }
+        
         if($("#per_range").data("ionRangeSlider"))
           $("#per_range").data("ionRangeSlider").reset();
         if($("#credit_score_slider").data("ionRangeSlider"))
           $("#credit_score_slider").data("ionRangeSlider").reset();     
-        crediScoreSlider();  
+        crediScoreSlider();         
   });
 
 	$(".fha_Yes").click( function(){
@@ -2332,7 +2347,13 @@ function createRangeSliders(sliderId,spanId,classId,minVal, maxVal, fromVal, ste
       			if(current_val < 10000){
       				$('#'+spanId).text("$1");
       			}
-      			$('.' + classId + ' .irs-min').text('$1');
+            if(sliderId != "range_04" &&  sliderId != "range_05"){
+               $('.' + classId + ' .irs-min').text('$1');
+             }else{
+                $('.range_slider4 .irs-min').text('$47,059');
+                $('.range_slider5 .irs-min').text('$0');
+             }
+      			//$('.' + classId + ' .irs-min').text('$1');
              var max_value=data.max;
             if(max_value == 2000000){
               $('.' + classId + ' .irs-max').text('$2M+');
@@ -2342,9 +2363,15 @@ function createRangeSliders(sliderId,spanId,classId,minVal, maxVal, fromVal, ste
 		},
 		onFinish: function (data) {
 			var current_val = data.from;
-			if(current_val < 10000){
-				$('#'+spanId).text("$1");
-			}
+      if(sliderId == "range_05"){
+  			if(current_val < stepVal){
+  				$('#'+spanId).text("$0");
+  			}
+      }else{
+        if(current_val < stepVal){
+          $('#'+spanId).text("$1");
+        }
+      }
       var max_value=data.max;
             if(max_value == 2000000){
               $('.' + classId + ' .irs-max').text('$2M+');
@@ -2362,33 +2389,28 @@ function createRangeSliders(sliderId,spanId,classId,minVal, maxVal, fromVal, ste
 				$('.range_slider3 .irs-min').text('$1');
 			}
 			if(sliderId == "range_04"){
-				slMaxVal = parseInt(current_val);
-				var slider5 = $("#range_05").data("ionRangeSlider");
-				slider5.update({ from: data.from * 60/100, max: data.from});
-				if(current_val < 10000){$('#slide_range5').text("$1");$('.range_slider5 .irs-max').text('$1');}
-				if(current_val == 2000000){	$('.range_slider5 .irs-max').text('$2M+');}else{
-          $('.range_slider5 .irs-max').text('$' + current_val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
-        } 
-				$('.range_slider5 .irs-min').text('$1');
-				//var sl5val = parseInt($('#slide_range5').text().replace("$", "").replace(/,/g, ""));
-				var sl6val = (current_val*85/100) ;//- sl5val;
-        var slider6 = $("#range_06").data("ionRangeSlider");
-				slider6.update({ from: sl6val * 80/100, max: sl6val});
-				$('.range_slider6 .irs-min').text('$1');
-        $('.range_slider6 .irs-max').text('$' + sl6val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
-       // $('.range_slider6 .irs-max').text('$' + sl6val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
-			}
-			// if(sliderId == "range_05"){
-				// slMaxVal = parseInt(current_val);
-				// var sl5val = parseInt($('#slide_range4').text().replace("$", "").replace(/,/g, ""));
-				// var sl6val = (sl5val*85/100) - slMaxVal;
-				// var slider6 = $("#range_06").data("ionRangeSlider");
-				// slider6.update({ from: sl6val * 80/100, max: sl6val});
-				// $('.range_slider6 .irs-min').text('$1');
-			// }
-			$('.' + classId + ' .irs-min').text('$1');
+        slMaxVal = parseInt(current_val);
+        var slider6val=parseInt($('#range_06').val());
+        var slider5Endvalue=parseInt(slMaxVal-slider6val);
+        var slider5 = $("#range_05").data("ionRangeSlider");
+        slider5.update({ from: (slider5Endvalue*60/100), max: slider5Endvalue});
+        $('.range_slider5 .irs-max').text('$' + slider5Endvalue.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+      }
+      if(sliderId == "range_06"){
+        slMaxVal = parseInt(current_val);
+        var slider4val=parseInt($('#range_04').val());
+        var slider5Endvalue=parseInt(slider4val-slMaxVal);
+        var slider5 = $("#range_05").data("ionRangeSlider");
+        slider5.update({ from: (slider5Endvalue*60/100), max: slider5Endvalue});
+        $('.range_slider5 .irs-max').text('$' + slider5Endvalue.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+      }
+			if(sliderId != "range_04" &&  sliderId != "range_05"){
+			     $('.' + classId + ' .irs-min').text('$1');
+      }
 			$('.range_slider2 .irs-max').text('$2M+');
-			$('.range_slider4 .irs-max').text('$2M+');
+      $('.range_slider4 .irs-max').text('$2M');
+      $('.range_slider4 .irs-min').text('$47,059');
+			$('.range_slider5 .irs-min').text('$0');
 		}
     });
 }
@@ -2515,14 +2537,8 @@ var est_amt = 0, p_price, per = 20, slide_range;
 		}
     });
 
-    createRangeSliders('range_02','slide_range2','range_slider2',0,2000000,500000,10000);
-    createRangeSliders('range_03','slide_range3','range_slider3',0,500000,300000,5000); 
-    $('.range_slider3 .irs-max').text("$500,000");  
-    createRangeSliders('range_04','slide_range4','range_slider4',0,2000000,500000,10000);  
-    createRangeSliders('range_05','slide_range5','range_slider5',0,500000,300000,5000); 
-    $('.range_slider5 .irs-max').text("$500,000");  
-    createRangeSliders('range_06','slide_range6','range_slider6',0,425000,340000,5000);
-    $('.range_slider6 .irs-max').text("$425,000"); 
+    
+
     $("#per_range").ionRangeSlider({
         type: "single",
         min: 3,
@@ -2571,31 +2587,40 @@ var est_amt = 0, p_price, per = 20, slide_range;
             $('#slide_per_range').html(slide_range);
         }
 	});
-    setTimeout(function() {
+  setTimeout(function() {
 		$('.range_slider .irs-max').text('$2M+');
 		$('.range_slider2 .irs-max').text('$2M+');
     $('.range_slider3 .irs-max').text('$500,000');
-		$('.range_slider4 .irs-max').text('$2M+');
-    $('.range_slider5 .irs-max').text('$500,000');
-    $('.range_slider6 .irs-max').text('$425,000');
+		$('.range_slider4 .irs-max').text('$2M');   
+    $('.range_slider6 .irs-max').text('$399,500');
 		$('.range_slider').find('.irs-min').text('$1');
 		$('.range_slider2').find('.irs-min').text('$1');
 		$('.range_slider3').find('.irs-min').text('$1');
-		$('.range_slider4').find('.irs-min').text('$1');
-		$('.range_slider5').find('.irs-min').text('$1');
+		$('.range_slider4').find('.irs-min').text('$47,059');
+		$('.range_slider5').find('.irs-min').text('$0');
 		$('.range_slider6').find('.irs-min').text('$1');
+    $('.range_slider5 .irs-max').text('$430,000');
+        var slMaxVal = parseInt($('#range_04').val());
+        var slider6val=parseInt($('#range_06').val());
+        var slider5Endvalue=parseInt(slMaxVal-slider6val);
+        $('.range_slider5 .irs-max').text('$' + slider5Endvalue.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+
 	}, 300);
+  
 });
    $( window ).on( "load", function() {
 		$('.range_slider').find('.irs-min').text('$1');
 		$('.range_slider2').find('.irs-min').text('$1');
 		$('.range_slider3').find('.irs-min').text('$1');
-		$('.range_slider4').find('.irs-min').text('$1');
-		$('.range_slider5').find('.irs-min').text('$1');
+		$('.range_slider4').find('.irs-min').text('$47,059');
+    $('.range_slider4').find('.irs-max').text('$2M');
+    $('.range_slider5').find('.irs-min').text('$0');
+		$('.range_slider5').find('.irs-max').text('$430,000');
 		$('.range_slider6').find('.irs-min').text('$1');
-        $('.range_slider').find('.irs-max').text('$2M+');
+    $('.range_slider6 .irs-max').text('$399,500');
+    $('.range_slider').find('.irs-max').text('$2M+');
 		$('.range_slider2').find('.irs-max').text('$2M+');
-        $('.range_slider4').find('.irs-max').text('$2M+');
+   
     });
      $(window).resize(function () {
         setTimeout(function(){
@@ -2604,10 +2629,12 @@ var est_amt = 0, p_price, per = 20, slide_range;
 			$('.range_slider2 .irs-max').text('$2M+');
 			$('.range_slider2').find('.irs-min').text('$1');
 			$('.range_slider3').find('.irs-min').text('$1');
-			$('.range_slider4 .irs-max').text('$2M+');
-			$('.range_slider4').find('.irs-min').text('$1');
-			$('.range_slider5').find('.irs-min').text('$1'); 
+			$('.range_slider4 .irs-max').text('$2M');
+      $('.range_slider4').find('.irs-min').text('$47,059');
+			$('.range_slider5').find('.irs-min').text('$0'); 
+      $('.range_slider5').find('.irs-max').text('$430,000');
 			$('.range_slider6').find('.irs-min').text('$1'); 
+      $('.range_slider6').find('.irs-max').text('$399,500'); 
 		}, 200);
     });        
 	$('#creditscoreDesktop').on('input change', function(){

@@ -1194,6 +1194,16 @@ td.c-rates-listing__monthlies {
           </div>
           <div class="col-xs-12 subhead third_main_tab">
             <div class="col-xs-12 hei_third">
+               <h3>How much cash would you like to take out?</h3>
+                <div class="range_slider6" style="position: relative; padding: 10px;">
+                  <div class="range_slider_container"> 
+                  <span id="slide_range6" class="slide_format_currency"> </span>
+                      <input type="text" id="range_06" value="" name="range_06" class="slider_input"  data-format-span-as-currency/>
+                  </div>
+              </div>
+            </div>
+            <hr size="pixels" class="line_wide" />
+            <div class="col-xs-12 hei_third">
                <h3>Estimated Home Value</h3>
                 <div class="range_slider4" style="position: relative; padding: 10px;">
                   <div class="range_slider_container"> 
@@ -1203,23 +1213,13 @@ td.c-rates-listing__monthlies {
               </div>
             </div>
             <hr size="pixels" class="line_wide" />
-            <div class="col-xs-12 hei_third">
+            <div class="col-xs-12 but_margin hei_third_B">
+              <div class="col-xs-12 hei_third">
                <h3>Current Mortgage Balance</h3>
                 <div class="range_slider5" style="position: relative; padding: 10px;">
                   <div class="range_slider_container"> 
                   <span id="slide_range5" class="slide_format_currency"> </span>
                       <input type="text" id="range_05" value="" name="range_05" class="slider_input"  data-format-span-as-currency/>
-                  </div>
-              </div>
-            </div>
-            <hr size="pixels" class="line_wide" />
-            <div class="col-xs-12 but_margin hei_third_B">
-            <div class="col-xs-12 hei_third">
-               <h3>How much cash would you like to take out?</h3>
-                <div class="range_slider6" style="position: relative; padding: 10px;">
-                  <div class="range_slider_container"> 
-                  <span id="slide_range6" class="slide_format_currency"> </span>
-                      <input type="text" id="range_06" value="" name="range_06" class="slider_input"  data-format-span-as-currency/>
                   </div>
               </div>
             </div>
@@ -1462,7 +1462,7 @@ td.c-rates-listing__monthlies {
     <!-- END loan details section-->
 
     <!-- BEGIN rates type form section -->
-    <section class="c-page-content__section c-rates-app__rates-listing-wrapper subhead" data-js="rates-listing__wrapper" style="display:none">
+    <section class="c-page-content__section c-rates-app__rates-listing-wrapper subhead " data-js="rates-listing__wrapper" style="display:none">
       <!-- BEGIN rate type form -->
       <h3 class="u-text-centered">Loan Options</h3>
       <form class="c-form--stacked o-wrapper o-wrapper--narrow u-margin-top-none" data-js="ratetype-form">
