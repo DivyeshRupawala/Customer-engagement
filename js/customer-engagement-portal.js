@@ -675,7 +675,7 @@
           $(this).closest('.subhead').removeClass('active');
           $(this).closest('.subhead').css('display','none');
           $(".mainTab").removeAttr("style","display:none");
-          $('.main_option1').css('display', 'none');
+         // $('.main_option1').css('display', 'none');
           $(".subhead step-5").removeClass("active"); 
           $('.mobile_rates-listing').css('display', 'none');
           $('.mobile_rates-listing_error').css('display', 'none'); 
@@ -2358,6 +2358,7 @@ function createRangeSliders(sliderId,spanId,classId,minVal, maxVal, fromVal, ste
               var slider5 = $("#range_05").data("ionRangeSlider");
               slider5.update({ from: (slider5Endvalue*60/100), max: slider5Endvalue});
               $('.range_slider5 .irs-max').text('$' + slider5Endvalue.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+              $('.range_slider4 .irs-min').text('$' + Math.round(slider6val/.85).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));     
             }
             if(sliderId == "range_06"){
               slMaxVal = parseInt(current_val);
@@ -2366,14 +2367,18 @@ function createRangeSliders(sliderId,spanId,classId,minVal, maxVal, fromVal, ste
               var slider5 = $("#range_05").data("ionRangeSlider");
               slider5.update({ from: (slider5Endvalue*60/100), max: slider5Endvalue});
               $('.range_slider5 .irs-max').text('$' + slider5Endvalue.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+              var slider6val=parseInt($('#range_06').val());
+              var slider4 = $("#range_04").data("ionRangeSlider");
+              slider4.update({ from: 470000, min:Math.round(slider6val/.85),max: 2000000});
+              $('.range_slider4 .irs-min').text('$' + Math.round(slider6val/.85).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));  
             }
             if(sliderId != "range_04" &&  sliderId != "range_05"){
                  $('.' + classId + ' .irs-min').text('$1');
             }
             $('.range_slider2 .irs-max').text('$2M+');
-            $('.range_slider4 .irs-max').text('$2M');
-            $('.range_slider4 .irs-min').text('$47,059');
+            $('.range_slider4 .irs-max').text('$2M');      
             $('.range_slider5 .irs-min').text('$0');
+           
         },
 		onUpdate: function (data) {
       			var current_val = data.from;
@@ -2410,6 +2415,7 @@ function createRangeSliders(sliderId,spanId,classId,minVal, maxVal, fromVal, ste
               var slider5 = $("#range_05").data("ionRangeSlider");
               slider5.update({ from: (slider5Endvalue*60/100), max: slider5Endvalue});
               $('.range_slider5 .irs-max').text('$' + slider5Endvalue.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+              $('.range_slider4 .irs-min').text('$' + Math.round(slider6val/.85).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));     
             }
             if(sliderId == "range_06"){
               slMaxVal = parseInt(current_val);
@@ -2418,14 +2424,18 @@ function createRangeSliders(sliderId,spanId,classId,minVal, maxVal, fromVal, ste
               var slider5 = $("#range_05").data("ionRangeSlider");
               slider5.update({ from: (slider5Endvalue*60/100), max: slider5Endvalue});
               $('.range_slider5 .irs-max').text('$' + slider5Endvalue.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+              var slider6val=parseInt($('#range_06').val());
+              var slider4 = $("#range_04").data("ionRangeSlider");
+              slider4.update({ from: 470000, min:Math.round(slider6val/.85),max: 2000000});
+              $('.range_slider4 .irs-min').text('$' + Math.round(slider6val/.85).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));  
             }
             if(sliderId != "range_04" &&  sliderId != "range_05"){
                  $('.' + classId + ' .irs-min').text('$1');
             }
             $('.range_slider2 .irs-max').text('$2M+');
-            $('.range_slider4 .irs-max').text('$2M');
-            $('.range_slider4 .irs-min').text('$47,059');
+            $('.range_slider4 .irs-max').text('$2M');      
             $('.range_slider5 .irs-min').text('$0');
+                  
 		},
 		onFinish: function (data) {
 			var current_val = data.from;
@@ -2461,6 +2471,7 @@ function createRangeSliders(sliderId,spanId,classId,minVal, maxVal, fromVal, ste
         var slider5 = $("#range_05").data("ionRangeSlider");
         slider5.update({ from: (slider5Endvalue*60/100), max: slider5Endvalue});
         $('.range_slider5 .irs-max').text('$' + slider5Endvalue.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+        $('.range_slider4 .irs-min').text('$' + Math.round(slider6val/.85).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));     
       }
       if(sliderId == "range_06"){
         slMaxVal = parseInt(current_val);
@@ -2469,13 +2480,16 @@ function createRangeSliders(sliderId,spanId,classId,minVal, maxVal, fromVal, ste
         var slider5 = $("#range_05").data("ionRangeSlider");
         slider5.update({ from: (slider5Endvalue*60/100), max: slider5Endvalue});
         $('.range_slider5 .irs-max').text('$' + slider5Endvalue.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+        var slider6val=parseInt($('#range_06').val());
+        var slider4 = $("#range_04").data("ionRangeSlider");
+        slider4.update({ from: 470000, min:Math.round(slider6val/.85),max: 2000000});
+        $('.range_slider4 .irs-min').text('$' + Math.round(slider6val/.85).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));  
       }
 			if(sliderId != "range_04" &&  sliderId != "range_05"){
 			     $('.' + classId + ' .irs-min').text('$1');
       }
 			$('.range_slider2 .irs-max').text('$2M+');
-      $('.range_slider4 .irs-max').text('$2M');
-      $('.range_slider4 .irs-min').text('$47,059');
+      $('.range_slider4 .irs-max').text('$2M');      
 			$('.range_slider5 .irs-min').text('$0');
 		}
     });
@@ -2662,13 +2676,16 @@ var est_amt = 0, p_price, per = 20, slide_range;
 		$('.range_slider').find('.irs-min').text('$1');
 		$('.range_slider2').find('.irs-min').text('$1');
 		$('.range_slider3').find('.irs-min').text('$1');
-		$('.range_slider4').find('.irs-min').text('$47,059');
+		//$('.range_slider4').find('.irs-min').text('$47,059');
 		$('.range_slider5').find('.irs-min').text('$0');
 		$('.range_slider6').find('.irs-min').text('$1');
-    $('.range_slider5 .irs-max').text('$430,000');
+    //$('.range_slider5 .irs-max').text('$430,000');
+
         var slMaxVal = parseInt($('#range_04').val());
         var slider6val=parseInt($('#range_06').val());
+
         var slider5Endvalue=parseInt(slMaxVal-slider6val);
+        $('.range_slider4').find('.irs-min').text('$' + Math.round(slider6val/.85).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"))
         $('.range_slider5 .irs-max').text('$' + slider5Endvalue.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
 
 	}, 300);
