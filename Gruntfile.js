@@ -133,8 +133,9 @@ module.exports = function(grunt) {
 					{expand: true, src: ['css/ion.rangeSlider.css'], dest: 'prod'},
 					{expand: true, src: ['css/ion.rangeSlider.skinHTML5.css'], dest: 'prod'},
 					{expand: true, src: ['css/normalize.css'], dest: 'prod'},
-					{expand: true, src: ['css/style.css'], dest: 'prod'}
-				],
+					{expand: true, src: ['css/style.css'], dest: 'prod'},
+					{expand: true, src: ['fonts/**'], dest: 'prod'}
+				],				
 			},
 		},
 		htmlmin: {
