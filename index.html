@@ -297,10 +297,6 @@ h5.c-rates-detail__header {
     font-size: 1.125rem;
 }
 
-.c-rates-detail__header em {
-    font-size: 1rem;
-}
-
 table.details_table {
     font-family: "Lato", sans-serif !important;
     line-height: 1.6875;
@@ -397,13 +393,189 @@ top:0;
 }
 .c-rates-listing__heading, .c-rates-listing__rate, .c-rates-listing__apr, .c-rates-listing__closing, .c-rates-listing__monthlies{text-align: center !important;}
 th.c-rates-listing__heading.c-rates-listing__heading--monthlies {
-    width: 17%;
+    width: 20%;
 }
 td.c-rates-listing__monthlies {
-    width: 17%;
+    width: 20%;
 }
 .c-rates-listing__heading {
     vertical-align: bottom;
+}
+.o-icon--tooltip-help { background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2213.344%22%20height%3D%2213.32%22%20viewBox%3D%220%200%2013.344%2013.32%22%3E%0A%20%20%3Cmetadata%3E%3C%3Fxpacket%20begin%3D%22%EF%BB%BF%22%20id%3D%22W5M0MpCehiHzreSzNTczkc9d%22%3F%3E%0A%3Cx%3Axmpmeta%20xmlns%3Ax%3D%22adobe%3Ans%3Ameta%2F%22%20x%3Axmptk%3D%22Adobe%20XMP%20Core%205.6-c138%2079.159824%2C%202016%2F09%2F14-01%3A09%3A01%20%20%20%20%20%20%20%20%22%3E%0A%20%20%20%3Crdf%3ARDF%20xmlns%3Ardf%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%22%3E%0A%20%20%20%20%20%20%3Crdf%3ADescription%20rdf%3Aabout%3D%22%22%2F%3E%0A%20%20%20%3C%2Frdf%3ARDF%3E%0A%3C%2Fx%3Axmpmeta%3E%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%0A%3C%3Fxpacket%20end%3D%22w%22%3F%3E%3C%2Fmetadata%3E%0A%3Cdefs%3E%0A%20%20%20%20%3Cstyle%3E%0A%20%20%20%20%20%20.cls-1%20%7B%0A%20%20%20%20%20%20%20%20fill%3A%20%233a78af%3B%0A%20%20%20%20%20%20%20%20fill-rule%3A%20evenodd%3B%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%3C%2Fstyle%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Cpath%20id%3D%22%5fcopy%5f4%22%20data-name%3D%22%EF%87%B5%20copy%204%22%20class%3D%22cls-1%22%20d%3D%22M1003.75%2C1792v-1.34h-1.35V1792h1.35Zm-7.348-4a6.68%2C6.68%2C0%2C1%2C0%2C1.953-4.7A6.406%2C6.406%2C0%2C0%2C0%2C996.4%2C1788Zm1.344%2C0a5.33%2C5.33%2C0%2C1%2C1%2C1.562%2C3.78A5.142%2C5.142%2C0%2C0%2C1%2C997.746%2C1788Zm2.654-1.34h1.35a1.286%2C1.286%2C0%2C0%2C1%2C.39-0.93%2C1.316%2C1.316%2C0%2C0%2C1%2C1.87%2C0%2C1.286%2C1.286%2C0%2C0%2C1%2C.39.93%2C1.121%2C1.121%2C0%2C0%2C1-.31.78%2C3.429%2C3.429%2C0%2C0%2C1-.69.58%2C2.115%2C2.115%2C0%2C0%2C0-.69.75%2C2.388%2C2.388%2C0%2C0%2C0-.31%2C1.23h1.35a1.5%2C1.5%2C0%2C0%2C1%2C.31-0.92%2C3.221%2C3.221%2C0%2C0%2C1%2C.69-0.69%2C2.948%2C2.948%2C0%2C0%2C0%2C.68-0.72%2C1.732%2C1.732%2C0%2C0%2C0%2C.32-1.01%2C2.675%2C2.675%2C0%2C0%2C0-5.35%2C0h0Z%22%20transform%3D%22translate%28-996.406%20-1781.34%29%22%2F%3E%0A%3C%2Fsvg%3E%0A') !important; background-repeat: no-repeat; }
+.c-rates-listing__heading--tooltip{padding:0 !important;}
+.c-rates-listing{font-size: 0.845rem !important;}
+button.c-btn.c-btn--small.expanded-expanded, button.c-btn.c-btn--small.collapsed-collapsed {
+    padding: 0;
+    color: #187cb7;
+    font-size: 24px !important;
+    font-weight: normal;
+    border: 0;
+    margin: 5px auto;
+}
+button.c-btn.c-btn--small.collapsed-collapsed{display:none ;}
+button.c-btn.c-btn--small.c-btn--subtle.c-rates-listing--verbose.expanded-expanded:active, button.c-btn.c-btn--small.c-btn--subtle.c-rates-listing--verbose.expanded-expanded:focus, button.c-btn.c-btn--small.c-btn--subtle.c-rates-listing--verbose.expanded-expanded:hover, button.c-btn.c-btn--small.c-btn--subtle.c-rates-listing--verbose.expanded-expanded:visited, .activeRow button.c-btn.c-btn--small.c-btn--subtle.c-rates-listing--verbose.collapsed-collapsed:active,.activeRow button.c-btn.c-btn--small.c-btn--subtle.c-rates-listing--verbose.collapsed-collapsed:focus,.activeRow button.c-btn.c-btn--small.c-btn--subtle.c-rates-listing--verbose.collapsed-collapsed:hover, .activeRow button.c-btn.c-btn--small.c-btn--subtle.c-rates-listing--verbose.collapsed-collapsed:visited {
+    background: none;
+    border: 0 none !important;
+    outline: none !important;
+    box-shadow: none;
+}
+.c-rates-detail {
+    background: transparent !important;
+    padding: 28px 25px 25px !important;
+    position: relative !important;
+    font-size: 15px !important;
+    border: 1px solid #f27521 !important;
+    margin-top: -40px !important;
+    margin-bottom: 10px !important;
+    z-index: 0 !important;
+    max-width: 100% !important;
+}
+.detailsPopup {
+    margin: 0 -25px;
+    padding: 15px 25px 0;
+    border-top: 1px solid #f27521;
+	text-align:center;
+}
+.c-rates-listing__rate, .c-rates-listing__apr, .c-rates-listing__closing, .c-rates-listing__monthlies{padding:13px 2px !important}
+.c-rates-listing__program_new{
+	position:relative;    
+	border-top: 1px solid #DDDDDD !important;
+	border-collapse: separate !important;
+}
+.rate_table_caption > .caption_inner {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    line-height: 20px;
+    bottom: 0;
+    margin: auto;
+    height: 35px;
+	text-align:left;
+}
+.rate_table_caption > .caption_inner > span {
+    display: block;
+}
+button.c-btn.c-btn--small.c-btn--subtle.c-rates-listing--verbose.collapsed-collapsed{
+	display:none !important;
+}
+.c-rates-listing__actions {
+    text-align: center !important;
+    padding: 0 !important;
+}
+.activeRow button.c-btn.c-btn--small.c-btn--subtle.c-rates-listing--verbose.collapsed-collapsed {
+    display: inline-block !important;
+	top: -1px;
+}
+
+.activeRow button.c-btn.c-btn--small.c-btn--subtle.c-rates-listing--verbose.expanded-expanded {
+    display: none !important;
+}
+.activeTable .rate_table_caption > .caption_inner .term_year, .activeTable .rate_table_caption > .caption_inner .confirmation{color:#f27521}
+.activeRow td{
+color:#187cb7 !important;
+}
+.term_year {
+    color: #285278;
+    display: block;
+    font-size: 18px;
+}
+.confirmation {
+    color: #285278;
+    display: block;
+    font-size: 13px;
+}
+.c-rates-detail__header strong {
+    font-weight: 300 !important;
+    color: #3a7ab2 !important;
+}
+
+.c-rates-detail__item-label {
+    color: #767676 !important;
+}
+.c-rates-detail{font-weight:normal !important; color:#285278 !important}
+.c-rates-detail__header em {
+    font-weight: 300 !important;
+    color: #3a7ab2 !important;
+}
+.c-rates-detail__totals, .c-rates-detail__totals-label {
+    font-weight: 300 !important;
+	color:#285278 !important
+}
+tr.c-rates-detail__items-heading {
+    color: #285278 !important;
+}
+h5.c-rates-detail__header {
+    color: #767676 !important;
+}
+td.c-rates-detail__totals-label{#3a7ab2 !important}
+.o-layout__item.details_container{width:100% !important}
+.c-rates-detail__item-label, .c-rates-detail__totals-label, .rightAlign{text-align:right !important;}
+.c-rates-detail__item-value, .c-rates-detail__totals-value{text-align:left !important;padding-left: 20px;}
+table.details_table{width:80%; margin-left:0 !important;}
+button#different-rate-btn, button.c-btn.c-btn--prominent.u-margin-bottom-small{font-weight:normal !important;}
+
+@media (max-width: 767px){
+.c-rates-detail{padding: 35px 25px 25px !important;}
+.rate_table_caption > .caption_inner{position:relative;}
+.term_year,  .confirmation, .rate_table_caption > .caption_inner > span{display:inline-block;}
+
+th.tempTm {
+    display: none;
+}
+.c-rates-listing {
+    max-width: 100% !important;
+	}
+	.c-rates-listing--terse {
+    display: block !important;
+    z-index: 3;
+}
+button.c-btn.c-btn--icon.c-btn--nopad.c-rates-listing__heading--tooltip.c-rates-listing--terse.c-btn-terse {
+    margin: auto;
+}
+.c-rates-listing__heading--tooltip.c-rates-listing--verbose, span.o-icon.o-icon--tooltip-help{display: none;}
+.c-rates-listing--verbose, th.c-rates-listing--terse:last-child span.o-icon.o-icon--tooltip-help{display:block !important;}
+.c-rates-listing__program-shim {
+    width: 0 !important;
+    min-width: 0 !important;
+}
+.c-rates-listing__heading--rate, .c-rates-listing__heading--apr, .c-rates-listing__heading--closing, .c-rates-listing__rate, .c-rates-listing__apr, .c-rates-listing__closing, .c-rates-listing__monthlies {
+    width: 20% !important;
+}
+.c-rates-listing__program-label-heading {
+    display: inline-block;
+    margin-right: .3em;
+    font-size: 0.875rem;
+    font-weight: 700;
+}
+.c-rates-listing__program-label-heading {
+    position: static !important;
+    top: 0 !important;
+}
+.c-rates-listing__program-label-subheading {
+    position: static !important;
+    top: 0 !important;
+}
+button.c-btn.c-btn--small.c-btn--as-link.c-rates-listing--verbose.selectBtnMobile {
+    display: none !important;
+}
+.terse-tooltip-container {
+    display: none;
+    position: fixed;
+    width: 100%;
+    margin: 0px !important;
+    padding: 20px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-color: #184B94;
+    overflow: auto;
+    color: #FFFFFF;
+    z-index: 9999;
+}
+}
+@media (max-width: 540px){
+table.details_table{width:100%}
 }
   </style>
   
@@ -588,53 +760,37 @@ td.c-rates-listing__monthlies {
               <tr>
                 <th class="c-rates-listing__program-shim"></th>
                 <th class="c-rates-listing__heading c-rates-listing__heading--rate">Rate
-                  <br/>
                   <button class="c-btn c-btn--icon c-btn--nopad c-rates-listing__heading--tooltip c-rates-listing--verbose" data-js="trigger-tooltip" data-tooltip-name="rate">
                     <span class="u-hidden-visually">“Rate” Description</span><span class="o-icon o-icon--tooltip-help"></span>
                   </button>
-                  <button class="c-btn c-btn--icon c-btn--rate c-rates-listing__heading--tooltip c-rates-listing--normal" data-js="trigger-tooltip" data-tooltip-name="monthlies">
-                    <span class="u-hidden-visually">“Rate” Description</span><span class="o-icon o-icon--tooltip-help"></span>
-                  </button>
-                
                 </th>
                 <th class="c-rates-listing__heading c-rates-listing__heading--apr">APR
-                  <br/>
                   <button class="c-btn c-btn--icon c-btn--nopad c-rates-listing__heading--tooltip c-rates-listing--verbose" data-js="trigger-tooltip" data-tooltip-name="apr">
                     <span class="u-hidden-visually">“APR” Description</span><span class="o-icon o-icon--tooltip-help"></span>
                   </button>
-                  <button class="c-btn c-btn--icon c-btn--nopad c-rates-listing__heading--tooltip c-rates-listing--normal" data-js="trigger-tooltip" data-tooltip-name="apr">
-                    <span class="u-hidden-visually">“APR” Description</span><span class="o-icon o-icon--tooltip-help"></span>
-                  </button>
                 </th>
-                <th class="c-rates-listing__heading c-rates-listing__heading--closing"><span class="c-rates-listing--verbose">Closing</span><span class="c-rates-listing--normal">Closing</span><span class="c-rates-listing--terse">Closing</span>
-                  <br/>
+                <th class="c-rates-listing__heading c-rates-listing__heading--closing"><span class="c-rates-listing--verbose">Closing</span>
                   <button class="c-btn c-btn--icon c-btn--nopad c-rates-listing__heading--tooltip c-rates-listing--verbose" data-js="trigger-tooltip" data-tooltip-name="closing">
                     <span class="u-hidden-visually">“Closing” Description</span><span class="o-icon o-icon--tooltip-help"></span>
                   </button>
-                  <button class="c-btn c-btn--icon c-btn--nopad c-rates-listing__heading--tooltip c-rates-listing--normal" data-js="trigger-tooltip" data-tooltip-name="closing">
-                    <span class="u-hidden-visually">“Closing” Description</span><span class="o-icon o-icon--tooltip-help"></span>
-                  </button>
                 </th>
-                <th class="c-rates-listing__heading c-rates-listing__heading--monthlies" ><span class="c-rates-listing--verbose">Monthly Payment</span><span class="c-rates-listing--normal">Monthly Payment</span><span class="c-rates-listing--terse">Monthly Payment</span>
-                  <br/>
+                <th class="c-rates-listing__heading c-rates-listing__heading--monthlies" ><span class="c-rates-listing--verbose">Monthly Payment</span>
                   <button class="c-btn c-btn--icon c-btn--nopad c-rates-listing__heading--tooltip c-rates-listing--verbose" data-js="trigger-tooltip" data-tooltip-name="monthlies">
                     <span class="u-hidden-visually">“Monlthy Mortgage Payment” Description</span><span class="o-icon o-icon--tooltip-help"></span>
                   </button>
-                  <button class="c-btn c-btn--icon c-btn--nopad c-rates-listing__heading--tooltip c-rates-listing--normal" data-js="trigger-tooltip" data-tooltip-name="monthlies">
-                    <span class="u-hidden-visually">“Monlthy Mortgage Payment” Description</span><span class="o-icon o-icon--tooltip-help"></span>
-                  </button>
+                  
                 </th>
-				<th class="tempTm">&nbsp;</th>
-                <th class="c-rates-listing--terse">
+				<th class="tempTm">Details</th>
+                <th class="c-rates-listing--terse last-column">
                   <button class="c-btn c-btn--icon c-btn--nopad c-rates-listing__heading--tooltip c-rates-listing--terse c-btn-terse">
-                    <span class="u-hidden-visually">“Monlthy Mortgage Payment” Description</span><span class="o-icon o-icon--tooltip-help"></span>
+                   <span class="o-icon o-icon--tooltip-help"></span>
                   </button>
                 </th>
               </tr>
             </thead>
           </table>
 
-          <div class="c-rates-app__loan-details-summary o-wrapper o-wrapper--narrow terse-tooltip-container">
+          <div class="c-rates-app__loan-details-summary terse-tooltip-container">
               <div class="o-layout">
                 <div class="o-layout__item  u-1/1" data-js="loan-form__details-summary-injectionpoint">
                   <div class="terse-tooltip" data-js="terse-tooltip">
@@ -658,11 +814,13 @@ td.c-rates-listing__monthlies {
             </div>
           </div>
           {{#each programs}}
-          <table class="c-rates-listing__program" data-js-program-id="{{@index}}">
-            <caption class="c-rates-listing__program-label">
-              <span class="c-rates-listing__program-label-heading">{{name}}</span>
-              <span class="c-rates-listing__program-label-subheading">{{product_type}}</span>
-            </caption>
+          <table class="c-rates-listing__program c-rates-listing__program_new" data-js-program-id="{{@index}}">
+           	<caption class="rate_table_caption">
+				<span class="caption_inner">
+					<span class="term_year">{{name}}</span> 
+					<span class="confirmation">{{product_type}}</span>
+				</span>
+			</caption>
             {{#each rates}}
             <tr class="c-rates-listing__result{{#each tags}} c-rates-listing__result--{{this}}{{/each}} hover" data-js-rate-id="{{@index}}" data-js-rate-attributes="{{#each tags}} tag-{{this}}{{/each}}">
               <td class="c-rates-listing__program-shim"></td>
@@ -671,11 +829,12 @@ td.c-rates-listing__monthlies {
               <td class="c-rates-listing__closing">{{currencyUSDNoCents total_closing_costs}}</td>
               <td class="c-rates-listing__monthlies">{{currencyUSDNoCents mo_mortgage}}</td>
               <td class="c-rates-listing__actions">
-                <button class="c-btn c-btn--small c-btn--primary c-rates-listing--terse" data-js="show-rate-details">Select</button>
+               <!--  <button class="c-btn c-btn--small c-btn--primary c-rates-listing--terse" data-js="show-rate-details">Select</button>
                 <button class="c-btn c-btn--small c-btn--subtle  c-rates-listing--normal" data-js="show-rate-details">Details</button>
-                <button class="c-btn c-btn--small c-btn--as-link c-rates-listing--normal" data-js-program-id="{{@../index}}" data-js-rate-id="{{@index}}">Select</button>
-                <button class="c-btn c-btn--small c-btn--subtle  c-rates-listing--verbose expanded-expanded" data-js="show-rate-details">Details</button>
-                <button class="c-btn c-btn--small c-btn--as-link c-rates-listing--verbose" data-js-program-id="{{@../index}}" data-js-rate-id="{{@index}}" data-js="select-rate">Select</button>
+                <button class="c-btn c-btn--small c-btn--as-link c-rates-listing--normal" data-js-program-id="{{@../index}}" data-js-rate-id="{{@index}}">Select</button> -->
+                <button class="c-btn c-btn--small c-btn--subtle  c-rates-listing--verbose expanded-expanded" data-js="show-rate-details">+</button>
+				<button class="c-btn c-btn--small c-btn--subtle  c-rates-listing--verbose collapsed-collapsed" data-js="close-rate-details">-</button>
+                <button class="c-btn c-btn--small c-btn--as-link c-rates-listing--verbose selectBtnMobile" data-js-program-id="{{@../index}}" data-js-rate-id="{{@index}}" data-js="select-rate">Select</button>
               </td>
             </tr>
 			<tr class="previewDetailsSection">
@@ -701,11 +860,7 @@ td.c-rates-listing__monthlies {
   <script id="rates_detail_template" type="text/x-handlebars-template">
     <div class="">
       <div class="c-rates-detail">
-        <button class="c-btn c-btn--icon c-rates-detail__icon-close" data-js="close-rate-details">
-          <span class="u-hidden-visually">Close Rate Details</span><span class="o-icon o-icon--close-button"></span>
-        </button>
-
-        <div class="o-layout">
+        <div class="detailsPopup">
           <div class="o-layout__item u-1/1">
             <h5 class="c-rates-detail__header"><strong>Detailed Costs</strong> for a <em>{{program.name}}</em> loan, with a <em>{{loanRate rate.rate}}</em> interest rate (<em>{{loanRate rate.apr}} APR</em>)</h5>
           </div>
@@ -716,7 +871,8 @@ td.c-rates-listing__monthlies {
           <div class="o-layout__item details_container">
             <table class="details_table">
               <tr class="c-rates-detail__items-heading">
-                <td colspan="2">Estimated Lender Costs:</td>
+                <td class="rightAlign">Estimated Lender Costs:</td>
+				<td></td>
               </tr>
               {{#ifCond rate.lender_costs.lender_fee "0"}}
               <tr class="c-rates-detail__item">
@@ -734,7 +890,8 @@ td.c-rates-listing__monthlies {
                 <td class="c-rates-detail__item-value">${{currencyNumberNoCents rate.lender_costs.loanee_cost}}</td>
               </tr>
               <tr class="c-rates-detail__items-heading">
-                <td colspan="2">Estimated Third Party Costs:</td>
+                <td class="rightAlign">Estimated Third Party Costs:</td>
+				<td></td>
               </tr>
               <tr class="c-rates-detail__item">
                 <td class="c-rates-detail__item-label">Appraisal Fee</td>
@@ -1212,9 +1369,9 @@ td.c-rates-listing__monthlies {
                   </div>
               </div>
             </div>
-            <hr size="pixels" class="line_wide" />
-            <div class="col-xs-12 but_margin hei_third_B">
-              <div class="col-xs-12 hei_third">
+            <hr size="pixels" class="line_wide" />            
+            <div class="col-xs-12 but_margin hei_third_B">            
+             <div class="col-xs-12 hei_third">
                <h3>Current Mortgage Balance</h3>
                 <div class="range_slider5" style="position: relative; padding: 10px;">
                   <div class="range_slider_container"> 
@@ -1222,7 +1379,7 @@ td.c-rates-listing__monthlies {
                       <input type="text" id="range_05" value="" name="range_05" class="slider_input"  data-format-span-as-currency/>
                   </div>
               </div>
-            </div>
+             </div>
                <div class="col-xs-12 center btn_next">
                 <button type="button" class="col-xs-12 btn btn-warning loan-options">View Loan Options</button>
               </div>
@@ -1462,7 +1619,7 @@ td.c-rates-listing__monthlies {
     <!-- END loan details section-->
 
     <!-- BEGIN rates type form section -->
-    <section class="c-page-content__section c-rates-app__rates-listing-wrapper subhead " data-js="rates-listing__wrapper" style="display:none">
+    <section class="c-page-content__section c-rates-app__rates-listing-wrapper subhead" data-js="rates-listing__wrapper" style="display:none">
       <!-- BEGIN rate type form -->
       <h3 class="u-text-centered">Loan Options</h3>
       <form class="c-form--stacked o-wrapper o-wrapper--narrow u-margin-top-none" data-js="ratetype-form">

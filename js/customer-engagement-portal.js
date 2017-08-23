@@ -515,7 +515,9 @@
           $('.c-rates-listing__result:hidden').fadeIn(200);
           break;
       }
-   $(".previewDetails").empty();
+   	$(".previewDetails").empty();
+	$(".c-rates-listing__program_new td").removeClass("activeRow");
+	$(".c-rates-listing__program_new").removeClass("activeTable");
     }
 
     /*validation for user registration form */
@@ -601,8 +603,12 @@
         program = rateData.programs[program_id],
         rate = rateData.programs[program_id].rates[rate_id]
         ;
-       renderRateDetails(program, rate, program_id, rate_id);
-       sendTrackingEvent('viewed_rate');
+       	renderRateDetails(program, rate, program_id, rate_id);
+	   	$(".c-rates-listing__program_new").removeClass("activeTable");
+		$(".c-rates-listing__program_new tr").removeClass("activeRow");
+		$(el).parent().parent().addClass("activeRow");
+		$(el).parent().parent().parent().parent().addClass("activeTable");	
+       	sendTrackingEvent('viewed_rate');
 
     }
 
@@ -2750,6 +2756,10 @@ var est_amt = 0, p_price, per = 20, slide_range;
 		$(".c-linked-percent-slider__numeric-value").text("($"+ dp.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") +")");
 		$("#downpaymentpercent").val($(".c-linked-percent-slider__percent-value").text() + " " + $(".c-linked-percent-slider__numeric-value").text());
 	});
+	$(".collapsed-collapsed").on("click", function(){
+		$(".c-rates-listing__program_new").removeClass("activeTable");
+        $(".c-rates-listing__program_new tr").removeClass("activeRow");
+    });
     // Start the show!
     init();
 
