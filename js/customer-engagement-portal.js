@@ -516,8 +516,8 @@
           break;
       }
    	$(".previewDetails").empty();
-	$(".c-rates-listing__program_new td").removeClass("activeRow");
-	$(".c-rates-listing__program_new").removeClass("activeTable");
+  	$(".c-rates-listing__program_new tr").removeClass("activeRow");
+  	$(".c-rates-listing__program_new").removeClass("activeTable");
     }
 
     /*validation for user registration form */
