@@ -241,6 +241,19 @@ input[type=range]::-webkit-slider-thumb {
 input[type=range]:active::-webkit-slider-thumb, input[type=range]:focus::-webkit-slider-thumb {
   border: 6px solid #c0d7ee;
 }
+/* Special styling for WebKit/Blink */
+input[type=range]::-webkit-slider-thumb {
+   border: 7px solid #c0d7ee;
+  height: 25px;
+  width: 25px;
+  border-radius: 25px;
+  cursor: pointer;
+  background: #1861a9;
+  margin-top:-11px
+}
+input[type=range]:active::-webkit-slider-thumb, input[type=range]:focus::-webkit-slider-thumb {
+  border: 6px solid #c0d7ee;
+}
 /* All the same stuff for Firefox */
 input[type=range]::-moz-range-thumb {
   border: 7px solid #c0d7ee;
@@ -250,8 +263,9 @@ input[type=range]::-moz-range-thumb {
   cursor: pointer;
   background: #1861a9;
 }
-input[type=range]:active::-moz-slider-thumb, input[type=range]:focus::-moz-slider-thumb  {
-  border: 6px solid #c0d7ee;
+input[type=range]:active::-moz-range-thumb, input[type=range]:focus::-moz-range-thumb  {
+	height: 12px;
+	width: 12px;
 }
 /* All the same stuff for IE */
 input[type=range]::-ms-thumb {
@@ -262,8 +276,9 @@ input[type=range]::-ms-thumb {
   cursor: pointer;
   background: #1861a9;
 }
-input[type=range]:active::-ms-slider-thumb, input[type=range]:focus::-ms-slider-thumb {
-  border: 6px solid #c0d7ee;
+input[type=range]:active::-ms-thumb, input[type=range]:focus::-ms-thumb {
+	height: 12px;
+	width: 12px;
 }
 #priceSlider{
     height: 27px;
@@ -316,6 +331,7 @@ table.details_table {
     height: 77px;
     margin: 20px auto;
     width: 96px;
+	cursor:pointer;
 }
 .rate_type_button {
     border: 1px solid #8a8a8a;
@@ -485,7 +501,7 @@ color:#187cb7 !important;
     font-size: 13px;
 }
 .c-rates-detail__header strong {
-    font-weight: 300 !important;
+    font-weight: normal !important;
     color: #3a7ab2 !important;
 }
 
@@ -576,6 +592,13 @@ button.c-btn.c-btn--small.c-btn--as-link.c-rates-listing--verbose.selectBtnMobil
 }
 @media (max-width: 540px){
 table.details_table{width:100%}
+}
+/* IE Edge */
+@supports (-ms-ime-align:auto) {
+input[type=range]::-webkit-slider-thumb {
+  margin-top:-2px
+}
+.shopRateBox input#priceSlider{margin:27px 0 0;}
 }
   </style>
   
@@ -1429,27 +1452,33 @@ table.details_table{width:100%}
             <h5 class="u-margin-bottom-small">What will your loan be for?</h5>
             <div class="c-form-element__control c-radio__toggle-trio" data-js="loantype-radioset">
 				<span class="c-radio rate_type">
-					<span class="rate_type_icon icn_home_purchase"></span>
 					<input type="radio" id="loantype--new-purchase" name="loantype" value="new-purchase" autocomplete="off"/>
-					<label class="rate_type_button" for="loantype--new-purchase">
-						<span class="c-radio--faux"></span>
-						<span class="c-form-element__label">Home Purchase</span>
+					<label for="loantype--new-purchase">
+						<span class="rate_type_icon icn_home_purchase"></span>
+						<span class="rate_type_button">
+							<span class="c-radio--faux"></span>
+							<span class="c-form-element__label">Home Purchase</span>
+						</span>	
 					</label>
 				</span>
 				<span class="c-radio rate_type">
-					<span class="rate_type_icon icn_refinance"></span>
 					<input type="radio" id="loantype--refinance" name="loantype" value="refinance" autocomplete="off"/>
-					<label class="rate_type_button" for="loantype--refinance">
-						<span class="c-radio--faux"></span>
-						<span class="c-form-element__label">Refinance</span>
+					<label for="loantype--refinance">
+						<span class="rate_type_icon icn_refinance"></span>
+						<span class="rate_type_button">
+							<span class="c-radio--faux"></span>
+							<span class="c-form-element__label">Refinance</span>
+						</span>	
 					</label>
 				</span>
 				<span class="c-radio rate_type">
-					<span class="rate_type_icon icn_toc"></span>
 					<input type="radio" id="loantype--cashout" name="loantype" value="cashout" autocomplete="off"/>
-					<label class="rate_type_button" for="loantype--cashout">
-						<span class="c-radio--faux"></span>
-						<span class="c-form-element__label">Take Out Cash</span>
+					<label for="loantype--cashout">
+						<span class="rate_type_icon icn_toc"></span>
+						<span class="rate_type_button">
+							<span class="c-radio--faux"></span>
+							<span class="c-form-element__label">Take Out Cash</span>
+						</span>	
 					</label>
 				</span>
             </div>
