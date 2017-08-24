@@ -99,12 +99,14 @@
         },
 
         'program_name_sort': {
-          '30 year Fixed': 10,
-          '15 year Fixed': 20,
-          '20 year Fixed': 30,
-          '10 year Fixed': 40,
-          '7 year ARM':    50,
-          '5 year ARM':    60
+          "30 YEAR Fixed": 10,          
+          "20 YEAR Fixed": 20,
+          "15 YEAR Fixed": 30,
+          "10 YEAR Fixed": 40,
+          "30 YEAR ARM"  : 50,
+          "10 YEAR ARM"  : 60,
+          "7 YEAR ARM"   : 70,
+          "5 YEAR ARM"   : 80
         },
 
         // Dynamic html templates
@@ -1725,8 +1727,8 @@
 
         // Add the Program to our container, including only the properties we want to keep
         var program ={
-          'name':         raw_program.displayName,
-          'product_type': raw_program.productType,
+          'name':         raw_program.displayName.trim(),
+          'product_type': raw_program.productType.trim(),
           'rates':        []
         };
         program.display_name = program.name + program.product_type;
@@ -1899,20 +1901,20 @@
 
       // console.log(programs)
 
-      for(var i = programs.length-1; i >= 0; i--) {
-        if(programs[i].product_type != "NONCONFORMING") {
-          programs.product_type = 'removeNonCon';
-          break;
-        }
-      }
+      // for(var i = programs.length-1; i >= 0; i--) {
+      //   if(programs[i].product_type != "NONCONFORMING") {
+      //     programs.product_type = 'removeNonCon';
+      //     break;
+      //   }
+      // }
 
-      for(var j = programs.length-1; j >= 0; j--) {
-        if(programs.product_type == 'removeNonCon') {
-          if(programs[j].product_type == "NONCONFORMING") {
-            programs.splice(j, 1);
-          }
-        }
-      }
+      // for(var j = programs.length-1; j >= 0; j--) {
+      //   if(programs.product_type == 'removeNonCon') {
+      //     if(programs[j].product_type == "NONCONFORMING") {
+      //       programs.splice(j, 1);
+      //     }
+      //   }
+      // }
 
       if(programs.product_type) {
         delete programs['product_type'];
@@ -1928,13 +1930,13 @@
             var rateList = [];
             var ratesValue = [];
 
-            for (var k = j ; j <= programs[i].rates.length - 1; k++) {
+            for (var k = j ; j <= programs[i].rates.length - 1; k--) {
               if (rateList.length < 4 && programs[i].rates[k]) {
 
                 // if rate value is not duplicated
                 if (ratesValue.indexOf(programs[i].rates[k].total_closing_costs) == -1) {
                   rateList.push(programs[i].rates[k]);
-                  ratesValue.push(programs[i].rates[k].total_closing_costs);    
+                  ratesValue.push(programs[i].rates[k].total_closing_costs);                  
                 } else {
                   rateList[rateList.length -1] = programs[i].rates[k];
                 }
@@ -1944,6 +1946,7 @@
             }
             
             if (rateList.length > 0) {
+              rateList[0].tags.push('lowestClosing');
               rateList[rateList.length - 1].tags.push('lowestRate');
               programs[i].rates = rateList;  
             }
