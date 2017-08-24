@@ -1898,62 +1898,41 @@
           ;
         return (isNaN(i_name) || isNaN(i_program)) ? '9999999' : i_name + i_program;
       }]);
-
-      // console.log(programs)
-
-      // for(var i = programs.length-1; i >= 0; i--) {
-      //   if(programs[i].product_type != "NONCONFORMING") {
-      //     programs.product_type = 'removeNonCon';
-      //     break;
-      //   }
-      // }
-
-      // for(var j = programs.length-1; j >= 0; j--) {
-      //   if(programs.product_type == 'removeNonCon') {
-      //     if(programs[j].product_type == "NONCONFORMING") {
-      //       programs.splice(j, 1);
-      //     }
-      //   }
-      // }
-
+      
       if(programs.product_type) {
         delete programs['product_type'];
       }
 
       // Display a maximum of 4 rates that are above lowest closing cost 
       for (var i = 0; i < programs.length; i++) {
-        for (var j = programs[i].rates.length - 1; j >= 0; j--) {
-          if (programs[i].rates[j].tags[0] === "lowestClosing" || 
-                programs[i].rates[j].tags[1] === "lowestClosing" || 
-                programs[i].rates[j].tags[2] === "lowestClosing") {
 
-            var rateList = [];
-            var ratesValue = [];
+        // Remove duplicate record
+        var non_duplidated_data = _.uniqBy(programs[i].rates, 'total_closing_costs');
+        
+        // Sort by rate data based on closing cost
+        var sortedData = _.sortBy(non_duplidated_data, function(o) {
+          return -o.rate;
+        });
 
-            for (var k = j ; j <= programs[i].rates.length - 1; k--) {
-              if (rateList.length < 4 && programs[i].rates[k]) {
+        var startIndexOfSlice = 0;
 
-                // if rate value is not duplicated
-                if (ratesValue.indexOf(programs[i].rates[k].total_closing_costs) == -1) {
-                  rateList.push(programs[i].rates[k]);
-                  ratesValue.push(programs[i].rates[k].total_closing_costs);                  
-                } else {
-                  rateList[rateList.length -1] = programs[i].rates[k];
-                }
-              } else {
-                break;
-              }
-            }
-            
-            if (rateList.length > 0) {
-              rateList[0].tags.push('lowestClosing');
-              rateList[rateList.length - 1].tags.push('lowestRate');
-              programs[i].rates = rateList;  
-            }
-            
-            break;
-          }
+        // Find 0 closing cost index and removed top of zero closing cost record
+        var indexOfZero = _.findIndex(sortedData, function(o) { 
+          return o.total_closing_costs == 0; 
+        });
+
+        if (indexOfZero > 0) {
+          startIndexOfSlice = indexOfZero;
         }
+
+        // Slice data and take 4 records
+        var resutls = _.slice(sortedData, [start=startIndexOfSlice], [end=startIndexOfSlice+4])        
+
+        if (resutls && resutls.length > 0) {
+          resutls[0].tags.push('lowestClosing');
+          resutls[resutls.length - 1].tags.push('lowestRate');
+          programs[i].rates = resutls;  
+        }          
       }
 
       // Add index properties to programs and rates, to be used in templates
