@@ -1005,7 +1005,7 @@ input[type=range]::-webkit-slider-thumb {
 
         <div class="o-layout">
           <div class="o-layout__item u-1/1 o-layout--right" id="select-different-container">
-            <button class="c-btn c-btn--prominent u-margin-bottom-small" data-js-program-id="{{program_id}}" data-js-rate-id="{{rate_id}}" data-js="select-rate">Get Started With This Rate</button>
+            <button class="c-btn c-btn--prominent u-margin-bottom-small" data-js-program-id="{{program_id}}" data-js-rate-id="{{rate_id}}" data-js="select-rate" onclick="ScrollTo('secure_rate')">Get Started With This Rate</button>
             <button class="c-btn c-btn--subtle u-margin-bottom-small" id="different-rate-btn" data-js="close-rate-details">Continue Shopping</button>
           </div>
         </div>
@@ -1735,7 +1735,7 @@ input[type=range]::-webkit-slider-thumb {
 
     <!-- BEGIN user registration -->
     <section data-js="user-registration-wrapper" class="u-margin-bottom-large" style="display:none">
-      <div class="o-wrapper o-wrapper--narrow u-margin-top-none">
+      <div class="o-wrapper o-wrapper--narrow u-margin-top-none" id="secure_rate">
         <div class="o-layout">
 
           <div class="o-layout__item  u-1/1">
