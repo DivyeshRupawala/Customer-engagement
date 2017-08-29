@@ -1475,8 +1475,13 @@
 
     function createUserAccount(registration_details) {
       var teaserRate = [state.chosen_rate.teaserRate];
+      var teaseRateReqObj = buildRatesDataRequestObj();
 
-      console.log(teaserRate)
+      console.log("1 " +teaserRate);
+
+      if (teaserRate && teaserRate[0]) {
+        _.merge(teaserRate[0], teaseRateReqObj);        
+      }      
 
       $.ajax({
         url : API_URL_PREFIX+'shopper/registration',
