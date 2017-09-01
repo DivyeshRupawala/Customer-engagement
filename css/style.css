@@ -446,7 +446,7 @@ padding-bottom: 110px;
 	
 }
 .back_option,.main_option1,.back1_option,.back2_option,.back3_option{
-	font-family: robotothin;
+	font-family: robotoregular;
 	font-size: 0.8em;
 	padding-bottom: 20px;
 	cursor: pointer;
@@ -455,7 +455,7 @@ padding-bottom: 110px;
 	padding-bottom: 20px;
 }
 .pur2{
-padding:40px;
+padding:50px;
 }
 .desktop-view{
 		display:block !important;
@@ -747,13 +747,6 @@ padding:40px;
 /* i phone 6 plus landscape */
 
 @media only screen and (min-width : 414px) and (max-width : 736px) and (orientation : landscape){
-	.purchase{
-		    background-size: 100px;
-	}
-	
-	.pur,.pur2 {
-    padding: 70px;
-	}
 	.mainTab{
 		padding-bottom: 20px;
 	}
@@ -765,12 +758,7 @@ padding:40px;
     	padding-top: 30px;
 
 	}
-	.pur1 {
-    padding: 70px;
-	}
-	.icn_unit1,.icn_condo,.icn_unit2,.icn_unit3,.icn_unit4,.Primary_re,.Vacation_h,.Investment_p{
-	background-size: 75px;
-	}
+
 	.xs_resize_hu1,.txt_unit2{
 		    text-align: left;
 	}
@@ -805,13 +793,7 @@ padding:40px;
 	.drop_padd {
     padding-left: 15px;
 	}
-	.icn_unit1, .icn_condo, .icn_unit2, .icn_unit3, .icn_unit4, .Primary_re, .Investment_p{
-		    background-size: 65px;
 
-	}
-	.Vacation_h{
-		background-size: 90px;
-	}
 	.first_cir {
      padding-left: 0px; 
 	}
@@ -842,9 +824,7 @@ padding:40px;
     	margin-bottom: 80px;
         font-size: 2em;
 	}
-	.pur2{
-		padding:50px;
-	}
+
 	.back_text .container{
 		height: 200px;
 	}
@@ -866,18 +846,7 @@ padding:40px;
 	.txt_unit, .txt_unit1, .txt_unit2{
 		    font-size: 1.1em;
 	}
-	.Primary_re{
-		    background-size: 55px;
-	}
-	.pur {
-   	 padding: 50px;
-	}
-	.purchase,.Refinance,.T_Case{
-		 background-size: 75px;
-	}
-	.pur1 {
-    padding: 48px;
-	}
+
 	.back_option, .main_option1, .back1_option, .back2_option, .back3_option{
 		    font-size: 1em;
 		    color:#616161;
@@ -887,7 +856,7 @@ padding:40px;
 	}
 	span#slide_range, #slide_per_range{
 		font-size: 1.8em; 
-		font-family: 'Roboto ', sans-serif;
+		font-family: robotoregular;
 		font-weight: 100;
 	}
 	.irs-bar-edge{
@@ -912,12 +881,6 @@ padding:40px;
 	.back_text .container{
 		    height: 215px;
 	}
-	.pur1 {
-    padding: 58px;
-	}
-	.pur {
-    padding: 60px;
-	}
 	.xs_resize_hu1,.txt_unit2{
 		    text-align: left;
 	}
@@ -929,21 +892,12 @@ padding:40px;
 		text-align: left;
 		padding-left: 35px;
 	}
-	.pur2 {
-		padding: 40px;
-	}
+
 }
 /* i phone portrait */
 
 @media screen and (max-width:320px) and (orientation : portrait) {
 .txt_unit, .txt_unit1, .txt_unit2{font-size: 0.875em;}
-	.pur1{
-	padding: 40px;
-	}
-	.pur {
-		padding: 40px;
-	}
-	
 	.xs_resize_hu0{
 		margin-bottom: 10px;
 	}
@@ -955,33 +909,15 @@ span#slide_range_credit {
 /*iphone4s landscape*/
 
 @media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
-	.purchase, .Refinance, .T_Case {
-    	background-size: 50px;
-	}
-	.pur {
-    padding: 40px;
-	}
-	.pur2{
-		padding: 35px;
-	}
-	.Primary_re,.Investment_p{
-	background-size: 40px;
-	}
-	.Vacation_h{
-		background-size: 50px;
-	}
+
 	.txt_unit, .txt_unit1, .txt_unit2{
 		    font-size: 1em;
 	}
 	.subhead h2, .subhead h3{
 		font-size: 2em;
 	}
-	.pur1 {
-    padding: 40px;
-	}
-	.icn_unit1, .icn_condo, .icn_unit2, .icn_unit3, .icn_unit4{
-		background-size: 50px;
-	}
+
+
 	.back_text .container {
         height: 100px;
 	}
@@ -1149,9 +1085,7 @@ span#slide_range_credit {
 	span#slide_range, #slide_per_range{
 		font-size: 1.4em;
 	}
-	.pur {
-    padding: 40px;
-	}
+
 	.back_text .container{
 		    height: 180px;
 	}
@@ -1160,24 +1094,11 @@ span#slide_range_credit {
     		margin-bottom: 80px;
     		font-size: 1.6em;
 	}
-	.pur2{
-		padding: 40px;
-	}
-	.Primary_re,.Vacation_h,.Investment_p{
-	background-size: 55px;
-	}
-	.pur1 {
-    padding: 40px;
-	}
+
 	.hei_third_B h3,.hei_third h3{
 		padding-bottom: 0px !important;
 	}
-	.icn_unit1,.icn_condo,.icn_unit2,.icn_unit3,.icn_unit4{
-		background-size: 55px;
-	}
-	.Vacation_h{
-		background-size: 78px;
-	}
+
 
 }
 
@@ -1189,37 +1110,22 @@ span#slide_range_credit {
     font-size: 1em;
     color: #616161;
 	}
-	.Primary_re,.Vacation_h,.Investment_p{
-   		 background-size: 55px;
-	}
-	.pur1 {
-	    padding: 58px;
-		}
-	.pur2 {
-    padding: 58px;
-	}
+
 	.back_text .container {
-    height: 170px;
+		height: 170px;
 	}
 	.back_text h3{
 	margin-top: 80px;
     margin-bottom: 100px;
 	}
-	.purchase, .Refinance, .T_Case {
-    background-size: 80px;
-	}
-	.pur {
-    padding: 60px;
-	}
+	
 	.first_cir {
     padding-left: 25px;
 	}
 	.last_cir {
     padding-right: 25px;
 	}
-	.icn_unit1, .icn_condo, .icn_unit2, .icn_unit3, .icn_unit4,.Primary_re, .Vacation_h, .Investment_p {
-    background-size: 70px;
-	}
+
 	.xs_resize_hu0 {
 		padding-left:20px;
 	}
@@ -1276,18 +1182,6 @@ span#slide_range_credit {
 /*moto g portrait*/
 
 @media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 2){
-	.Primary_re,.Vacation_h,.Investment_p{
-	    background-size: 45px;
-	}
-	.pur2 {
-    padding: 45px;
-	}
-	.purchase, .Refinance, .T_Case {
-    background-size: 60px;
-	}
-	.pur {
-    padding: 45px;
-	}
 	.xs_resize_hu0{
     text-align: right ;
 	}
@@ -1299,9 +1193,6 @@ span#slide_range_credit {
 	}
 	.txt_unit2{
 		padding-right:30px;
-	}
-	.pur1 {
-    padding: 45px;
 	}
 }
 .rate_type_button{padding:10px;}
@@ -1366,11 +1257,15 @@ span.or_span {font-family: robotothin;font-size: 45px;color: #848484;}
     top: 2rem;
 }
 }
-@media (max-width:558px){
+@media (max-width:400px){
 	.fha-circle{
 		padding: 50px;
 	}
 	.fha-options ul li{
 		margin:10px 5px;
 	}
+	.pur1, .pur, .pur2 {
+		padding: 40px;
+	}
+	.purchase, .Refinance, .T_Case, .icn_unit1, .icn_condo, .icn_unit2, .icn_unit3, .icn_unit4, .Vacation_h, .Primary_re, .Investment_p{background-size:50px !important;}
 }
