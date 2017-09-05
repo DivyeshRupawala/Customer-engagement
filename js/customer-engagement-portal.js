@@ -1961,9 +1961,14 @@
           createRangeSliders('range_03','slide_range3','range_slider3',0,500000,300000,5000); 
           $('.range_slider3 .irs-max').text("$500,000");  
           createRangeSliders('range_06','slide_range6','range_slider6',0,399500,40000,5000);
+          createRangeSliders('range_07','slide_range7','range_slider7',0,399500,40000,5000);
+           $('.range_slider7 .irs-min').text("$1"); 
+           $('.range_slider7 .irs-max').text("$399,500"); 
           createRangeSliders('range_04','slide_range4','range_slider4',47059,2000000,470000,10000);  
           createRangeSliders('range_05','slide_range5','range_slider5',0,430000,258000,5000); 
-          
+          if($.isEmptyObject(mobile_data)){  
+            $('.zipcode_mobile').prop("disabled", true); 
+          }
       }
     }
 
@@ -1978,11 +1983,13 @@
         $("#Purchase").addClass("active");
         $("#Refinance").removeClass("active");
         $("#Take_Case").removeClass("active");
+         $("#cashout").removeClass("active");
         $(".mainTab").attr("style","display:none");
         $('.sec_main_tab').css('display','block');
-        createSliders();
+        createSliders();        
         state.chosen_loan_type="new-purchase";  
-        mobile_data.chosen_loan_type="new-purchase";        
+        mobile_data.chosen_loan_type="new-purchase";     
+
     });
 
     
@@ -1990,12 +1997,13 @@
         $(".purchase").removeClass("selected"); // active 
         $(".Refinance").addClass("refin_selected");// remove active
         $(".T_Case").removeClass("T_Case_selected");// remove active
-
         $("#Purchase").addClass("active");
         $("#Refinance").addClass("active");
         $("#Take_Case").removeClass("active");
+        $("#cashout").removeClass("active");
         $(".mainTab").attr("style","display:none");
         $('.sec_main_tab').css('display','block');
+        $('.sec_main_tab_cashout').css('display','none');
         createSliders();
         state.chosen_loan_type="refinance";  
         mobile_data.chosen_loan_type="refinance";              
@@ -2005,17 +2013,33 @@
         $(".purchase").removeClass("selected"); // remove active 
         $(".Refinance").removeClass("refin_selected"); // remove active  
         $(".T_Case").addClass("T_Case_selected"); //active 
-
-        $("#Purchase").addClass("active");
+        $("#cashout").addClass("active");
         $("#Refinance").removeClass("active");
         $("#Take_Case").addClass("active");
         $(".mainTab").attr("style","display:none");
-        $('.sec_main_tab').css('display','block');
+        $('.sec_main_tab_cashout').css('display','block');
+        $('.sec_main_tab').css('display','none');
         createSliders();
         state.chosen_loan_type="cashout";  
         mobile_data.chosen_loan_type="cashout";      
-
+        setTimeout(function() {$('.range_slider7 .irs-min').text('$1');$('.range_slider7 .irs-max').text('$399,500');}, 500);
     });
+
+    $(".sec_next_tab_cashout").click (function(){
+       $(".purchase").removeClass("selected"); // remove active 
+        $(".Refinance").removeClass("refin_selected"); // remove active  
+        $(".T_Case").addClass("T_Case_selected"); //active 
+        $("#Purchase").addClass("active");
+        $("#cashout").removeClass("active");
+        $("#Refinance").removeClass("active");
+        $("#Take_Case").addClass("active");
+        $(".mainTab").attr("style","display:none");
+        $('.step-1-cahout').css('display','none');
+        $('.sec_main_tab_cashout').css('display','none');
+        $('.sec_main_tab').css('display','block');
+        mobile_data.cashout=accounting.unformat($("#range_07").val());  
+       });
+
 
   // next step code start
    $(".sec_next_tab").click (function(){
@@ -2056,8 +2080,7 @@
           $('.step-2').removeAttr("style","display:none");
           $(".third_next_tab").removeClass("selectedTab");
           $(this).addClass("selectedTab");
-          console.log(mobile_data);
-      });
+        });
 
   $(".Residence_tab").click (function(){
           mobile_data.propertyuse=$(this).data('residence-type');
@@ -2079,8 +2102,7 @@
           $('.step-3').removeAttr("style","display:none");
           $(".forth_next_tab").removeClass("selectedTab");
           $(this).addClass("selectedTab");
-          console.log(mobile_data);
-    });
+        });
 
 
    $(".fifth_next_tab").click (function(){
@@ -2088,21 +2110,18 @@
 		mobile_data.creditscore_text=$("#slide_range_credit").text();
         switch(mobile_data.chosen_loan_type){
           case "new-purchase":  
-           // setTimeout(function() {$('.range_slider').find('.irs-max').text('$2M+');}, 250);
             $("#pro_loc_content").addClass("active");
             $("#cradit_score").removeClass("active");
             $(".fifth_next_tab").attr("style","display:block");
             $('.step-4').removeAttr("style","display:none");
             break;
           case "refinance":
-           // setTimeout(function() {$('.range_slider2').find('.irs-max').text('$2M+');}, 250);
             $("#pro_loc_content_refinance").addClass("active");
             $("#cradit_score").removeClass("active");
             $(".fifth_next_tab").attr("style","display:block");
             $('.step-4').removeAttr("style","display:none");
             break;
           case "cashout":
-            //setTimeout(function() {$('.range_slider4').find('.irs-max').text('$2M+');}, 250);
             $("#pro_loc_content_cashout").addClass("active");
             $("#cradit_score").removeClass("active");
             $(".fifth_next_tab").attr("style","display:block");
@@ -2173,6 +2192,7 @@
         mobile_data={};
         state.chosen_loan_type=""; 
         $('#mobile_form')[0].reset();    
+        $(this).closest('.subhead').removeClass('active');
         $('.zipcode_mobile').prop("disabled", true);
         $(".purchase").removeClass("selected");
         $(".T_Case").removeClass("selected");
@@ -2184,8 +2204,10 @@
         $(".mainTab").removeClass("selected");
         $(".mainTab").removeAttr("style","display:none");
         $(".mainTab").removeAttr("style","display:none");
-        $("#Purchase").removeClass("active");
+        $("#Purchase").removeClass("style","display:none");
+        $("#Purchase").removeAttr("active");
         $("#Refinance").removeClass("active");
+        $("#cashout").removeClass("active");
         $(".Refinance").removeClass("refin_selected");
         $(".T_Case").removeClass("T_Case_selected");         
         $("#Take_Case").removeClass("active");
@@ -2220,6 +2242,15 @@
            var slider6 = $("#range_06").data("ionRangeSlider");
            slider6.update({ from: "40000"});
            
+        }
+        if($("#range_07").data("ionRangeSlider")){
+          $("#range_07").data("ionRangeSlider").destroy();
+          createRangeSliders('range_07','slide_range7','range_slider7',0,399500,40000,5000);
+           $('#slide_range7').text("$40,000"); 
+           var slider7 = $("#range_07").data("ionRangeSlider");
+           slider7.update({ from: "40000"});
+           $('.range_slider7 .irs-min').text("$1"); 
+           $('.range_slider7 .irs-max').text("$399,500"); 
         }
         if($("#range_04").data("ionRangeSlider")){
           $("#range_04").data("ionRangeSlider").destroy();
@@ -2256,10 +2287,33 @@
 		$("#fha_m").val("0");
 	});
 
-	$(".back_option").click( function(){
+  $(".back6_option").click( function(){
         $(".mainTab").removeAttr("style","display:none");        
         $(this).closest('.subhead').removeClass('active');
         $(this).closest('.subhead').css('display','none');
+    });
+  $(".back_option").click( function(){
+        switch(mobile_data.chosen_loan_type){
+            case "new-purchase":   
+              $(".mainTab").removeAttr("style","display:none");        
+              $(this).closest('.subhead').removeClass('active');
+              $(this).closest('.subhead').css('display','none');
+              break;
+            case "refinance":
+              $(".mainTab").removeAttr("style","display:none");        
+              $(this).closest('.subhead').removeClass('active');
+              $(this).closest('.subhead').css('display','none');
+              break;
+             case "cashout" :
+               $(this).closest('.subhead').removeClass('active');
+                $(this).closest('.subhead').css('display','none');
+                $('.subhead.step-1 .sec_main_tab_cashout').css('display','block');
+                $('.subhead.step-1-cahout').css('display','block'); 
+                $('.sec_main_tab_cashout').css('display','block'); 
+                setTimeout(function() { $('.range_slider7 .irs-min').text("$1"); 
+           $('.range_slider7 .irs-max').text("$399,500"); }, 250);
+             break;
+          }
     });
 
     $(".back1_option").click( function(){
@@ -2518,9 +2572,48 @@ function createRangeSliders(sliderId,spanId,classId,minVal, maxVal, fromVal, ste
         var slider4 = $("#range_04").data("ionRangeSlider");
         slider4.update({ from: 470000, min:Math.round(slider6val/.85),max: 2000000});
         $('.range_slider4 .irs-min').text('$' + Math.round(slider6val/.85).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));  
+        //update slider7 value
+        var slider7 = $("#range_07").data("ionRangeSlider");
+        slider7.update({ from: slider6val});       
+        
       }
-			if(sliderId != "range_04" &&  sliderId != "range_05"){
-			     $('.' + classId + ' .irs-min').text('$1');
+      if(sliderId == "range_07"){
+        if(current_val==0){
+          slMaxVal = parseInt(1);
+        }else{
+          slMaxVal = parseInt(current_val);
+        }
+        var slider7val=parseInt($('#range_07').val());
+        //update slider7 value
+        var slider6 = $("#range_06").data("ionRangeSlider");
+        slider6.update({ from: slMaxVal});
+        $('#slide_range6').text('$' + slider7val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+        if($('#range_06').val()==0){
+          var slider6val=1;
+        }else{
+         var slider6val=parseInt($('#range_06').val());
+       }
+         var slider4 = $("#range_04").data("ionRangeSlider");
+        slider4.update({ from: 470000, min:Math.round(slider6val/.85),max: 2000000});
+        $('.range_slider4 .irs-min').text('$' + Math.round(slider6val/.85).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));  
+               
+
+        var slider4val=parseInt($('#range_04').val());
+        var slider5Endvalue=parseInt(slider4val-current_val);
+        var slider5 = $("#range_05").data("ionRangeSlider");
+        slider5.update({ from: (slider5Endvalue*60/100), max: slider5Endvalue});
+        slider5defaultvalue=(slider5Endvalue*60/100);
+        console.log("mallik");
+        console.log(slider5defaultvalue);
+        $('.range_slider5 .irs-max').text('$' + slider5Endvalue.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+         $('#slide_range5').text('$' + slider5defaultvalue.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+        
+       
+        
+      }
+
+      if(sliderId != "range_04" &&  sliderId != "range_05"){
+           $('.' + classId + ' .irs-min').text('$1');
       }
 			$('.range_slider2 .irs-max').text('$2M+');
       $('.range_slider4 .irs-max').text('$2M');      
@@ -2707,12 +2800,14 @@ var est_amt = 0, p_price, per = 20, slide_range;
     $('.range_slider3 .irs-max').text('$500,000');
 		$('.range_slider4 .irs-max').text('$2M');   
     $('.range_slider6 .irs-max').text('$399,500');
-		$('.range_slider').find('.irs-min').text('$1');
-		$('.range_slider2').find('.irs-min').text('$1');
-		$('.range_slider3').find('.irs-min').text('$1');
-		//$('.range_slider4').find('.irs-min').text('$47,059');
-		$('.range_slider5').find('.irs-min').text('$0');
-		$('.range_slider6').find('.irs-min').text('$1');
+    $('.range_slider7 .irs-max').text('$399,500');
+    $('.range_slider').find('.irs-min').text('$1');
+    $('.range_slider2').find('.irs-min').text('$1');
+    $('.range_slider3').find('.irs-min').text('$1');
+    //$('.range_slider4').find('.irs-min').text('$47,059');
+    $('.range_slider5').find('.irs-min').text('$0');
+    $('.range_slider6').find('.irs-min').text('$1');
+    $('.range_slider7').find('.irs-min').text('$1');
     //$('.range_slider5 .irs-max').text('$430,000');
 
         var slMaxVal = parseInt($('#range_04').val());
@@ -2739,6 +2834,8 @@ var est_amt = 0, p_price, per = 20, slide_range;
 		$('.range_slider5').find('.irs-max').text('$430,000');
 		$('.range_slider6').find('.irs-min').text('$1');
     $('.range_slider6 .irs-max').text('$399,500');
+    $('.range_slider7').find('.irs-min').text('$1');
+    $('.range_slider7 .irs-max').text('$399,500');
     $('.range_slider').find('.irs-max').text('$2M+');
 		$('.range_slider2').find('.irs-max').text('$2M+');
    
@@ -2754,9 +2851,11 @@ var est_amt = 0, p_price, per = 20, slide_range;
       $('.range_slider4').find('.irs-min').text('$47,059');
 			$('.range_slider5').find('.irs-min').text('$0'); 
       $('.range_slider5').find('.irs-max').text('$430,000');
-			$('.range_slider6').find('.irs-min').text('$1'); 
-      $('.range_slider6').find('.irs-max').text('$399,500'); 
-		}, 200);
+      $('.range_slider6').find('.irs-min').text('$1'); 
+      $('.range_slider6').find('.irs-max').text('$399,500');
+      $('.range_slider7').find('.irs-min').text('$1'); 
+      $('.range_slider7').find('.irs-max').text('$399,500'); 
+    }, 200);
     });        
 	$('#creditscoreDesktop').on('input change', function(){
 		$('#chanceSlider').text(840 - ($('#creditscoreDesktop').val() - 840));
