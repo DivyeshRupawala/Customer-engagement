@@ -2596,20 +2596,13 @@ function createRangeSliders(sliderId,spanId,classId,minVal, maxVal, fromVal, ste
          var slider4 = $("#range_04").data("ionRangeSlider");
         slider4.update({ from: 470000, min:Math.round(slider6val/.85),max: 2000000});
         $('.range_slider4 .irs-min').text('$' + Math.round(slider6val/.85).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));  
-               
-
         var slider4val=parseInt($('#range_04').val());
         var slider5Endvalue=parseInt(slider4val-current_val);
         var slider5 = $("#range_05").data("ionRangeSlider");
         slider5.update({ from: (slider5Endvalue*60/100), max: slider5Endvalue});
         slider5defaultvalue=(slider5Endvalue*60/100);
-        console.log("mallik");
-        console.log(slider5defaultvalue);
         $('.range_slider5 .irs-max').text('$' + slider5Endvalue.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
-         $('#slide_range5').text('$' + slider5defaultvalue.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
-        
-       
-        
+        $('#slide_range5').text('$' + slider5defaultvalue.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
       }
 
       if(sliderId != "range_04" &&  sliderId != "range_05"){
