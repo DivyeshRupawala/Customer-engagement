@@ -418,6 +418,10 @@
      // });
      
    }
+   $('.numbersOnly').keyup(function () { 
+    this.value = this.value.replace(/[^0-9]/g,'');
+  });
+
 
    $('#zipcode').on('keydown', function(e){
       // Allow: backspace, delete, tab, escape, enter and .
@@ -2831,8 +2835,7 @@ var est_amt = 0, p_price, per = 20, slide_range;
     $('.range_slider7 .irs-max').text('$399,500');
     $('.range_slider').find('.irs-max').text('$2M+');
 		$('.range_slider2').find('.irs-max').text('$2M+');
-   
-    });
+  });
      $(window).resize(function () {
         setTimeout(function(){
 			$('.range_slider .irs-max').text('$2M+'); 
@@ -2848,6 +2851,19 @@ var est_amt = 0, p_price, per = 20, slide_range;
       $('.range_slider6').find('.irs-max').text('$399,500');
       $('.range_slider7').find('.irs-min').text('$1'); 
       $('.range_slider7').find('.irs-max').text('$399,500'); 
+       var slMaxVal = parseInt($('#range_04').val());
+        if($('#range_07').val()==0){
+            var slider7val=1;
+          }else{
+            var slider7val=parseInt($('#range_07').val());
+          }
+           
+
+        var slider5Endvalue=parseInt(slMaxVal-slider7val);
+        $('.range_slider4').find('.irs-min').text('$' + Math.round(slider7val/.85).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"))
+        $('.range_slider5 .irs-max').text('$' + slider5Endvalue.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+
+  
     }, 200);
     });        
 	$('#creditscoreDesktop').on('input change', function(){
