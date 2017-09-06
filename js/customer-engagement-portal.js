@@ -2590,7 +2590,7 @@ function createRangeSliders(sliderId,spanId,classId,minVal, maxVal, fromVal, ste
         var slider7val=parseInt($('#range_07').val());
         //update slider7 value
         var slider6 = $("#range_06").data("ionRangeSlider");
-        slider6.update({ from: slMaxVal});
+        slider6.update({ from: slider7val});
         $('#slide_range6').text('$' + slider7val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
         if($('#range_06').val()==0){
           var slider6val=1;
@@ -2601,7 +2601,7 @@ function createRangeSliders(sliderId,spanId,classId,minVal, maxVal, fromVal, ste
         slider4.update({ from: 470000, min:Math.round(slider6val/.85),max: 2000000});
         $('.range_slider4 .irs-min').text('$' + Math.round(slider6val/.85).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));  
         var slider4val=parseInt($('#range_04').val());
-        var slider5Endvalue=parseInt(slider4val-current_val);
+        var slider5Endvalue=parseInt(slider4val-slider7val);
         var slider5 = $("#range_05").data("ionRangeSlider");
         slider5.update({ from: (slider5Endvalue*60/100), max: slider5Endvalue});
         slider5defaultvalue=(slider5Endvalue*60/100);
@@ -2852,15 +2852,15 @@ var est_amt = 0, p_price, per = 20, slide_range;
       $('.range_slider7').find('.irs-min').text('$1'); 
       $('.range_slider7').find('.irs-max').text('$399,500'); 
        var slMaxVal = parseInt($('#range_04').val());
-        if($('#range_07').val()==0){
-            var slider7val=1;
+        if($('#range_06').val()==0){
+            var slider6val=1;
           }else{
-            var slider7val=parseInt($('#range_07').val());
+            var slider6val=parseInt($('#range_06').val());
           }
            
 
-        var slider5Endvalue=parseInt(slMaxVal-slider7val);
-        $('.range_slider4').find('.irs-min').text('$' + Math.round(slider7val/.85).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"))
+        var slider5Endvalue=parseInt(slMaxVal-slider6val);
+        $('.range_slider4').find('.irs-min').text('$' + Math.round(slider6val/.85).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"))
         $('.range_slider5 .irs-max').text('$' + slider5Endvalue.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
 
   
