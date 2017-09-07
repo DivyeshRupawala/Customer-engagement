@@ -6,7 +6,7 @@
   // Postpone execution until DOM is loaded
   $(function() {
     var API_URL_PREFIX = "../NewfiWeb/rest/";
-  // var API_URL_PREFIX = "http://52.74.75.203:8080/NewfiWeb/rest/";
+  // var API_URL_PREFIX = "https://pg1.newfi.com/NewfiWeb/rest/";
     /**
      * Setup several app-wide collections:
      * 1. dict:
@@ -1128,17 +1128,19 @@
         // Parse remote data immediately, so it's available for subsequent actions
         cache.response
           .done(function(data){
-            cache.cleaned = tranformRatesData(JSON.parse(data));
-            console.log(cache.cleaned);
+            if(data!=""){
+              cache.cleaned = tranformRatesData(JSON.parse(data));
+              console.log(cache.cleaned);
 
             // Wait to render rates table when we hav valid data
 
-            if(cache.cleaned.programs.length > 0) {
-              dom.$rate_list_error.fadeOut(300);
-              renderRatesTable();
-            } else {
-              console.log('no data fetched from the server for this query...........');
-              renderError();
+              if(cache.cleaned.programs.length > 0) {
+                dom.$rate_list_error.fadeOut(300);
+                renderRatesTable();
+              } else {
+                console.log('no data fetched from the server for this query...........');
+                renderError();
+              }
             }
             
           })
