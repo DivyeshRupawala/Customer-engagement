@@ -431,7 +431,7 @@ font-size: 0.6em;
 	    margin-top: 30px;
     margin-bottom: 30px;
 }
-#cashout,#pro_loc_content_refinance_fha, #pro_loc_content,#Purchase, #property_content, #property_content,#select_property, #cradit_score,#pro_loc_content_refinance,#pro_loc_content_cashout, .bac_optionLoanDetails{
+#cashout_mobile,#pro_loc_content_refinance_fha, #pro_loc_content,#Purchase, #property_content, #property_content,#select_property, #cradit_score,#pro_loc_content_refinance,#pro_loc_content_cashout, .bac_optionLoanDetails{
 	display: none;
 }
 .bac_optionLoanDetails {

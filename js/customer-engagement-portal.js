@@ -1989,7 +1989,7 @@
         $("#Purchase").addClass("active");
         $("#Refinance").removeClass("active");
         $("#Take_Case").removeClass("active");
-         $("#cashout").removeClass("active");
+         $("#cashout_mobile").removeClass("active");
         $(".mainTab").attr("style","display:none");
         $('.sec_main_tab').css('display','block');
         createSliders();        
@@ -2006,7 +2006,7 @@
         $("#Purchase").addClass("active");
         $("#Refinance").addClass("active");
         $("#Take_Case").removeClass("active");
-        $("#cashout").removeClass("active");
+        $("#cashout_mobile").removeClass("active");
         $(".mainTab").attr("style","display:none");
         $('.sec_main_tab').css('display','block');
         $('.sec_main_tab_cashout').css('display','none');
@@ -2019,7 +2019,7 @@
         $(".purchase").removeClass("selected"); // remove active 
         $(".Refinance").removeClass("refin_selected"); // remove active  
         $(".T_Case").addClass("T_Case_selected"); //active 
-        $("#cashout").addClass("active");
+        $("#cashout_mobile").addClass("active");
         $("#Refinance").removeClass("active");
         $("#Take_Case").addClass("active");
         $(".mainTab").attr("style","display:none");
@@ -2036,7 +2036,7 @@
         $(".Refinance").removeClass("refin_selected"); // remove active  
         $(".T_Case").addClass("T_Case_selected"); //active 
         $("#Purchase").addClass("active");
-        $("#cashout").removeClass("active");
+        $("#cashout_mobile").removeClass("active");
         $("#Refinance").removeClass("active");
         $("#Take_Case").addClass("active");
         $(".mainTab").attr("style","display:none");
@@ -2213,7 +2213,7 @@
         $("#Purchase").removeClass("style","display:none");
         $("#Purchase").removeAttr("active");
         $("#Refinance").removeClass("active");
-        $("#cashout").removeClass("active");
+        $("#cashout_mobile").removeClass("active");
         $(".Refinance").removeClass("refin_selected");
         $(".T_Case").removeClass("T_Case_selected");         
         $("#Take_Case").removeClass("active");
