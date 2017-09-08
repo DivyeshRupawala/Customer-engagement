@@ -487,6 +487,12 @@
     }
 
     $('#zipcodeMobile').blur(validateMobilezipcode).keyup(validateMobilezipcode);
+    $("#zipcodeMobile").bind('paste', function(e) {
+        var ctl = $(this);
+        setTimeout(function() {
+            validateMobilezipcode();
+        }, 100);
+    });
        
    function closeTooltips() {
       $('.c-tooltip').remove();
@@ -682,7 +688,25 @@
           userRegistrationValidator.resetForm();
         }
         //adding code for diabling divs
-        if(!$.isEmptyObject(mobile_data)){         
+        if(!$.isEmptyObject(mobile_data)){ 
+          state = {
+            'loan_advisors': null,
+            'data_cache':    {
+              'rates':        {
+                'request':     null,
+                'response':    null,
+                'cleaned':     null
+              }
+            },
+            'chosen_loan_type': null,
+            'chosen_program':   null,
+            'chosen_rate':      null,
+            'tracking_events':         {
+              'entered_loan_details': false,
+              'viewed_rate':          false,
+              'selected_rate':        false
+            }
+          };         
           $("#property_content").removeClass("active");
           $(this).closest('.subhead').removeClass('active');
           $(this).closest('.subhead').css('display','none');
@@ -779,13 +803,15 @@
         });
       } else {
         console.log(context)
-        if(context.programs.length > 0) {
-          dom.$rates_listing__wrapper.empty().append(template(context));
-          switchRateTypes();
-          dom.$rates_listing__wrapper.add(dom.$ratetype_form__wrapper).not(':visible').fadeIn(300);
-        } else {
-          dom.$rate_list_error.fadeIn(300);
-        }
+        if(context!==null){
+            if(context.programs.length > 0) {
+              dom.$rates_listing__wrapper.empty().append(template(context));
+              switchRateTypes();
+              dom.$rates_listing__wrapper.add(dom.$ratetype_form__wrapper).not(':visible').fadeIn(300);
+            } else {
+              dom.$rate_list_error.fadeIn(300);
+            }
+          }
         
       }
 
@@ -2195,6 +2221,7 @@
 
       // one-step back code
     $(".main_option1").click( function(){
+	regressToLoanDetails();
         mobile_data={};
         state.chosen_loan_type=""; 
         $('#mobile_form')[0].reset();    
