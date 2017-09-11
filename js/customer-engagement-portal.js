@@ -1925,7 +1925,22 @@
         program.rates[lowest_closing_index].tags.push('lowestClosing');
         program.rates[lowest_points_index].tags.push('lowestPoints');
 
-      });      
+      });
+
+      for(var i = programs.length-1; i >= 0; i--) {
+        if(programs[i].product_type != "NONCONFORMING") {
+          programs.product_type = 'removeNonCon';
+          break;
+        }
+      }
+    
+      for(var j = programs.length-1; j >= 0; j--) {
+        if(programs.product_type == 'removeNonCon') {
+          if(programs[j].product_type == "NONCONFORMING") {
+            programs.splice(j, 1);
+          }
+        }
+      } 
 
       // Sort programs into preferred order
       programs = _.sortBy(programs, [function(o) {
@@ -1966,10 +1981,16 @@
         var resutls = _.slice(sortedData, [start=startIndexOfSlice], [end=startIndexOfSlice+4])        
 
         if (resutls && resutls.length > 0) {
-          resutls[0].tags.push('lowestClosing');
-          resutls[resutls.length - 1].tags.push('lowestRate');
-          programs[i].rates = resutls;  
-        }          
+          // Remove lowestClosing or lowestRate tag if exist in results
+         _.forEach(resutls, function(resutls_data, resutls_index) { 
+            if (resutls_data.tags && resutls_data.tags.length > 0) {
+              _.remove(resutls_data.tags);
+            }
+         })
+         resutls[0].tags.push('lowestClosing');
+         resutls[resutls.length - 1].tags.push('lowestRate');
+         programs[i].rates = resutls;  
+       }          
       }
 
       // Add index properties to programs and rates, to be used in templates
