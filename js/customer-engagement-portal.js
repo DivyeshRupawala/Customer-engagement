@@ -2237,10 +2237,12 @@
         $(".mainTab").removeClass("selected");
         $(".mainTab").removeAttr("style","display:none");
         $(".mainTab").removeAttr("style","display:none");
-        $("#Purchase").removeClass("style","display:none");
+       // $("#Purchase").removeClass("style","display:none");
+       $('#Purchase').css('display', 'none');
         $("#Purchase").removeAttr("active");
         $("#Refinance").removeClass("active");
         $("#cashout_mobile").removeClass("active");
+        $("#cashout_mobile").css('display', 'none');
         $(".Refinance").removeClass("refin_selected");
         $(".T_Case").removeClass("T_Case_selected");         
         $("#Take_Case").removeClass("active");
