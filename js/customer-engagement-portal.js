@@ -1512,6 +1512,8 @@
       console.log("1 " +teaserRate);
 
       if (teaserRate && teaserRate[0]) {
+        teaserRate[0].closingCost = state.chosen_rate.total_closing_costs.toString();;
+        teaserRate[0].payment = state.chosen_rate.mo_mortgage.toString();;
         _.merge(teaserRate[0], teaseRateReqObj);        
       }      
 
