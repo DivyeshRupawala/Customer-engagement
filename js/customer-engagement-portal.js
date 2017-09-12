@@ -1984,14 +1984,25 @@
 
         if (resutls && resutls.length > 0) {
           // Remove lowestClosing or lowestRate tag if exist in results
-         _.forEach(resutls, function(resutls_data, resutls_index) { 
+          _.forEach(resutls, function(resutls_data, resutls_index) { 
             if (resutls_data.tags && resutls_data.tags.length > 0) {
               _.remove(resutls_data.tags);
             }
-         })
-         resutls[0].tags.push('lowestClosing');
-         resutls[resutls.length - 1].tags.push('lowestRate');
-         programs[i].rates = resutls;  
+          })
+
+          // Sort by closing cost to find lowest closing cost
+          var sortedByClosingCost = _.sortBy(resutls, function(o) {
+           return o.total_closing_costs;
+          });
+          sortedByClosingCost[0].tags.push('lowestClosing');
+
+          // Sort by rate to find lowest rate 
+          var sortedByRate = _.sortBy(sortedByClosingCost, function(o) {
+            return -o.rate;
+          });
+          sortedByRate[sortedByRate.length - 1].tags.push('lowestRate');
+
+          programs[i].rates = sortedByRate;  
        }          
       }
 
