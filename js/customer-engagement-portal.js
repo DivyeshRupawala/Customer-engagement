@@ -2876,7 +2876,7 @@ var est_amt = 0, p_price, per = 20, slide_range;
         if($('#range_06').val()==0){
             var slider6val=1;
           }else{
-            var slider6val=parseInt($('#range_06').val());
+            var slider6val=parseInt(mobile_data.cashout);
           }
 
         var slider5Endvalue=parseInt(slMaxVal-slider6val);
@@ -2920,7 +2920,7 @@ var est_amt = 0, p_price, per = 20, slide_range;
         if($('#range_06').val()==0){
             var slider6val=1;
           }else{
-            var slider6val=parseInt($('#range_06').val());
+            var slider6val=parseInt(mobile_data.cashout);
           }
            
 
