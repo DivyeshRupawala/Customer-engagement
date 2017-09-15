@@ -2474,10 +2474,10 @@ function createRangeSliders(sliderId,spanId,classId,minVal, maxVal, fromVal, ste
             }
             if(sliderId == "range_04"){
               slMaxVal = parseInt(current_val);
-              if($('#range_06').val()==0){
+              if(mobile_data.cashout==0){
                 var slider6val=1;
               }else{
-                var slider6val=parseInt($('#range_06').val());
+                var slider6val=parseInt(mobile_data.cashout);
               }
               var slider5Endvalue=parseInt(slMaxVal-slider6val);
               var slider5 = $("#range_05").data("ionRangeSlider");
@@ -2543,10 +2543,10 @@ function createRangeSliders(sliderId,spanId,classId,minVal, maxVal, fromVal, ste
             }
             if(sliderId == "range_04"){
               slMaxVal = parseInt(current_val);
-              if($('#range_06').val()==0){
+              if(mobile_data.cashout==0){
                 var slider6val=1;
               }else{
-                var slider6val=parseInt($('#range_06').val());
+                var slider6val=parseInt(mobile_data.cashout);
               }
               var slider5Endvalue=parseInt(slMaxVal-slider6val);
               var slider5 = $("#range_05").data("ionRangeSlider");
@@ -2611,10 +2611,10 @@ function createRangeSliders(sliderId,spanId,classId,minVal, maxVal, fromVal, ste
 			}
 			if(sliderId == "range_04"){
         slMaxVal = parseInt(current_val);
-        if($('#range_06').val()==0){
+        if(mobile_data.cashout==0){
           var slider6val=1;
         }else{
-          var slider6val=parseInt($('#range_06').val());
+          var slider6val=parseInt(mobile_data.cashout);
         }
         var slider5Endvalue=parseInt(slMaxVal-slider6val);
         var slider5 = $("#range_05").data("ionRangeSlider");
@@ -2628,10 +2628,12 @@ function createRangeSliders(sliderId,spanId,classId,minVal, maxVal, fromVal, ste
         }else{
           slMaxVal = parseInt(current_val);
         }
+        mobile_data.cashout=slMaxVal;
         var slider4val=parseInt($('#range_04').val());
         var slider5Endvalue=parseInt(slider4val-slMaxVal);
         var slider5 = $("#range_05").data("ionRangeSlider");
         slider5.update({ from: (slider5Endvalue*60/100), max: slider5Endvalue});
+        mobile_data.curmortgagebalance=parseInt($('#range_05').val());
         $('.range_slider5 .irs-max').text('$' + slider5Endvalue.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
         if($('#range_06').val()==0){
           var slider6val=1;
@@ -2640,11 +2642,12 @@ function createRangeSliders(sliderId,spanId,classId,minVal, maxVal, fromVal, ste
        }
         var slider4 = $("#range_04").data("ionRangeSlider");
         slider4.update({ from: 470000, min:Math.round(slider6val/.85),max: 2000000});
+        mobile_data.estVal=parseInt($('#range_04').val());
         $('.range_slider4 .irs-min').text('$' + Math.round(slider6val/.85).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));  
         //update slider7 value
         var slider7 = $("#range_07").data("ionRangeSlider");
         slider7.update({ from: slider6val});       
-        
+        mobile_data.cashout=slider6val;
       }
       if(sliderId == "range_07"){
         if(current_val==0){
@@ -2652,23 +2655,27 @@ function createRangeSliders(sliderId,spanId,classId,minVal, maxVal, fromVal, ste
         }else{
           slMaxVal = parseInt(current_val);
         }
-        var slider7val=parseInt($('#range_07').val());
+        var slider7val=parseInt(slMaxVal);
+        mobile_data.cashout=$('#range_07').val();
         //update slider7 value
         var slider6 = $("#range_06").data("ionRangeSlider");
         slider6.update({ from: slider7val});
+
         $('#slide_range6').text('$' + slider7val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
-        if($('#range_06').val()==0){
+        if(mobile_data.cashout==0){
           var slider6val=1;
         }else{
-         var slider6val=parseInt($('#range_06').val());
+         var slider6val=parseInt(mobile_data.cashout);
        }
          var slider4 = $("#range_04").data("ionRangeSlider");
         slider4.update({ from: 470000, min:Math.round(slider6val/.85),max: 2000000});
+        mobile_data.estVal=parseInt($('#range_04').val());
         $('.range_slider4 .irs-min').text('$' + Math.round(slider6val/.85).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));  
         var slider4val=parseInt($('#range_04').val());
-        var slider5Endvalue=parseInt(slider4val-slider7val);
+        var slider5Endvalue=parseInt(slider4val-mobile_data.cashout);
         var slider5 = $("#range_05").data("ionRangeSlider");
         slider5.update({ from: (slider5Endvalue*60/100), max: slider5Endvalue});
+         mobile_data.curmortgagebalance=parseInt($('#range_05').val());
         slider5defaultvalue=(slider5Endvalue*60/100);
         $('.range_slider5 .irs-max').text('$' + slider5Endvalue.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
         $('#slide_range5').text('$' + slider5defaultvalue.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
@@ -2872,8 +2879,11 @@ var est_amt = 0, p_price, per = 20, slide_range;
     $('.range_slider7').find('.irs-min').text('$1');
     //$('.range_slider5 .irs-max').text('$430,000');
 
-        var slMaxVal = parseInt($('#range_04').val());
-        if($('#range_06').val()==0){
+        var slMaxVal=parseInt("470000");
+        if(mobile_data.estVal!=undefined && mobile_data.estVal!=""){
+          slMaxVal = parseInt(mobile_data.estVal);
+        }
+        if(mobile_data.cashout==0){
             var slider6val=1;
           }else{
             var slider6val=parseInt(mobile_data.cashout);
@@ -2916,13 +2926,15 @@ var est_amt = 0, p_price, per = 20, slide_range;
       $('.range_slider6').find('.irs-max').text('$399,500');
       $('.range_slider7').find('.irs-min').text('$1'); 
       $('.range_slider7').find('.irs-max').text('$399,500'); 
-       var slMaxVal = parseInt($('#range_04').val());
-        if($('#range_06').val()==0){
+      var slMaxVal=parseInt("470000");
+       if(mobile_data.estVal!=undefined && mobile_data.estVal!=""){
+          slMaxVal = parseInt(mobile_data.estVal);
+        }
+        if(mobile_data.cashout==0){
             var slider6val=1;
           }else{
             var slider6val=parseInt(mobile_data.cashout);
           }
-           
 
         var slider5Endvalue=parseInt(slMaxVal-slider6val);
         $('.range_slider4').find('.irs-min').text('$' + Math.round(slider6val/.85).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"))
