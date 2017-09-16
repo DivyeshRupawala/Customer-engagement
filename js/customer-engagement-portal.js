@@ -1391,7 +1391,7 @@
             'loanType': {
               "loanTypeCd": "PUR"
             },
-            'monthlyRent' : cache.purchaseDetails.housePrice,
+            'monthlyRent' : '',
             'purchaseDetails': {
               'livingSituation': 'renting',
               'housePrice':      cache.purchaseDetails.housePrice,
