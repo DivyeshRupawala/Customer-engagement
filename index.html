@@ -530,8 +530,19 @@ td.c-rates-detail__totals-label{#3a7ab2 !important}
 .c-rates-detail__item-value, .c-rates-detail__totals-value{text-align:left !important;padding-left: 20px;}
 table.details_table{width:80%; margin-left:0 !important;}
 button#different-rate-btn, button.c-btn.c-btn--prominent.u-margin-bottom-small{font-weight:normal !important;}
-
+.table-body {
+    max-height: 30vw;
+    overflow-y: auto;
+}
+@media (max-width: 991px){
+.table-body {
+    max-height: 90vw;
+	}
+}	
 @media (max-width: 767px){
+.table-body {
+    max-height: 100vw;
+}
 .c-rates-detail{padding: 35px 25px 25px !important;}
 .rate_table_caption > .caption_inner{position:relative;}
 .term_year,  .confirmation, .rate_table_caption > .caption_inner > span{display:inline-block;}
@@ -837,6 +848,7 @@ input[type=range]::-webkit-slider-thumb {
               </div>
             </div>
           </div>
+		  <div class="table-body">
           {{#each programs}}
           <table class="c-rates-listing__program c-rates-listing__program_new" data-js-program-id="{{@index}}">
            	<caption class="rate_table_caption">
@@ -868,6 +880,7 @@ input[type=range]::-webkit-slider-thumb {
             {{/each}}
           </table>
           {{/each}}
+		  </div>
         </div>
       </div>
     </div>
@@ -1775,14 +1788,14 @@ input[type=range]::-webkit-slider-thumb {
               <div class="c-form-element u-margin-bottom-small">
                 <label class="c-form-element__label" for="fname">First Name</label>
                 <div class="c-form-element__control">
-                  <input type="text" id="fname" name="fname" class="c-input"/>
+                  <input type="text" id="fname" name="fname" class="c-input alphabetsOnly"/>
                 </div>
               </div>
 
               <div class="c-form-element u-margin-bottom-small">
                 <label class="c-form-element__label" for="lname">Last Name</label>
                 <div class="c-form-element__control">
-                  <input type="text" id="lname" name="lname" class="c-input"/>
+                  <input type="text" id="lname" name="lname" class="c-input alphabetsOnly"/>
                 </div>
               </div>
 
