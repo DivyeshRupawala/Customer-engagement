@@ -31,7 +31,7 @@
           'zipcode':            'Zip Code',
           'residencetype':      'Property Type',
           'propertyuse':        'Property Use',
-          'creditscore':        'Credit Score',
+          'creditscore':        'Est. Credit Score',
           'purchaseprice':      'Purchase Price',
           'downpaymentpercent': 'Down Payment',
           'estval':             'Est. Home Value',
@@ -911,7 +911,7 @@
                 el = document.getElementById(field),
                 value
                 ;
-              if(label=="Credit Score"){
+              if(label=="Est. Credit Score"){
                   value=$("#chanceSlider").text();
               }else{
                 switch (el.tagName) {
