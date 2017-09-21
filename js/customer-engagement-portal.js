@@ -1963,10 +1963,15 @@
       // Display a maximum of 4 rates that are above lowest closing cost 
       for (var i = 0; i < programs.length; i++) {
 
+        // Sort data base on rate befor removing duplicate
+        var sortedData_befor_duplicate = _.sortBy(programs[i].rates, function(o) {
+          return o.rate;
+        });
+
         // Remove duplicate record
-        var non_duplidated_data = _.uniqBy(programs[i].rates, 'total_closing_costs');
+        var non_duplidated_data = _.uniqBy(sortedData_befor_duplicate, 'total_closing_costs');
         
-        // Sort by rate data based on closing cost
+        // Sort data base on rate in descending order 
         var sortedData = _.sortBy(non_duplidated_data, function(o) {
           return -o.rate;
         });
