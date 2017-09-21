@@ -43,7 +43,7 @@
 div#chanceSlider {
     text-align: center;
     position: relative;
-    top: -15px;
+    top: -10px;
 }
 input#creditscoreDesktop {
     margin: 0;
@@ -950,17 +950,17 @@ input[type=range]::-webkit-slider-thumb {
                 <td class="c-rates-detail__item-value">${{currencyNumberNoCents rate.third_party_costs.lenders_title_ins}}</td>
               </tr>
               <tr class="c-rates-detail__item">
-                <td class="c-rates-detail__item-label">Closing/Escrow Fees</td>
+                <td class="c-rates-detail__item-label">Closing/Escrow Fee</td>
                 <td class="c-rates-detail__item-value">{{currencyNumberNoCents rate.third_party_costs.closing_and_escrow_fees}}</td>
               </tr>
               {{#if rate.third_party_costs.recording_fees}}
               <tr class="c-rates-detail__item">
-                <td class="c-rates-detail__item-label">Recording Fees</td>
+                <td class="c-rates-detail__item-label">Recording Fee</td>
                 <td class="c-rates-detail__item-value">${{currencyNumberNoCents rate.third_party_costs.recording_fees}}</td>
               </tr>
               {{/if}}
               <tr class="c-rates-detail__item">
-                <td class="c-rates-detail__item-label">Notary Fees</td>
+                <td class="c-rates-detail__item-label">Notary Fee</td>
                 <td class="c-rates-detail__item-value">${{currencyNumberNoCents rate.third_party_costs.notaryfee1110}}</td>
               </tr>
               <tr class="c-rates-detail__item">
@@ -1133,7 +1133,7 @@ input[type=range]::-webkit-slider-thumb {
             </div>
             <div class="col-xs-10 drop_padd">
               <div class="col-xs-12 padd_zero zip_input img_landscape_6_B" >
-                <input type="text"   maxlength="5"  id="zipcodeMobile" name="zipcode" class="form-control numbersOnly"  placeholder="Zip Code">
+                <input type="text"   maxlength="5"  id="zipcodeMobile" name="zipcode" class="form-control numbersOnly"  placeholder="Enter here">
               </div>
             </div>
              <div class="clearfix"></div>
@@ -1269,7 +1269,7 @@ input[type=range]::-webkit-slider-thumb {
           </div>
           <div class="col-xs-12 subhead third_main_tab">
              <div class="col-xs-12 hei_third">
-               <h3>Credit Score</h3>
+               <h3>Estimated Credit Score</h3>
                <!-- <div class="range_slider_credit" style="position: relative; padding: 10px;">
                   <div> 
                   <span id="slide_range_credit"> </span>
@@ -1575,7 +1575,7 @@ input[type=range]::-webkit-slider-thumb {
 
           <div class="o-layout__item u-1/1 u-1/2@small u-1/3@medium newLayout" data-js="details--creditscore">
             <div class="c-form-element u-margin-bottom-small">
-              <label class="c-form-element__label" for="creditscore">Credit Score</label>
+              <label class="c-form-element__label" for="creditscore">Estimated Credit Score</label>
               <div class="c-form-element__control">
 				  <div class="">		
 					<div id="chanceSlider">760</div>	
@@ -1733,7 +1733,7 @@ input[type=range]::-webkit-slider-thumb {
 
     <!-- Error message if we don't get any rate list -->
     <section class="o-wrapper o-wrapper--narrow u-margin-top-none u-margin-bottom mobile_rates-listing_error" data-js="rate-list-error" style="display: none; margin-bottom: 50px !important; text-align: center; padding: 30px;">
-      <span id="rate-list-error" style="font-size: 14px; color: rgba(24, 72, 141, 0.9);"> We were unable to match you with the right program based on the information you provided. But don't worry, you can call us during normal business hours at 888-316-3934 or complete the form below and someone from the Newfi team will contact you to review your options.</span>
+      <span id="rate-list-error" style="font-size: 14px; color: rgba(24, 72, 141, 0.9);"> We were unable to match you with the right program based on the information you provided. But don't worry, you can call us during normal business hours at 1-(888)-316-3934 or complete the form below and someone from the Newfi team will contact you to review your options.</span>
 
       <div class="o-layout__item" style="width: 50%; margin-top: 30px;">
         <form data-js="user-query-form">
@@ -1881,7 +1881,7 @@ input[type=range]::-webkit-slider-thumb {
           <div vocab="http://schema.org/" typeof="Organization" class="c-address">
             <span property="name" class="u-hidden-visually">Newfi</span>
             <address property="address" typeof="PostalAddress">2200 Powell Street, Suite 340<br> Emeryville, CA 94608</address>
-            <span property="telephone">888-316-3934</span>
+            <span property="telephone">1-(888)-316-3934</span>
           </div>
           <a class="o-icon o-icon--facebook-logo" href="https://www.facebook.com/newfinow/?fref=ts" target="_blank"><span class="u-hidden-visually">Facebook</span></a>
         </div>
