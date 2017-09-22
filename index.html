@@ -951,7 +951,7 @@ input[type=range]::-webkit-slider-thumb {
               </tr>
               <tr class="c-rates-detail__item">
                 <td class="c-rates-detail__item-label">Closing/Escrow Fee</td>
-                <td class="c-rates-detail__item-value">{{currencyNumberNoCents rate.third_party_costs.closing_and_escrow_fees}}</td>
+                <td class="c-rates-detail__item-value">${{currencyNumberNoCents rate.third_party_costs.closing_and_escrow_fees}}</td>
               </tr>
               {{#if rate.third_party_costs.recording_fees}}
               <tr class="c-rates-detail__item">
