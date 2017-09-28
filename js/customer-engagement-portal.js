@@ -5,7 +5,7 @@
 ;(function ($, window, document, undefined) {
   // Postpone execution until DOM is loaded
   $(function() {
-    var API_URL_PREFIX = "../NewfiWeb/rest/";
+    var API_URL_PREFIX = "http://localhost:8080/NewfiWeb/rest/";
   // var API_URL_PREFIX = "https://pg1.newfi.com/NewfiWeb/rest/";
     /**
      * Setup several app-wide collections:
@@ -1969,37 +1969,38 @@
         });
 
         // Remove duplicate record
-        var non_duplidated_data = _.uniqBy(sortedData_befor_duplicate, 'total_closing_costs');
-        
-        // Sort data base on rate in descending order 
-        var sortedData = _.sortBy(non_duplidated_data, function(o) {
-          return -o.rate;
-        });
+        var non_duplidated_data = _.uniqBy(sortedData_befor_duplicate, 'total_closing_costs'); 
+
+        // // Sort data base on rate in descending order 
+        // var resutls = _.sortBy(filterResutls, function(o) {
+        //   return -o.rate;
+        // });      
 
         var startIndexOfSlice = 0;
 
         // Find 0 closing cost index and removed top of zero closing cost record
-        var indexOfZero = _.findIndex(sortedData, function(o) { 
-          return o.total_closing_costs == 0; 
-        });
+        // var indexOfZero = _.findIndex(non_duplidated_data, function(o) { 
+        //   return o.total_closing_costs == 0; 
+        // });
 
-        if (indexOfZero > 0) {
-          startIndexOfSlice = indexOfZero;
-        }
+        // if (indexOfZero > 0) {
+        //   startIndexOfSlice = indexOfZero;
+        // }
 
         // Slice data and take 4 records
-        var resutls = _.slice(sortedData, [start=startIndexOfSlice], [end=startIndexOfSlice+4])        
+        var filterResutls = _.slice(non_duplidated_data, [start=startIndexOfSlice], [end=startIndexOfSlice+4])        
 
-        if (resutls && resutls.length > 0) {
+        if (filterResutls && filterResutls.length > 0) {         
+
           // Remove lowestClosing or lowestRate tag if exist in results
-          _.forEach(resutls, function(resutls_data, resutls_index) { 
+          _.forEach(filterResutls, function(resutls_data, resutls_index) { 
             if (resutls_data.tags && resutls_data.tags.length > 0) {
               _.remove(resutls_data.tags);
             }
           })
 
           // Sort by closing cost to find lowest closing cost
-          var sortedByClosingCost = _.sortBy(resutls, function(o) {
+          var sortedByClosingCost = _.sortBy(filterResutls, function(o) {
            return o.total_closing_costs;
           });
           sortedByClosingCost[0].tags.push('lowestClosing');
