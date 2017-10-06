@@ -549,6 +549,10 @@
               required : true,
               email : true
             },
+            primaryPhone: {
+              required : true,
+              phoneNumberValidation : true
+            },
             newfiadvisor : {
               required : true
             },
@@ -560,6 +564,7 @@
             fname: "Please enter your firstname",
             lname : "Please enter your lastname",
             email : "Please enter a valid email address",
+            primaryPhone : "Please enter a valid primary phone",
             newfiadvisor : "Please choose newfi loan advisor",
             newfiadvisorsname : "Please enter your advisor's name"
           }
@@ -580,12 +585,17 @@
             emailid: {
               required : true,
               email : true
+            },
+            primaryPhoneId: {
+              required : true,
+              phoneNumberValidation: true
             }
           },
           messages: {
             firstname: "Please enter your firstname",
             lastname : "Please enter your lastname",
-            emailid : "Please enter a valid email address"
+            emailid : "Please enter a valid email address",
+            primaryPhoneId : "Please enter a valid primary phone"
           }
         });
 
@@ -902,7 +912,11 @@
           'cashout'
         ]
         ;
-        context.rows.push({'label': 'Loan Type', 'value': dict.loantype_labels[chosen_type]});
+
+      $('#primaryPhoneId').mask('(000) 000-0000');
+      $('#primaryPhone').mask('(000) 000-0000');
+
+      context.rows.push({'label': 'Loan Type', 'value': dict.loantype_labels[chosen_type]});
        // Iterate through fields and populate context object for summary template
       if($.isEmptyObject(mobile_data)){
               $.each(fields_to_summarize, function(i, field) {
@@ -1355,6 +1369,7 @@
       user_query.firstName = $('#firstname').val();
       user_query.lastName = $('#lastname').val();
       user_query.emailId = $('#emailid').val() + ":" + new Date().getTimezoneOffset();
+      user_query.phoneNumber = $('#primaryPhoneId').val().replace(/[()$,\s-]/g, '').trim();
 
       // var requestData = buildUserRegistrationData();
       // var validateUser = validateUserDetails(requestData);
@@ -1384,7 +1399,8 @@
         v = {
           'firstName' : $('#fname').val(),
           'lastName' : $('#lname').val(),
-          'emailId' : $('#email').val() + ":" + new Date().getTimezoneOffset()
+          'emailId' : $('#email').val() + ":" + new Date().getTimezoneOffset(),
+          'phoneNumber' : $('#primaryPhone').val().replace(/[()$,\s-]/g, '').trim()
         };
 
       // Return an object suitable for the chosen loan type
@@ -1410,7 +1426,8 @@
             'user' : {
               'firstName': v.firstName,
               'lastName': v.lastName,
-              'emailId': v.emailId
+              'emailId': v.emailId,
+              'phoneNumber' : v.phoneNumber
             }
           };
           break;
@@ -1437,7 +1454,8 @@
             'user' : {
               'firstName': v.firstName,
               'lastName': v.lastName,
-              'emailId': v.emailId
+              'emailId': v.emailId,
+              'phoneNumber' : v.phoneNumber
             }
           };
           break;
@@ -1465,7 +1483,8 @@
             'user' : {
               'firstName': v.firstName,
               'lastName': v.lastName,
-              'emailId': v.emailId
+              'emailId': v.emailId,
+              'phoneNumber' : v.phoneNumber
             }
           };
           break;
@@ -1601,6 +1620,19 @@
           return true;
         }
       }, 'Please enter a valid Zip Code in a Newfi approved state: AZ, CA, CO, FL, NJ, PA, OR or WA');
+
+      $.validator.addMethod('phoneNumberValidation', function(value, element) {
+        var val = value ? value.replace(/[()$,\s-]/g, '').trim() : "";
+        if(isNaN(val)) {
+          return false;
+        } else { 
+          if (val.length == 10) {
+            return true;  
+          } else {
+            false;
+          }          
+        }
+      }, 'Please enter a valid primary phone.');      
     }
 
     /**
