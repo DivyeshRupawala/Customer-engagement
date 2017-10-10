@@ -2003,26 +2003,25 @@
         // Remove duplicate record
         var non_duplidated_data = _.uniqBy(sortedData_befor_duplicate, 'total_closing_costs'); 
 
-        // // Sort data base on rate in descending order 
-        // var resutls = _.sortBy(filterResutls, function(o) {
-        //   return -o.rate;
-        // });      
-
-        var startIndexOfSlice = 0;
-
         // Find 0 closing cost index and removed top of zero closing cost record
-        // var indexOfZero = _.findIndex(non_duplidated_data, function(o) { 
-        //   return o.total_closing_costs == 0; 
-        // });
+        var indexOfZero = _.findIndex(non_duplidated_data, function(o) { 
+          return o.total_closing_costs == 0; 
+        });
 
-        // if (indexOfZero > 0) {
-        //   startIndexOfSlice = indexOfZero;
-        // }
+        if (indexOfZero > 0) {
+          startIndexOfSlice = indexOfZero;
+          non_duplidated_data = _.slice(non_duplidated_data, [start=0], [end=indexOfZero+1])
+        }
+
+        // Sort by closing cost to take 4 lowest cllosing cost data
+        var sortedByClosingCost = _.sortBy(non_duplidated_data, function(o) {
+         return o.total_closing_costs;
+        });
 
         // Slice data and take 4 records
-        var filterResutls = _.slice(non_duplidated_data, [start=startIndexOfSlice], [end=startIndexOfSlice+4])        
+        var filterResutls = _.slice(sortedByClosingCost, [start=0], [end=4])
 
-        if (filterResutls && filterResutls.length > 0) {         
+        if (filterResutls && filterResutls.length > 0) {
 
           // Remove lowestClosing or lowestRate tag if exist in results
           _.forEach(filterResutls, function(resutls_data, resutls_index) { 
